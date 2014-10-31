@@ -35,18 +35,18 @@ Our code for a simple HTML page is significantly less clunky in Jade, and seems 
 
 CoffeeScript:
 
-	this.factorial = (n) -> 
+	this.fibonnaci = (n) -> 
 	    if n == 1 or n == 2 then 1
-	    else factorial(n-1) + factorial(n-2)
+	    else fibonnaci(n-1) + fibonnaci(n-2)
 
 Corresponding JavaScript:
 
-	function(n) {
+	this.fibonnaci(n) {
 		if (n === 1 || n === 2) {
 			return 1;
 		} 
 		else {
-			return factorial(n - 1) + factorial(n - 2);
+			return fibonnaci(n - 1) + fibonnaci(n - 2);
 		}
 	}; 
 
@@ -58,9 +58,4 @@ The conciseness and beauty of CoffeeScript are easily realized in this example. 
 
 ## Example computations
 
-
-document:
-	author: Paul Dapolito
-	organization: Harvey Mudd College
-	date: 10/28/12
 
