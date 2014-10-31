@@ -9,6 +9,7 @@ EasyTex is motivated by a series of external factors as well as LaTeX-specific s
 EasyTeX is motivated by two of such projects. The first is called [Jade](http://jade-lang.com/), which is a template engine for HTML. Jade allows programmers to create HTML pages whose code is clean, easily shareable, and extensible. For example, using the Jade API, the following code transformation is realized when creating a very simple web page:
 
 Jade:
+
 	doctype html
 		html(lang="en")
   		head
@@ -19,6 +20,7 @@ Jade:
   			How much less code can we write by using Jade?
 
 Corresponding HTML:
+
 	<!DOCTYPE html>
 	<html lang="en">
 		<head>
@@ -32,12 +34,14 @@ Corresponding HTML:
 Our code for a simple HTML page is significantly less clunky in Jade, and seems much more human readable. Similar results are yielded using the [CoffeeScript](http://coffeescript.org/) compiler to write a simple Fibonacci function:
 
 CoffeeScript:
+
 	this.factorial = (n) -> 
 	    if n == 1 or n == 2 then 1
 	    else factorial(n-1) + factorial(n-2)
 
 Corresponding JavaScript:
-	this.factorial = function(n) {
+
+	function(n) {
 		if (n === 1 || n === 2) {
 			return 1;
 		} 
