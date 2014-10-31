@@ -1,4 +1,4 @@
-# Project description and plan
+# Project Description and Plan
 
 My project is called EasyTeX, and it is a domain-specific language for quickly creating clean, shareable, and nicely-formatted LaTeX documents. EasyTeX will offer support first for the typesetting of technical problem sets, and will be expanded to support the creation of any technical document.
 
@@ -52,10 +52,12 @@ Corresponding JavaScript:
 
 The conciseness and beauty of CoffeeScript are easily realized in this example. By using tools like Jade or CoffeeScript, we are able to develop in powerful languages and do so with code that is easy to write and easy to share. Such is the motivation for EasyTeX. I have often been discouraged from using LaTeX to typeset my work due to the excessive boilerplate markup required to create a document in LaTeX, and the difficulty in maintaining LaTeX documents due to the non-enforcement of styling guidelines  in the language. As was true in my own experience and what is further confirmed by observation, many students at Harvey Mudd do not begin typesetting their work until it becomes required in some course. This may be due to personal preference, but I feel that more students would typeset their work if the LaTeX learning curve wasn't so steep, and if the language was easier to access and create documents with. EasyTeX will try to remove this barrier of entry from typesetting technical work. 
 
-## Language domain
+## Language Domain
 
-## Language design
+The domain of EasyTeX is technical typesetting. I hope to enable students, professors, scientists, and anyone else who wishes to typeset technical documents to do so in the easiest way possible. I envision EasyTeX as being an end-to-end solution to creating beautiful documents via LaTeX for anyone who wishes to typeset their technical work.
 
-## Example computations
+## Language Design
+
+## Example Computations
 
 
