@@ -74,4 +74,153 @@ While error-checking at every level of EasyTeX's internal representation will cl
 
 ## Example Computations
 
+First is a short example of how a user might enter some simple lines of EasyTeX with the hopes of creating a document containing paragraphs of text.
+
+EasyTeX:
+
+	document:
+		author: Paul Dapolito
+		date: October 31, 2014
+		title: A Canonical Example of EasyTeX
+		subtitle: Quick, easy, and syntactically charming!
+
+		section:
+			title: Abstract
+			text:
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare viverra mauris in elementum. Phasellus hendrerit ullamcorper ante sed aliquam. Nunc tellus nibh, interdum eu tellus id, convallis commodo lacus. Curabitur quis mi condimentum, lacinia lacus eu, lobortis felis. Donec porttitor nibh eget diam rhoncus pretium. In id sapien quis elit aliquet auctor. Etiam eros mauris, sollicitudin id lacus vel, volutpat mattis lectus. Nunc laoreet pretium feugiat. Integer condimentum, magna quis venenatis imperdiet, enim nulla congue odio, ac mollis dui ipsum eget magna.
+
+		section:
+			title: Summary 
+			text:
+				Praesent et accumsan tellus, ac tincidunt nulla. Aliquam eget erat sed tellus dictum blandit. Maecenas ut imperdiet tortor. Vestibulum eget neque fringilla, vehicula lacus id, elementum dolor. Suspendisse potenti. Morbi dignissim purus non sem dapibus, id convallis lectus lacinia. Morbi id turpis porttitor, euismod tellus a, bibendum urna. Nunc imperdiet vestibulum euismod. Phasellus at imperdiet nisl. Integer in justo nunc. Integer vel odio non mauris ultricies pretium vel vel eros. Mauris sed leo ultrices, cursus enim vitae, fringilla felis. Curabitur eu semper mauris. Sed sodales diam orci, ut commodo lacus fringilla in. Duis commodo arcu quis sem volutpat, id consequat mi aliquam.
+
+				Nunc id varius sapien. Donec vel odio dictum, pellentesque arcu vitae, dignissim erat. Aenean non purus vel mi congue viverra. Nunc tristique neque id nulla commodo ullamcorper. Proin eu urna id dolor placerat laoreet. Mauris id dui massa. Cras nibh ante, gravida ac dignissim a, ornare quis sem. Cras scelerisque finibus tellus, at semper neque tempus a. Curabitur non magna ligula.
+
+Corresponding LaTeX:
+
+\documentclass[letterpaper, boxed]{hmcpset}
+\usepackage[margin=1in]{geometry}
+
+	\begin{document}
+	\begin{center} 
+	\Large{\textbf{A Canonical Example of EasyTeX}} \\ 
+	\textit{Quick, easy, and syntactically charming} \\
+	\large{Paul Dapolito} \\
+	\large{October 31, 2014}
+	\end{center}
+
+	\large \begin{flushleft} \textbf{Abstract} \end{flushleft}
+	\normalsize 
+
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare viverra mauris in elementum. Phasellus hendrerit ullamcorper ante sed aliquam. Nunc tellus nibh, interdum eu tellus id, convallis commodo lacus. Curabitur quis mi condimentum, lacinia lacus eu, lobortis felis. Donec porttitor nibh eget diam rhoncus pretium. In id sapien quis elit aliquet auctor. Etiam eros mauris, sollicitudin id lacus vel, volutpat mattis lectus. Nunc laoreet pretium feugiat. Integer condimentum, magna quis venenatis imperdiet, enim nulla congue odio, ac mollis dui ipsum eget magna.
+
+	\large \begin{flushleft} \textbf{Summary} \end{flushleft}
+	\normalsize 
+
+	Praesent et accumsan tellus, ac tincidunt nulla. Aliquam eget erat sed tellus dictum blandit. Maecenas ut imperdiet tortor. Vestibulum eget neque fringilla, vehicula lacus id, elementum dolor. Suspendisse potenti. Morbi dignissim purus non sem dapibus, id convallis lectus lacinia. Morbi id turpis porttitor, euismod tellus a, bibendum urna. Nunc imperdiet vestibulum euismod. Phasellus at imperdiet nisl. Integer in justo nunc. Integer vel odio non mauris ultricies pretium vel vel eros. Mauris sed leo ultrices, cursus enim vitae, fringilla felis. Curabitur eu semper mauris. Sed sodales diam orci, ut commodo lacus fringilla in. Duis commodo arcu quis sem volutpat, id consequat mi aliquam.
+
+	Nunc id varius sapien. Donec vel odio dictum, pellentesque arcu vitae, dignissim erat. Aenean non purus vel mi congue viverra. Nunc tristique neque id nulla commodo ullamcorper. Proin eu urna id dolor placerat laoreet. Mauris id dui massa. Cras nibh ante, gravida ac dignissim a, ornare quis sem. Cras scelerisque finibus tellus, at semper neque tempus a. Curabitur non magna ligula.
+
+	\end{document}
+
+PDF produced by EasyTeX:
+
+<img src="./images/example_1.png" width="400px" />
+	
+Next is a canonical example of how EasyTeX might be used to typeset a problem set.
+
+EasyTeX:
+
+	document:
+		author: Paul Dapolito
+		collaborators: Angela, Rob
+		duedate: November 1, 2014
+		title: Assignment 3
+		class: CS111
+		school: Harvey Mudd College
+
+		problem:
+			label: 1
+			statement: What is the rate of change $f'$ of a function $f$ at the point $a$?
+			solution: 
+				The derivative of $f$ at $a$, denoted $f'(a)$, is:
+					$$f'(a) = \lim_{k \to 0} \frac{f(a + h) - f(a)}{h}$$
+
+		problem:
+			label: 2
+			statement: 
+				Carefully prove that if $L_1$ and $L_2$ are languages and $L_1 \subseteq L_2*$, then $L_1 * \subseteq L_2*$
+			solution:
+				Suppose $L_1$ is some arbitrary language over an alphabet $\Sigma$ with words $l_1,l_2,l_3,...,l_{n-1},l_{n}$. $L_1$ is defined as:
+					$$L_1 = \{l_1, l_2, l_3,...,l_{n-1}, l_{n}\}$$
+
+				For the languages $L_1$ and $L_2$, we are given that that $L_1 \subseteq L_2*$. Using the fact that $L_1 \subseteq L_2*$ and the definition of the Kleene star operation, $L_2*$ must be such that:
+					align:
+						\{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} \subseteq L_2*
+
+				Using the definition of the Kleene star operation again, we know that $L_1*$ is given by:
+					align:
+						L_1* =  \{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} 
+
+				Thus, Equation 1 becomes:
+					align:
+						L_1* \subseteq L_2*
+
+				And we have thus proven that if $L_1$ and $L_2$ are languages and $L_1 \subseteq L_2*$, then $L_1 * \subseteq L_2*$. QED.
+
+Corresponding LaTeX:
+
+	\documentclass[11pt,letterpaper,boxed]{hmcpset}
+	\usepackage[margin=0.9in]{geometry}
+
+	\name{Paul Dapolito}
+	\class{CS111, Harvey Mudd College}
+	\assignment{Assignment 2}
+	\duedate{Due: November 1, 2014}
+
+	\begin{document}
+
+	Worked with Angela and Rob \\
+	\begin{problem}[1]
+	What is the rate of change $f'$ of a function $f$ at the point $a$?
+	\end{problem}
+
+	\begin{solution}
+	The derivative of $f$ at $a$, denoted $f'(a)$, is:
+	$$f'(a) = \lim_{k \to 0} \frac{f(a + h) - f(a)}{h}$$
+	\end{solution}
+
+	\begin{problem}[2]
+	Carefully prove that if $L_1$ and $L_2$ are languages and $L_1 \subseteq L_2*$, then $L_1 * \subseteq L_2*$.
+	\end{problem}
+
+	\begin{solution}
+	Suppose $L_1$ is some arbitrary language over an alphabet $\Sigma$ with words $l_1,l_2,l_3,...,l_{n-1},l_{n}$. $L_1$ is defined as:
+	$$L_1 = \{l_1, l_2, l_3,...,l_{n-1}, l_{n}\}$$
+	For the languages $L_1$ and $L_2$, we are given that that $L_1 \subseteq L_2*$. Using the fact that $L_1 \subseteq L_2*$ and the definition of the Kleene star operation, $L_2*$ must be such that:
+	\begin{align}
+	 \{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} \subseteq L_2*
+	\end{align}
+	Using the definition of the Kleene star operation again, we know that $L_1*$ is given by:
+	\begin{align}
+	L_1* =  \{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} 
+	\end{align}
+	Thus, Equation 1 becomes:
+	\begin{align}
+	L_1* \subseteq L_2*
+	\end{align}
+	And we have thus proven that if $L_1$ and $L_2$ are languages and $L_1 \subseteq L_2*$, then $L_1 * \subseteq L_2*$. QED.\\
+	\end{solution}
+
+	\end{document}
+
+PDF produced by EasyTeX:
+
+<img src="./images/example_2.png" width="400px" />
+
+In both cases, the user creates an EasyTeX document and is able to immediately produce a PDF with their work.
+
+
+
+
 
