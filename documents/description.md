@@ -98,8 +98,8 @@ EasyTeX:
 
 Corresponding LaTeX:
 
-\documentclass[letterpaper, boxed]{hmcpset}
-\usepackage[margin=1in]{geometry}
+	\documentclass[letterpaper, boxed]{hmcpset}
+	\usepackage[margin=1in]{geometry}
 
 	\begin{document}
 	\begin{center} 
@@ -144,7 +144,7 @@ EasyTeX:
 			statement: What is the rate of change $f'$ of a function $f$ at the point $a$?
 			solution: 
 				The derivative of $f$ at $a$, denoted $f'(a)$, is:
-					$$f'(a) = \lim_{k \to 0} \frac{f(a + h) - f(a)}{h}$$
+					$$ f'(a) = \lim_{k \to 0} \frac{f(a + h) - f(a)}{h} $$
 
 		problem:
 			label: 2
@@ -152,19 +152,16 @@ EasyTeX:
 				Carefully prove that if $L_1$ and $L_2$ are languages and $L_1 \subseteq L_2*$, then $L_1 * \subseteq L_2*$
 			solution:
 				Suppose $L_1$ is some arbitrary language over an alphabet $\Sigma$ with words $l_1,l_2,l_3,...,l_{n-1},l_{n}$. $L_1$ is defined as:
-					$$L_1 = \{l_1, l_2, l_3,...,l_{n-1}, l_{n}\}$$
+					$$ L_1 = \{l_1, l_2, l_3,...,l_{n-1}, l_{n}\} $$
 
 				For the languages $L_1$ and $L_2$, we are given that that $L_1 \subseteq L_2*$. Using the fact that $L_1 \subseteq L_2*$ and the definition of the Kleene star operation, $L_2*$ must be such that:
-					align:
-						\{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} \subseteq L_2*
+					$$ \{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} \subseteq L_2* #
 
 				Using the definition of the Kleene star operation again, we know that $L_1*$ is given by:
-					align:
-						L_1* =  \{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} 
+					$$ L_1* =  \{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} $$ 
 
 				Thus, Equation 1 becomes:
-					align:
-						L_1* \subseteq L_2*
+					$$ L_1* \subseteq L_2* $$
 
 				And we have thus proven that if $L_1$ and $L_2$ are languages and $L_1 \subseteq L_2*$, then $L_1 * \subseteq L_2*$. QED.
 
@@ -196,20 +193,18 @@ Corresponding LaTeX:
 
 	\begin{solution}
 	Suppose $L_1$ is some arbitrary language over an alphabet $\Sigma$ with words $l_1,l_2,l_3,...,l_{n-1},l_{n}$. $L_1$ is defined as:
-	$$L_1 = \{l_1, l_2, l_3,...,l_{n-1}, l_{n}\}$$
+		$$L_1 = \{l_1, l_2, l_3,...,l_{n-1}, l_{n}\}$$
+
 	For the languages $L_1$ and $L_2$, we are given that that $L_1 \subseteq L_2*$. Using the fact that $L_1 \subseteq L_2*$ and the definition of the Kleene star operation, $L_2*$ must be such that:
-	\begin{align}
-	 \{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} \subseteq L_2*
-	\end{align}
+		$$ \{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} \subseteq L_2* $$
+
 	Using the definition of the Kleene star operation again, we know that $L_1*$ is given by:
-	\begin{align}
-	L_1* =  \{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} 
-	\end{align}
+		$$ L_1* =  \{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} $$
+
 	Thus, Equation 1 becomes:
-	\begin{align}
-	L_1* \subseteq L_2*
-	\end{align}
-	And we have thus proven that if $L_1$ and $L_2$ are languages and $L_1 \subseteq L_2*$, then $L_1 * \subseteq L_2*$. QED.\\
+		$$ L_1* \subseteq L_2* $$
+		
+	And we have thus proven that if $L_1$ and $L_2$ are languages and $L_1 \subseteq L_2*$, then $L_1 * \subseteq L_2*$. QED
 	\end{solution}
 
 	\end{document}
