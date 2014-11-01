@@ -203,7 +203,7 @@ Corresponding LaTeX:
 
 	Thus, Equation 1 becomes:
 		$$ L_1* \subseteq L_2* $$
-		
+
 	And we have thus proven that if $L_1$ and $L_2$ are languages and $L_1 \subseteq L_2*$, then $L_1 * \subseteq L_2*$. QED
 	\end{solution}
 
@@ -213,7 +213,7 @@ PDF produced by EasyTeX:
 
 <img src="./images/example_2.png" width="400px" />
 
-In both cases, the user creates an EasyTeX document and is able to immediately produce a PDF with their work.
+In both cases, the user creates an EasyTeX document and is able to immediately produce a PDF with their work without ever encountering the underlying LaTeX!
 
 
 
