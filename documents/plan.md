@@ -31,12 +31,12 @@ I believe that the most difficult components of EasyTeX's implementation will be
   </tr>
   <tr>
     <td class="tg-031e">10/26 - 11/1</td>
-    <td class="tg-031e">1) complete project description<br>2) describe weekly plan<br>3) begin working on grammar<br>4) investigate pyparsing module</td>
+    <td class="tg-031e">1) complete project description<br>2) describe weekly plan<br>3) begin working on grammar<br>4) investigate unittest module</td>
     <td class="tg-031e">- Project plan<br>- Project description</td>
   </tr>
   <tr>
     <td class="tg-031e">11/2 - 11/8</td>
-    <td class="tg-031e">1) complete grammar<br>2) implement internal representation<br>3) investigate unittest module<br>4) implement parser tests<br>5) begin implementing parser</td>
+    <td class="tg-031e">1) complete grammar<br>2) implement internal representation<br>3) investigate pyparsing module<br>4) implement parser tests<br>5) begin implementing parser</td>
     <td class="tg-031e"><br>- Grammar<br>- Internal representation<br>- Parser tests<br></td>
   </tr>
   <tr>
