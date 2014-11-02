@@ -21,7 +21,7 @@ I will know EasyTeX has accomplished its goals when it is syntactically clean an
 
 ## Implementation plan
 
-I believe that the most difficult components of EasyTeX's implementation will be formulating a grammar for the language and implementing a robust parser. With these considerations in mind, I have contrived the following schedule for EasyTeX's development:
+I have already chosen a host language (Python) and target language (LaTeX) for my project, so my main focus on the project going forward is on particular implementation details. I will have to implement the internal representation, the parser, and the semantics (outputting functionality) of EasyTeX, as well as a thorough testing suite around the entire project and each individual component. In addition, I will have to provide an end-to-end way for users to create PDF documents from their EasyTeX files, and this will be provided via a web interface. I believe that the most difficult components of EasyTeX's implementation will be formulating a grammar for the language and implementing a robust parser. With these considerations in mind, I have contrived the following schedule for EasyTeX's development:
 
 <table class="tg">
   <tr>
