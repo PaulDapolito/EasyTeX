@@ -37,7 +37,6 @@ As is supported by EasyTeX's formally stated grammar below, any textual content 
 	statement = "statement: ", {character} ;
 	solution = "solution: ", {character} ;
 
-
 	text = {character} ;
 	character = letter | digit | symbol | whitespace ;
 	letter = "A" | "B" | "C" | "D" | "E" | "F" | "G"
