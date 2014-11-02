@@ -38,7 +38,7 @@ I have already chosen a host language (Python) and target language (LaTeX) for m
   </tr>
   <tr>
     <td class="tg-031e">11/9 - 11/15</td>
-    <td class="tg-031e">1) complete implementing parser<br>2) implement semantics tests<br>3) begin implementing outputting functionality (semantics)<br>4) work on language design and implementation overview</td>
+    <td class="tg-031e">1) complete implementing parser<br>2) implement semantics tests<br>3) begin implementing outputting functionality (semantics)<br>4) complete language design and implementation overview</td>
     <td class="tg-031e">- Parser<br>- Semantics tests<br> - Language design and implementation overview</td>
   </tr>
   <tr>
