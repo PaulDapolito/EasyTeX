@@ -28,7 +28,7 @@ I have already chosen a host language (Python) and target language (LaTeX) for m
   </tr>
   <tr>
     <td class="tg-031e">10/26 - 11/1</td>
-    <td class="tg-031e">1) complete project description<br>2) describe weekly plan<br>3) begin working on grammar<br>4) investigate unittest module</td>
+    <td class="tg-031e">1) complete project description<br>2) describe weekly plan<br>3) begin working on grammar<br>4) investigate testing modules</td>
     <td class="tg-031e">- Project plan<br>- Project description</td>
   </tr>
   <tr>
