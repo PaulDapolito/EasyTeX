@@ -21,7 +21,7 @@ I will know EasyTeX has accomplished its goals when it is syntactically clean an
 
 ## Implementation plan
 
-I believe that the most difficult components of EasyTeX's implementation will be formulating a grammar for the language and implementing a robust parser. I have contrived the following schedule for EasyTeX's development:
+I believe that the most difficult components of EasyTeX's implementation will be formulating a grammar for the language and implementing a robust parser. With these considerations in mind, I have contrived the following schedule for EasyTeX's development:
 
 <table class="tg">
   <tr>
