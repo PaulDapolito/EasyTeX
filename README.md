@@ -1,6 +1,7 @@
-# project
+# EasyTeX
 
+EasyTeX is a domain-specific language for quickly creating clean, shareable, and nicely-formatted LaTeX documents. EasyTeX will offer support first for the typesetting of technical problem sets and memorandums, and will be expanded later-on to support the creation of any document.
 
-See the 
-[project requirements](http://www.cs.hmc.edu/~benw/teaching/cs111_fa14/project.html) 
-for instructions on setting up your project.
+## Instructions
+
+Check back soon for instructions on how to use EasyTeX!
