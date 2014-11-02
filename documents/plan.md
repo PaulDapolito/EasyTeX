@@ -1,4 +1,4 @@
-# Project plan
+# Project Plan
 
 ## Language evaluation
 
