@@ -21,6 +21,56 @@ I will know EasyTeX has accomplished its goals when it is syntactically clean an
 
 ## Implementation plan
 
+I believe that the most difficult components of EasyTeX's implementation will be formulating a grammar for the language and implementing a robust parser. I have contrived the following schedule for EasyTeX's development:
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
+.tg .tg-e3zv{font-weight:bold}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-e3zv">Week Range</th>
+    <th class="tg-e3zv">Action Items</th>
+    <th class="tg-e3zv">Deliverables</th>
+  </tr>
+  <tr>
+    <td class="tg-031e">10/26 - 11/1</td>
+    <td class="tg-031e">1) complete project description<br>2) describe weekly plan<br>3) begin working on grammar<br>4) investigate pyparsing module</td>
+    <td class="tg-031e">- Project plan<br>- Project description</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">11/2 - 11/8</td>
+    <td class="tg-031e">1) complete grammar<br>2) implement internal representation<br>3) investigate unittest module<br>4) implement parser tests<br>5) begin implementing parser</td>
+    <td class="tg-031e"><br>- Grammar<br>- Internal representation<br>- Parser tests<br></td>
+  </tr>
+  <tr>
+    <td class="tg-031e">11/9 - 11/15</td>
+    <td class="tg-031e">1) complete implementing parser<br>2) implement semantics tests<br>3) begin implementing outputting functionality (semantics)</td>
+    <td class="tg-031e">- Parser<br>- Semantics tests</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">11/16 - 11/22</td>
+    <td class="tg-031e">1) complete implementing outputting functionality<br>2) complete all testing<br>3) create prototype demonstration<br>4) begin implementing end-to-end PDF generation</td>
+    <td class="tg-031e">- Outputting functionality<br>- EasyTeX prototype</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">11/23 - 11/29</td>
+    <td class="tg-031e">1) implement end-to-end PDF generation<br>2) solicit peer feedback<br>3) implement design changes as per user feedback<br>4) begin working on preliminary evaluation</td>
+    <td class="tg-031e"><br>- End-to-end PDF generation<br>- Changelog derived from feedback<br><br></td>
+  </tr>
+  <tr>
+    <td class="tg-031e">11/30 - 12/6</td>
+    <td class="tg-031e">1) complete preliminary evaluation<br>2) begin implementing web interface using Tornado</td>
+    <td class="tg-031e">- preliminary evaluation</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">12/7 - 12/12</td>
+    <td class="tg-031e">1) complete EasyTeX web interface<br>2) complete final write-up</td>
+    <td class="tg-031e">- EasyTeX web interface<br>- final write-up</td>
+  </tr>
+</table>
 
 
 ## Teamwork plan 

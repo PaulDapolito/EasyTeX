@@ -78,7 +78,7 @@ First is a short example of how a user might enter some simple lines of EasyTeX 
 
 EasyTeX:
 
-	document:
+	memorandum:
 		author: Paul Dapolito
 		date: October 31, 2014
 		title: A Canonical Example of EasyTeX
@@ -131,7 +131,7 @@ Next is a canonical example of how EasyTeX might be used to typeset a problem se
 
 EasyTeX:
 
-	document:
+	problemset:
 		author: Paul Dapolito
 		collaborators: Angela, Rob
 		duedate: November 1, 2014
