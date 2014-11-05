@@ -14,28 +14,28 @@ As is supported by EasyTeX's formally stated grammar below, any textual content 
 
 	document = memorandum | problem_set ;
 
-	memorandum = "memorandum: ", author, [collaborators], [date], title, [subtitle], {section} ;
-	problem_set = "problem_set: ", author, [collaborators], [due_date], [title], [course], [school], {problem} ;
+	memorandum = "memorandum:", return, tab, author, [collaborators], [date], title, [subtitle], {section} ;
+	problem_set = "problem_set:", return, tab, author, [collaborators], [due_date], [title], [course], [school], {problem} ;
 
-	author = "author: ", text ;
-	collaborators = "collaborators: ", {collaborator} ;
+	author = "author:", space, text ;
+	collaborators = "collaborators:", space, {collaborator} ;
 	collaborator = text ;
-	date = "date: ", text ;
-	title = "title: ", text ; 
-	subtitle = "subtitle: ", text ;
+	date = "date:", space, text ;
+	title = "title:", space, text ; 
+	subtitle = "subtitle:", space, text ;
 
-	section = "section: ", title, content ;
-	content = "content: ", text ;
+	section = "section:", return, tab, title, content ;
+	content = "content:", return, tab, text ;
 	text = {character} ;
 
-	due_date = "duedate: ", text ;
-	course = "course: ", text ;
-	school = "school: ", text ;
+	due_date = "due_date:", space, text ;
+	course = "course:", space, text ;
+	school = "school:", space, text ;
 
-	problem = "problem: ", {label}, statement, solution ;
-	label = "label: ", {character} ;
-	statement = "statement: ", {character} ;
-	solution = "solution: ", {character} ;
+	problem = "problem:", return, tab, {label}, statement, solution ;
+	label = "label:", space, {character} ;
+	statement = "statement:", space, {character} ;
+	solution = "solution:", return, tab, {character} ;
 
 	text = {character} ;
 	character = letter | digit | symbol | whitespace ;
@@ -52,4 +52,7 @@ As is supported by EasyTeX's formally stated grammar below, any textual content 
 	symbol = "[" | "]" | "{" | "}" | "(" | ")" | "<" | ">"
 	       		 | "'" | '"' | "=" | "|" | "." | "," | ";" 
 	       		 | "\" | "/" ;
-	whitespace = " " | "\t" | "\n" ;
+	whitespace = space | tab | return ;
+	space = " " ;
+	tab = "\t" ;
+	return = "\n" ;
