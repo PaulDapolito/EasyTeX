@@ -32,7 +32,7 @@ As is supported by EasyTeX's formally stated grammar below, any textual content 
 	course = "course:", space, text ;
 	school = "school:", space, text ;
 
-	problem = "problem:", return, tab, {label}, statement, solution ;
+	problem = "problem:", return, tab, [label], statement, solution ;
 	label = "label:", space, {character} ;
 	statement = "statement:", space, {character} ;
 	solution = "solution:", return, tab, {character} ;
