@@ -1,7 +1,7 @@
 __author__ = 'Paul Dapolito'
 
 from ir.easytex_element import EasyTeXElement
-from errors.memorandums.memorandum_error import MemorandumError
+from errors.ir.memorandums.memorandum_error import MemorandumError
 
 
 class Memorandum(EasyTeXElement):

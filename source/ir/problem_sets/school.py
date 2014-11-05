@@ -1,7 +1,7 @@
 __author__ = 'Paul Dapolito'
 
 from ir.easytex_element import EasyTeXElement
-from errors.problem_sets.school_error import SchoolError
+from errors.ir.problem_sets.school_error import SchoolError
 
 
 class School(EasyTeXElement):

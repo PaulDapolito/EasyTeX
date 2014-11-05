@@ -1,7 +1,7 @@
 __author__ = 'Paul Dapolito'
 
 from ir.easytex_element import EasyTeXElement
-from errors.shared.author_error import AuthorError
+from errors.ir.shared.author_error import AuthorError
 
 
 class Author(EasyTeXElement):

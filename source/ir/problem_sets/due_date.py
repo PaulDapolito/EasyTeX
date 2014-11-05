@@ -1,7 +1,7 @@
 __author__ = 'Paul Dapolito'
 
 from ir.easytex_element import EasyTeXElement
-from errors.problem_sets.due_date_error import DueDateError
+from errors.ir.problem_sets.due_date_error import DueDateError
 
 
 class DueDate(EasyTeXElement):
