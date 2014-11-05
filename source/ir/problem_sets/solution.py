@@ -1,7 +1,7 @@
 __author__ = 'Paul Dapolito'
 
 from ir.easytex_element import EasyTeXElement
-from errors.solution_error import SolutionError
+from errors.problem_sets.solution_error import SolutionError
 
 
 class Solution(EasyTeXElement):

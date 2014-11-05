@@ -1,15 +1,15 @@
 __author__ = 'Paul Dapolito'
 
 from ir.easytex_element import EasyTeXElement
-from errors.school_error import SchoolError
+from errors.memorandums.content_error import ContentError
 
 
-class School(EasyTeXElement):
+class Content(EasyTeXElement):
     def __init__(self, text):
         self.text = text
 
         if self.text == "":
-            raise SchoolError("EasyTeX schools cannot be empty!")
+            raise ContentError("EasyTeX content cannot be empty!")
 
     # TODO: Implement proper LaTeX output
     def latex_output(self):

@@ -1,15 +1,15 @@
 __author__ = 'Paul Dapolito'
 
 from ir.easytex_element import EasyTeXElement
-from errors.content_error import ContentError
+from errors.problem_sets.label_error import LabelError
 
 
-class Content(EasyTeXElement):
+class Label(EasyTeXElement):
     def __init__(self, text):
         self.text = text
 
         if self.text == "":
-            raise ContentError("EasyTeX content cannot be empty!")
+            raise LabelError("EasyTeX labels cannot be empty!")
 
     # TODO: Implement proper LaTeX output
     def latex_output(self):

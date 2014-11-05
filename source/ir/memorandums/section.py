@@ -1,7 +1,7 @@
 __author__ = 'Paul Dapolito'
 
 from ir.easytex_element import EasyTeXElement
-from errors.section_error import SectionError
+from errors.memorandums.section_error import SectionError
 
 
 class Section(EasyTeXElement):

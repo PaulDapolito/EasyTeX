@@ -1,7 +1,7 @@
 __author__ = 'Paul Dapolito'
 
 from ir.easytex_element import EasyTeXElement
-from errors.title_error import TitleError
+from errors.shared.title_error import TitleError
 
 
 class Title(EasyTeXElement):

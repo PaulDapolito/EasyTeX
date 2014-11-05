@@ -1,15 +1,15 @@
 __author__ = 'Paul Dapolito'
 
 from ir.easytex_element import EasyTeXElement
-from errors.author_error import AuthorError
+from errors.shared.collaborator_error import CollaboratorError
 
 
-class Author(EasyTeXElement):
+class Collaborator(EasyTeXElement):
     def __init__(self, name):
         self.name = name
 
         if self.name == "":
-            raise AuthorError("EasyTeX authors cannot be empty!")
+            raise CollaboratorError("EasyTeX collaborators cannot be empty!")
 
     # TODO: Implement proper LaTeX output
     def latex_output(self):
