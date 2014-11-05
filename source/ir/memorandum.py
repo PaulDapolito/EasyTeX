@@ -5,7 +5,7 @@ from errors.memorandum_error import MemorandumError
 
 
 class Memorandum(EasyTeXElement):
-    def __init__(self, author, collaborators=None, date=None, title=None,
+    def __init__(self, author=None, collaborators=None, date=None, title=None,
                  subtitle=None, sections=None):
         self.author = author
         self.collaborators = collaborators
@@ -22,5 +22,6 @@ class Memorandum(EasyTeXElement):
         elif self.sections is None:
             raise MemorandumError("EasyTeX memorandums must have at least one section!")
 
+    # TODO: Implement proper LaTeX output
     def latex_output(self):
         pass

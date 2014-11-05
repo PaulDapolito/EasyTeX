@@ -1,11 +1,11 @@
 __author__ = 'Paul Dapolito'
 
-from errors.problem_set_error import ProblemSetError
 from ir.easytex_element import EasyTeXElement
+from errors.problem_set_error import ProblemSetError
 
 
 class ProblemSet(EasyTeXElement):
-    def __init__(self, author, collaborators=None, due_date=None, title=None,
+    def __init__(self, author=None, collaborators=None, due_date=None, title=None,
                  course=None, school=None, problems=None):
         self.author = author
         self.collaborators = collaborators
