@@ -15,7 +15,7 @@ As is supported by EasyTeX's formally stated grammar below, any textual content 
 	document = memorandum | problem_set ;
 
 	memorandum = "memorandum: ", author, [collaborators], [date], title, [subtitle], {section} ;
-	problem_set = "problem_set: ", author, [collaborators], [duedate], [title], [class], [school], {problem} ;
+	problem_set = "problem_set: ", author, [collaborators], [due_date], [title], [course], [school], {problem} ;
 
 	author = "author: ", text ;
 	collaborators = "collaborators: ", {collaborator} ;
@@ -28,8 +28,8 @@ As is supported by EasyTeX's formally stated grammar below, any textual content 
 	content = "content: ", text ;
 	text = {character} ;
 
-	duedate = "duedate: ", text ;
-	class = "class: ", text ;
+	due_date = "duedate: ", text ;
+	course = "course: ", text ;
 	school = "school: ", text ;
 
 	problem = "problem: ", {label}, statement, solution ;
