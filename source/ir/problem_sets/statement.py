@@ -11,6 +11,9 @@ class Statement(EasyTeXElement):
         if self.text == "":
             raise StatementError("EasyTeX statements cannot be empty!")
 
+    def __eq__(self, other):
+        return self.text == other.text
+
     # TODO: Implement proper LaTeX output
     def latex_output(self):
         pass

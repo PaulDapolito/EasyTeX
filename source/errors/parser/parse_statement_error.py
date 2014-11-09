@@ -1,7 +1,7 @@
 __author__ = 'Paul Dapolito'
 
 
-class SchoolError(Exception):
+class ParseStatementError(Exception):
     def __init__(self, error_message):
         self.error_message = error_message
 

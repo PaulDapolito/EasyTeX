@@ -28,9 +28,9 @@ As is supported by EasyTeX's formally stated grammar below, any textual content 
 	content = "content:", return, tab, text ;
 	text = {character} ;
 
-	due_date = "due_date:", space, text ;
-	course = "course:", space, text ;
 	school = "school:", space, text ;
+	course = "course:", space, text ;
+	due_date = "due_date:", space, text ;
 
 	problem = "problem:", return, tab, [label], statement, solution ;
 	label = "label:", space, {character} ;
@@ -52,8 +52,9 @@ As is supported by EasyTeX's formally stated grammar below, any textual content 
 	number = {digit} ;
 	symbol = "[" | "]" | "{" | "}" | "(" | ")" | "<" | ">"
 	       		 | "'" | '"' | "=" | "|" | "." | "," | ";" 
-	       		 | "\" | "/" ;
+	       		 | "\" | "/" | ":" | "-" | "$" | "?" | "!" 
+	       		 | "*" | "_" | "+";
 	whitespace = space | tab | return ;
 	space = " " ;
 	tab = "\t" ;
-	return = "\n" ;
+	return = "\r" ;
