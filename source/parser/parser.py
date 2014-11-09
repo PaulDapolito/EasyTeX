@@ -1,23 +1,46 @@
 __author__ = 'Paul Dapolito'
 
-from pyparsing import Word, Optional, OneOrMore, Group, ParseException
-
-from ir.document import Document
-
-from ir.memorandums.content import Content
-from ir.memorandums.date import Date
-from ir.memorandums.memorandum import Memorandum
-from ir.memorandums.section import Section
-
-from ir.problem_sets.course import Course
-from ir.problem_sets.due_date import DueDate
-from ir.problem_sets.label import Label
-from ir.problem_sets.problem import Problem
-from ir.problem_sets.problem_set import ProblemSet
 from ir.problem_sets.school import School
-from ir.problem_sets.solution import Solution
-from ir.problem_sets.statement import Statement
 
-from ir.shared.author import Author
-from ir.shared.collaborator import Collaborator
-from ir.shared.title import Title
+from errors.parser.parse_text_error import ParseTextError
+from errors.parser.parse_school_error import ParseSchoolError
+
+from pyparsing import Word, Literal, Optional, ZeroOrMore, Group, OneOrMore, ParseException, delimitedList
+
+
+# Terminals
+caps = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+lowers = caps.lower()
+digits = "0123456789"
+symbols = "[]{}()<>\'\"=|.,;\\/"
+
+# Grammar
+text = delimitedList(Word(caps + lowers + digits + symbols), delim=' ', combine=True)
+school = Literal("school: ") + text
+course = Literal("course: ") + text
+
+
+class EasyTeXParser(object):
+    @staticmethod
+    def parse_text(input_string):
+        try:
+            parsed_text = text.parseString(input_string)
+        except ParseException as pex:
+            raise ParseTextError("Error parsing text: {}. Exception raised: {}".format(input_string, pex))
+
+        if parsed_text[0]:
+            return parsed_text[0]
+        else:
+            raise ParseTextError("Error parsing text: {}".format(input_string))
+
+    @staticmethod
+    def parse_school(input_string):
+        try:
+            parsed_school = school.parseString(input_string)
+        except ParseException as pex:
+            raise ParseSchoolError("Error parsing school: {}. Exception raised :{}".format(input_string, pex))
+
+        if parsed_school[1]:
+            return School(parsed_school[1])
+        else:
+            raise ParseSchoolError("Error parsing school: {}".format(input_string))
