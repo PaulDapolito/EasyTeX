@@ -1,0 +1,3 @@
+solution:
+    The derivative of $f$ at $a$, denoted $f'(a)$, is:
+        $$ f'(a) = \lim_{k \to 0} \frac{f(a + h) - f(a)}{h} $$

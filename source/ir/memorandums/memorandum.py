@@ -22,6 +22,14 @@ class Memorandum(EasyTeXElement):
         elif self.sections is None:
             raise MemorandumError("EasyTeX memorandums must have at least one section!")
 
+    def __eq__(self, other):
+        return self.author == other.author and \
+               self.collaborators == other.collaborators and \
+               self.date == other.date and \
+               self.title == other.title and \
+               self.subtitle == other.subtitle and \
+               self.sections == other.sections
+
     # TODO: Implement proper LaTeX output
     def latex_output(self):
         pass

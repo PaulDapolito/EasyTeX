@@ -15,6 +15,9 @@ class Problem(EasyTeXElement):
         elif self.solution is None:
             raise ProblemError("EasyTeX problems must include a solution!")
 
+    def __eq__(self, other):
+        return self.label == other.label and self.statement == other.statement and self.solution == other.solution
+
     # TODO: Implement proper LaTeX output
     def latex_output(self):
         pass

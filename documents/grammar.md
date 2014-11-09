@@ -57,4 +57,4 @@ As is supported by EasyTeX's formally stated grammar below, any textual content 
 	whitespace = space | tab | return ;
 	space = " " ;
 	tab = "\t" ;
-	return = "\r" ;
+	return = "\n" ;

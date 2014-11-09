@@ -21,6 +21,15 @@ class ProblemSet(EasyTeXElement):
         elif self.problems is None:
             raise ProblemSetError("EasyTeX problem sets must have at least one problem!")
 
+    def __eq__(self, other):
+        return self.author == other.author and \
+               self.collaborators == other.collaborators and \
+               self.due_date == other.due_date and \
+               self.title == other.title and \
+               self.course == other.course and \
+               self.school == other.school and \
+               self.problems == other.problems
+
     # TODO: Implement proper LaTeX output
     def latex_output(self):
         pass

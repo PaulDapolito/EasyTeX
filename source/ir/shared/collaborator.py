@@ -11,6 +11,9 @@ class Collaborator(EasyTeXElement):
         if self.name == "":
             raise CollaboratorError("EasyTeX collaborators cannot be empty!")
 
+    def __eq__(self, other):
+        return self.name == other.name
+
     # TODO: Implement proper LaTeX output
     def latex_output(self):
         pass

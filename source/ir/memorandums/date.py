@@ -11,6 +11,9 @@ class Date(EasyTeXElement):
         if self.date_string == "":
             raise DateError("EasyTeX dates cannot be empty!")
 
+    def __eq__(self, other):
+        return self.date_string == other.date_string
+
     # TODO: Implement proper LaTeX output
     def latex_output(self):
         pass

@@ -14,6 +14,9 @@ class Section(EasyTeXElement):
         elif self.content is None:
             raise SectionError("EasyTeX sections must include content!")
 
+    def __eq__(self, other):
+        return self.title == other.title and self.content == other.content
+
     # TODO: Implement proper LaTeX output
     def latex_output(self):
         pass

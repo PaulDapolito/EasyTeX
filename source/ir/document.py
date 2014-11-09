@@ -15,6 +15,9 @@ class Document(EasyTeXElement):
         elif self.problem_set is None and self.memorandum is None:
             raise DocumentError("EasyTeX document must be a problem set or a memorandum!")
 
+    def __eq__(self, other):
+        return self.problem_set == other.problem_set and self.memorandum == other.memorandum
+
     # TODO: Implement proper LaTeX output
     def latex_output(self):
         pass

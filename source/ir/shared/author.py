@@ -11,6 +11,9 @@ class Author(EasyTeXElement):
         if self.name == "":
             raise AuthorError("EasyTeX authors cannot be empty!")
 
+    def __eq__(self, other):
+        return self.name == other.name
+
     # TODO: Implement proper LaTeX output
     def latex_output(self):
         pass

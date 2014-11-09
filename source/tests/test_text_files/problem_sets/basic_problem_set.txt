@@ -1,0 +1,14 @@
+problem_set:
+    author: Paul Dapolito
+    collaborators: Angela, Rob
+    due_date: November 1, 2014
+    title: Assignment 3
+    class: CS111
+    school: Harvey Mudd College
+
+    problem:
+        label: 1
+        statement: What is the rate of change $f'$ of a function $f$ at the point $a$?
+        solution:
+            The derivative of $f$ at $a$, denoted $f'(a)$, is:
+                $$ f'(a) = \lim_{k \to 0} \frac{f(a + h) - f(a)}{h} $$

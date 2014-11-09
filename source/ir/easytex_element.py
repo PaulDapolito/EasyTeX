@@ -9,3 +9,7 @@ class EasyTeXElement(object):
     @abstractmethod
     def latex_output(self):
         pass
+
+    @abstractmethod
+    def __eq__(self, other):
+        pass
