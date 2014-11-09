@@ -2,20 +2,58 @@ __author__ = 'Paul Dapolito'
 
 from pyparsing import Word, Literal, Optional, ZeroOrMore, OneOrMore, ParseException, delimitedList
 
-from ir.problem_sets.school import School
-from errors.parser.problem_sets.parse_school_error import ParseSchoolError
-from ir.problem_sets.course import Course
-from errors.parser.parse_course_error import ParseCourseError
-from ir.problem_sets.due_date import DueDate
-from errors.parser.parse_due_date_error import ParseDueDateError
-from ir.problem_sets.label import Label
-from errors.parser.parse_label_error import ParseLabelError
-from ir.problem_sets.statement import Statement
-from errors.parser.parse_statement_error import ParseStatementError
-from ir.problem_sets.solution import Solution
-from errors.parser.parse_solution_error import ParseSolutionError
 from errors.parser.shared.parse_text_error import ParseTextError
 
+from ir.problem_sets.solution import Solution
+from errors.parser.problem_sets.parse_solution_error import ParseSolutionError
+
+from ir.problem_sets.statement import Statement
+from errors.parser.problem_sets.parse_statement_error import ParseStatementError
+
+from ir.problem_sets.label import Label
+from errors.parser.problem_sets.parse_label_error import ParseLabelError
+
+from ir.problem_sets.problem import Problem
+from errors.parser.problem_sets.parse_problem_error import ParseProblemError
+
+from ir.problem_sets.due_date import DueDate
+from errors.parser.problem_sets.parse_due_date_error import ParseDueDateError
+
+from ir.problem_sets.course import Course
+from errors.parser.problem_sets.parse_course_error import ParseCourseError
+
+from ir.problem_sets.school import School
+from errors.parser.problem_sets.parse_school_error import ParseSchoolError
+
+from ir.memorandums.subtitle import Subtitle
+from errors.parser.memorandums.parse_subtitle_error import ParseSubtitleError
+
+from ir.shared.title import Title
+from errors.parser.shared.parse_title_error import ParseTitleError
+
+from ir.memorandums.date import Date
+from errors.parser.memorandums.parse_date_error import ParseDateError
+
+from ir.shared.collaborator import Collaborator
+from errors.parser.shared.parse_collaborator_error import ParseCollaboratorError
+
+from ir.shared.author import Author
+from errors.parser.shared.parse_author_error import ParseAuthorError
+
+from ir.memorandums.content import Content
+from errors.parser.memorandums.parse_content_error import ParseContentError
+
+from ir.memorandums.section import Section
+from errors.parser.memorandums.parse_section_error import ParseSectionError
+
+from ir.problem_sets.problem_set import ProblemSet
+from errors.parser.problem_sets.parse_problem_set_error import ParseProblemSetError
+
+from ir.memorandums.memorandum import Memorandum
+from errors.parser.memorandums.parse_memorandum_error import ParseMemorandumError
+
+from ir.document import Document
+from errors.parser.parse_document_error import ParseDocumentError
 
 
 # Terminals
