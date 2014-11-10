@@ -12,33 +12,6 @@ As is supported by EasyTeX's formally stated grammar below, any textual content 
 
 ## EasyTeX Grammar in Extended Backus-Naur Form
 
-	document = memorandum | problem_set ;
-
-	memorandum = "memorandum:", return, tab, author, [collaborators], [date], title, [subtitle], {section} ;
-	problem_set = "problem_set:", return, tab, author, [collaborators], [due_date], [title], [course], [school], {problem} ;
-
-	author = "author:", space, text ;
-	collaborators = "collaborators:", space, {collaborator} ;
-	collaborator = text ;
-	date = "date:", space, text ;
-	title = "title:", space, text ; 
-	subtitle = "subtitle:", space, text ;
-
-	section = "section:", return, tab, title, content ;
-	content = "content:", return, tab, text ;
-	text = {character} ;
-
-	school = "school:", space, text ;
-	course = "course:", space, text ;
-	due_date = "due_date:", space, text ;
-
-	problem = "problem:", return, tab, [label], statement, solution ;
-	label = "label:", space, {character} ;
-	statement = "statement:", space, {character} ;
-	solution = "solution:", return, tab, {character} ;
-
-	text = {character} ;
-	character = letter | digit | symbol | whitespace ;
 	letter = "A" | "B" | "C" | "D" | "E" | "F" | "G"
 	       		 | "H" | "I" | "J" | "K" | "L" | "M" 
 	       		 | "N" | "O" | "P" | "Q" | "R" | "S" 
@@ -53,8 +26,37 @@ As is supported by EasyTeX's formally stated grammar below, any textual content 
 	symbol = "[" | "]" | "{" | "}" | "(" | ")" | "<" | ">"
 	       		 | "'" | '"' | "=" | "|" | "." | "," | ";" 
 	       		 | "\" | "/" | ":" | "-" | "$" | "?" | "!" 
-	       		 | "*" | "_" | "+";
-	whitespace = space | tab | return ;
+	       		 | "*" | "_" | "+" | "#" ;
 	space = " " ;
-	tab = "\t" ;
-	return = "\n" ;
+	tab = space, space, space, space ;
+	newline = "\n" ;
+	whitespace = space | tab | newline ;
+
+
+	character = letter | number | symbol | whitespace ;
+	text = {character} ;
+
+	author = "author:", space, text ;
+	collaborator = text ;
+	collaborators = "collaborators:", space, {collaborator} ;
+	date = "date:", space, text ;
+	title = "title:", space, text ; 
+	subtitle = "subtitle:", space, text ;
+
+	school = "school:", space, text ;
+	course = "course:", space, text ;
+	due_date = "due_date:", space, text ;
+
+	label = "label:", space, {character} ;
+	statement = "statement:", space, {character} ;
+	solution = "solution:", newline, tab, {character} ;
+	problem = "problem:", newline, tab, [label], statement, solution ;
+
+	content = "content:", newline, tab, text ;
+	section = "section:", newline, tab, title, content ;
+
+	problem_set = "problem_set:", newline, tab, author, [collaborators], [due_date], [title], [course], [school], {problem} ;
+
+	memorandum = "memorandum:", newline, tab, author, [collaborators], [date], title, [subtitle], {section} ;
+
+	document = memorandum | problem_set ;

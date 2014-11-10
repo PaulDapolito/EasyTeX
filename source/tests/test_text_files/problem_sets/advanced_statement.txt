@@ -1,0 +1,2 @@
+statement:
+    Carefully prove that if $L_1$ and $L_2$ are languages and $L_1 \subseteq L_2*$, then $L_1 * \subseteq L_2*$

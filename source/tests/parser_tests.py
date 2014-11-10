@@ -4,20 +4,20 @@ import unittest
 
 from parser.parser import EasyTeXParser
 
-from ir.problem_sets.solution import Solution
-from ir.problem_sets.statement import Statement
-from ir.problem_sets.label import Label
-from ir.problem_sets.problem import Problem
-
-from ir.problem_sets.due_date import DueDate
-from ir.problem_sets.course import Course
-from ir.problem_sets.school import School
-
-from ir.memorandums.subtitle import Subtitle
-from ir.shared.title import Title
-from ir.memorandums.date import Date
-from ir.shared.collaborator import Collaborator
 from ir.shared.author import Author
+from ir.shared.collaborator import Collaborator
+from ir.memorandums.date import Date
+from ir.shared.title import Title
+from ir.memorandums.subtitle import Subtitle
+
+from ir.problem_sets.school import School
+from ir.problem_sets.course import Course
+from ir.problem_sets.due_date import DueDate
+
+from ir.problem_sets.label import Label
+from ir.problem_sets.statement import Statement
+from ir.problem_sets.solution import Solution
+from ir.problem_sets.problem import Problem
 
 from ir.memorandums.content import Content
 from ir.memorandums.section import Section
@@ -54,6 +54,138 @@ class EasyTeXParserTests(unittest.TestCase):
 
         self.assertEqual(input_string, parsed_string)
 
+    # Author Tests
+    def parse_basic_author_test(self):
+        input_string = "author: Paul"
+        parsed_author = self.parser.parse_author(input_string)
+
+        self.assertEqual(Author("Paul"), parsed_author)
+
+    def parse_advanced_author_test(self):
+        input_string = "author: Paul Dapolito IV \\textbf{THE GREAT}"
+        parsed_author = self.parser.parse_author(input_string)
+
+        self.assertEqual(Author("Paul Dapolito IV \\textbf{THE GREAT}"), parsed_author)
+
+    # Collaborators Tests
+    def parse_single_collaborator_test(self):
+        input_string = "collaborators: Robert"
+        parsed_collaborators = self.parser.parse_collaborators(input_string)
+
+        self.assertEqual([Collaborator("Robert")], parsed_collaborators)
+
+    def parse_multiple_collaborators_test(self):
+        input_string = "collaborators: Robert, Angela, Daniel"
+        parsed_collaborators = self.parser.parse_collaborators(input_string)
+
+        self.assertEqual([Collaborator("Robert"), Collaborator("Angela"), Collaborator("Daniel")], parsed_collaborators)
+
+    # Date Tests
+    def parse_basic_date_test(self):
+        input_string = "date: September 21, 2015"
+        parsed_date = self.parser.parse_date(input_string)
+
+        self.assertEqual(Date("September 21, 2015"), parsed_date)
+
+    def parse_date_with_symbols_test(self):
+        input_string = "date: 09/21/2015"
+        parsed_date = self.parser.parse_date(input_string)
+
+        self.assertEqual(Date("09/21/2015"), parsed_date)
+
+    # Title Tests
+    def parse_basic_title_test(self):
+        input_string = "title: Basic title"
+        parsed_title = self.parser.parse_title(input_string)
+
+        self.assertEqual(Title("Basic title"), parsed_title)
+
+    def parse_advanced_title_test(self):
+        input_string = "title: Super \underline{Advanced} Subtitle"
+        parsed_title = self.parser.parse_title(input_string)
+
+        self.assertEqual(Title("Super \underline{Advanced} Subtitle"), parsed_title)
+
+    # Subtitle Tests
+    def parse_basic_subtitle_test(self):
+        input_string = "subtitle: Basic subtitle"
+        parsed_subtitle = self.parser.parse_subtitle(input_string)
+
+        self.assertEqual(Subtitle("Basic subtitle"), parsed_subtitle)
+
+    def parse_advanced_subtitle_test(self):
+        input_string = "subtitle: Super \underline{Advanced} Subtitle"
+        parsed_subtitle = self.parser.parse_subtitle(input_string)
+
+        self.assertEqual(Subtitle("Super \underline{Advanced} Subtitle"), parsed_subtitle)
+
+    # School Tests
+    def parse_basic_school_test(self):
+        input_string = "school: Staten Island Academy"
+        parsed_school = self.parser.parse_school(input_string)
+
+        self.assertEqual(School("Staten Island Academy"), parsed_school)
+
+    def parse_school_with_symbols_test(self):
+        input_string = "school: Dallas Science School: \\textbf{magnet}"
+        parsed_school = self.parser.parse_school(input_string)
+
+        self.assertEqual(School("Dallas Science School: \\textbf{magnet}"), parsed_school)
+
+    # Course Tests
+    def parse_basic_course_test(self):
+        input_string = "course: Programming Languages"
+        parsed_course = self.parser.parse_course(input_string)
+
+        self.assertEqual(Course("Programming Languages"), parsed_course)
+
+    def parse_course_with_symbols_test(self):
+        input_string = "course: \\textbf{Domain-Specific} Languages"
+        parsed_course = self.parser.parse_course(input_string)
+
+        self.assertEqual(Course("\\textbf{Domain-Specific} Languages"), parsed_course)
+
+    # Due Date Tests
+    def parse_basic_due_date_test(self):
+        input_string = "due_date: September 21, 2015"
+        parsed_due_date = self.parser.parse_due_date(input_string)
+
+        self.assertEqual(DueDate("September 21, 2015"), parsed_due_date)
+
+    def parse_due_date_with_symbols_test(self):
+        input_string = "due_date: 09/21/2015"
+        parsed_due_date = self.parser.parse_due_date(input_string)
+
+        self.assertEqual(DueDate("09/21/2015"), parsed_due_date)
+
+    # Label Tests
+    def parse_basic_label_test(self):
+        input_string = "label: 1"
+        parsed_label = self.parser.parse_label(input_string)
+
+        self.assertEqual(Label("1"), parsed_label)
+
+    def parse_label_with_symbols_test(self):
+        input_string = "label: 1(a)(b)"
+        parsed_label = self.parser.parse_label(input_string)
+
+        self.assertEqual(Label("1(a)(b)"), parsed_label)
+
+    # Statement Tests
+    def parse_basic_statement_test(self):  # Test a space-separated statement
+        input_string = open("test_text_files/problem_sets/basic_statement.txt").read()
+        parsed_statement = self.parser.parse_statement(input_string)
+        statement_text = open("test_text_files/problem_sets/basic_text_statement.txt").read()
+
+        self.assertEqual(Statement(statement_text), parsed_statement)
+
+    def parse_advanced_statement_test(self):  # Test a return-separated statement
+        input_string = open("test_text_files/problem_sets/advanced_statement.txt").read()
+        parsed_statement = self.parser.parse_statement(input_string)
+        statement_text = open("test_text_files/problem_sets/advanced_text_statement.txt").read()
+
+        self.assertEqual(Statement(statement_text), parsed_statement)
+
     # Solution Tests
     def parse_basic_solution_test(self):
         input_string = open("test_text_files/problem_sets/basic_solution.txt").read()
@@ -68,35 +200,6 @@ class EasyTeXParserTests(unittest.TestCase):
         solution_text = open("test_text_files/problem_sets/advanced_text_solution.txt").read()
 
         self.assertEqual(Solution(solution_text), parsed_solution)
-
-    # Statement Tests
-    def parse_basic_statement_test(self):
-        statement = "What is the rate of change $f'$ of a function $f$ at the point $a$?"
-        input_string = "statement: " + statement
-        parsed_statement = self.parser.parse_statement(input_string)
-
-        self.assertEqual(Statement(statement), parsed_statement)
-
-    def parse_advanced_statement_test(self):
-        statement = \
-            "Carefully prove that if $L_1$ and $L_2$ are languages and $L_1 \subseteq L_2*$, then $L_1 * \subseteq L_2*$"
-        input_string = "statement: " + statement
-        parsed_statement = self.parser.parse_statement(input_string)
-
-        self.assertEqual(Statement(statement), parsed_statement)
-
-    # Label Tests
-    def parse_basic_label_test(self):
-        input_string = "label: 1"
-        parsed_label = self.parser.parse_label(input_string)
-
-        self.assertEqual(Label("1"), parsed_label)
-
-    def parse_label_with_symbols_test(self):
-        input_string = "label: 1(a)(b)"
-        parsed_label = self.parser.parse_label(input_string)
-
-        self.assertEqual(Label("1(a)(b)"), parsed_label)
 
     # Problem Tests
     def parse_basic_problem_test(self):
@@ -117,110 +220,6 @@ class EasyTeXParserTests(unittest.TestCase):
             "Carefully prove that if $L_1$ and $L_2$ are languages and $L_1 \subseteq L_2*$, then $L_1 * \subseteq L_2*$"
         solution = open("test_text_files/problem_sets/advanced_text_solution.txt").read()
         self.assertEqual(Problem(Label(label), Statement(statement), Solution(solution)), parsed_problem)
-
-    # Due Date Tests
-    def parse_basic_due_date_test(self):
-        input_string = "due_date: September 21, 2015"
-        parsed_due_date = self.parser.parse_due_date(input_string)
-
-        self.assertEqual(DueDate("September 21, 2015"), parsed_due_date)
-
-    def parse_due_date_with_symbols_test(self):
-        input_string = "due_date: 09/21/2015"
-        parsed_due_date = self.parser.parse_due_date(input_string)
-
-        self.assertEqual(DueDate("09/21/2015"), parsed_due_date)
-
-    # Course Tests
-    def parse_basic_course_test(self):
-        input_string = "course: Programming Languages"
-        parsed_course = self.parser.parse_course(input_string)
-
-        self.assertEqual(Course("Programming Languages"), parsed_course)
-
-    def parse_course_with_symbols_test(self):
-        input_string = "course: \\textbf{Domain-Specific} Languages"
-        parsed_course = self.parser.parse_course(input_string)
-
-        self.assertEqual(Course("\\textbf{Domain-Specific} Languages"), parsed_course)
-
-    # School Tests
-    def parse_basic_school_test(self):
-        input_string = "school: Staten Island Academy"
-        parsed_school = self.parser.parse_school(input_string)
-
-        self.assertEqual(School("Staten Island Academy"), parsed_school)
-
-    def parse_school_with_symbols_test(self):
-        input_string = "school: Dallas Science School: \\textbf{magnet}"
-        parsed_school = self.parser.parse_school(input_string)
-
-        self.assertEqual(School("Dallas Science School: \\textbf{magnet}"), parsed_school)
-
-    # Subtitle Tests
-    def parse_basic_subtitle_test(self):
-        input_string = "subtitle: Basic subtitle"
-        parsed_subtitle = self.parser.parse_subtitle(input_string)
-
-        self.assertEqual(Subtitle("Basic subtitle"), parsed_subtitle)
-
-    def parse_advanced_subtitle_test(self):
-        input_string = "subtitle: Super \underline{Advanced} Subtitle"
-        parsed_subtitle = self.parser.parse_subtitle(input_string)
-
-        self.assertEqual(Subtitle("Super \underline{Advanced} Subtitle"), parsed_subtitle)
-
-    # Title Tests
-    def parse_basic_title_test(self):
-        input_string = "title: Basic title"
-        parsed_title = self.parser.parse_title(input_string)
-
-        self.assertEqual(Title("Basic title"), parsed_title)
-
-    def parse_advanced_title_test(self):
-        input_string = "title: Super \underline{Advanced} Subtitle"
-        parsed_title = self.parser.parse_title(input_string)
-
-        self.assertEqual(Title("Super \underline{Advanced} Subtitle"), parsed_title)
-
-    # Date Tests
-    def parse_basic_date_test(self):
-        input_string = "date: September 21, 2015"
-        parsed_date = self.parser.parse_date(input_string)
-
-        self.assertEqual(Date("September 21, 2015"), parsed_date)
-
-    def parse_date_with_symbols_test(self):
-        input_string = "due_date: 09/21/2015"
-        parsed_date = self.parser.parse_date(input_string)
-
-        self.assertEqual(Date("09/21/2015"), parsed_date)
-
-    # Collaborators Tests
-    def parse_single_collaborator_test(self):
-        input_string = "collaborators: Robert"
-        parsed_collaborators = self.parser.parse_collaborators(input_string)
-
-        self.assertEqual([Collaborator("Robert")], parsed_collaborators)
-
-    def parse_multiple_collaborators_test(self):
-        input_string = "collaborators: Robert, Angela, Daniel"
-        parsed_collaborators = self.parser.parse_collaborators(input_string)
-
-        self.assertEqual([Collaborator("Robert"), Collaborator("Angela"), Collaborator("Daniel")], parsed_collaborators)
-
-    # Author Tests
-    def parse_basic_author_test(self):
-        input_string = "author: Paul"
-        parsed_author = self.parser.parse_author(input_string)
-
-        self.assertEqual(Author("Paul"), parsed_author)
-
-    def parse_advanced_author_test(self):
-        input_string = "author: Paul Dapolito IV \\textbf{THE GREAT}"
-        parsed_author = self.parser.parse_author(input_string)
-
-        self.assertEqual(Author("Paul Dapolito IV \\textbf{THE GREAT}"), parsed_author)
 
     # Content Tests
     def parse_basic_content_test(self):
