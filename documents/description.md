@@ -134,7 +134,7 @@ EasyTeX:
 	problem_set:
 		author: Paul Dapolito
 		collaborators: Angela, Rob
-		duedate: November 1, 2014
+		due_date: November 1, 2014
 		title: Assignment 3
 		class: CS111
 		school: Harvey Mudd College
