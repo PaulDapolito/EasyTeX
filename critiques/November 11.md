@@ -13,7 +13,6 @@ Concerning your error handling code, I agree that the current method is repetiti
 
 
 ## Questions and Answers
-You express concern about how quickly
 
 I think your use of unit tests will prove very useful, and seems to be well adapted to your project. It will help you isolate problems at a lower level, but I think it might be more appropriate to focus your energy on creating test-documents. The line "author: Paul Dapolito IV **the Great**" should be parsed properly, and that's the use case for this section of your unit-tests, obviously, but I think a lot of the more difficult aspects of your project come from separating the document as a whole. Should something so small, without any document-content, even be accepted by your parser and then compiled? If so, do you know what the parsed tex and pdf output will look like?
 
