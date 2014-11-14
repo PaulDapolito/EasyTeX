@@ -1,6 +1,7 @@
 __author__ = 'Paul Dapolito'
 
-from pyparsing import Word, Literal, White, Optional, ZeroOrMore, OneOrMore, ParseException, delimitedList, Combine
+from pyparsing import *
+import difflib
 
 from errors.parser.shared.parse_text_error import ParseTextError
 
@@ -56,38 +57,51 @@ from ir.document import Document
 from errors.parser.parse_document_error import ParseDocumentError
 
 
+
 # Terminals
 caps = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 lowers = caps.lower()
 alphas = caps + lowers
 digits = "0123456789"
-symbols = "[]{}()<>\'\"=|.,;\/:-$?!*_+#"
+symbols = "[]{}()<>\'\"=|.,;\/:-$?!*_+#^`"
+
 space = " "
 newline = "\n"
 tab = space + space + space + space
 whitespace = space + newline + tab
 
-text = ZeroOrMore(Word(alphas + digits + symbols + whitespace))
+terminals = alphas + digits + symbols + whitespace
+text = ZeroOrMore(Word(terminals)).leaveWhitespace()
 
 # Grammar
-author = Literal("author:") + White(space) + text
+author = Suppress(Literal("author:") + White(space)) + restOfLine
+
 collaborator = Word(alphas)
-collaborators = Literal("collaborators:") + White(space) + delimitedList(collaborator)
-date = Literal("date:") + White(space) + text
-title = Literal("title:") + White(space) + text
-subtitle = Literal("subtitle:") + White(space) + text
+collaborators = Suppress(Literal("collaborators:") + White(space)) + delimitedList(collaborator)
 
-school = Literal("school:") + White(space) + text
-course = Literal("course:") + White(space) + text
-due_date = Literal("due_date:") + White(space) + text
+date = Suppress(Literal("date:") + White(space)) + restOfLine
 
-label = Literal("label:") + White(space) + text
-statement = Literal("statement:") + White(space) + Optional(White(newline) + White(tab)) + text
-solution = Literal("solution:") + White(newline) + Combine(White(tab) + text)
-problem = Literal("problem:") + White(newline) + Optional(White(tab) + label + White("\n")) + statement + newline + solution
+title = Suppress(Literal("title:") + White(space)) + restOfLine
+subtitle = Suppress(Literal("subtitle:") + White(space)) + restOfLine
 
-content = Literal("content:") + newline + text
-section = Literal("section:") + newline + title + newline + content
+school = Suppress(Literal("school:") + White(space)) + restOfLine
+course = Suppress(Literal("course:") + White(space)) + restOfLine
+due_date = Suppress(Literal("due_date:") + White(space)) + restOfLine
+
+label = Suppress(Literal("label:") + White(space)) + restOfLine + Suppress(LineEnd())
+
+statement = Suppress(Literal("statement:") + White(newline)) + \
+            Group(OneOrMore(Regex(ur'\s\s\s\s\s\s\s\s\s\s\s\s(.+)').leaveWhitespace() + Suppress(White(newline))))
+
+solution = Suppress(Literal("solution:") + White(newline)) + \
+            Group(OneOrMore(Regex(ur'\s\s\s\s\s\s\s\s\s\s\s\s(.+)').leaveWhitespace() + Suppress(White(newline))))
+
+problem = Suppress(White(tab) + Literal("problem:") + LineEnd()) + label + statement + solution
+
+content = Suppress(Literal("content:") + White(newline)) + \
+            Group(OneOrMore(Regex(ur'\s\s\s\s\s\s\s\s\s\s\s\s(.+)').leaveWhitespace() + Suppress(White(newline))))
+
+section = Suppress(White(tab) + Literal("section:") + LineEnd()) + title + content
 
 problem_set = Literal("problem_set:") + newline + author + newline + ZeroOrMore(collaborators) + newline \
                                       + Optional(due_date + newline) + Optional(title + newline) \
@@ -121,8 +135,8 @@ class EasyTeXParser(object):
         except ParseException as pex:
             raise ParseAuthorError("Error parsing author: '{}'. Exception raised: '{}'".format(input_string, pex))
 
-        if parsed_author[2]:
-            return Author(parsed_author[2])
+        if parsed_author[0]:
+            return Author(parsed_author[0])
         else:
             raise ParseAuthorError("Error parsing author: '{}'".format(input_string))
 
@@ -133,8 +147,8 @@ class EasyTeXParser(object):
         except ParseException as pex:
             raise ParseCollaboratorsError("Error parsing collaborators: '{}'. Exception raised: '{}'".format(input_string, pex))
 
-        if parsed_collaborators[2]:
-            return [Collaborator(name) for name in parsed_collaborators[2:]]
+        if parsed_collaborators[0]:
+            return [Collaborator(name) for name in parsed_collaborators]
         else:
             raise ParseCollaboratorsError("Error parsing collaborators: '{}'".format(input_string))
 
@@ -145,8 +159,8 @@ class EasyTeXParser(object):
         except ParseException as pex:
             raise ParseDateError("Error parsing date: '{}'. Exception raised: '{}'".format(input_string, pex))
 
-        if parsed_date[2]:
-            return Date(parsed_date[2])
+        if parsed_date[0]:
+            return Date(parsed_date[0])
         else:
             raise ParseDateError("Error parsing date: '{}'".format(date))
 
@@ -157,8 +171,8 @@ class EasyTeXParser(object):
         except ParseException as pex:
             raise ParseTitleError("Error parsing title: '{}'. Exception raised: '{}'".format(input_string, pex))
 
-        if parsed_title[2]:
-            return Title(parsed_title[2])
+        if parsed_title[0]:
+            return Title(parsed_title[0])
         else:
             raise ParseTitleError("Error parsing title: '{}'".format(input_string))
 
@@ -169,8 +183,8 @@ class EasyTeXParser(object):
         except ParseException as pex:
             raise ParseSubtitleError("Error parsing subtitle: '{}'. Exception raised: '{}'".format(input_string, pex))
 
-        if parsed_subtitle[2]:
-            return Subtitle(parsed_subtitle[2])
+        if parsed_subtitle[0]:
+            return Subtitle(parsed_subtitle[0])
         else:
             raise ParseSubtitleError("Error parsing subtitle: '{}'".format(input_string))
 
@@ -181,8 +195,8 @@ class EasyTeXParser(object):
         except ParseException as pex:
             raise ParseSchoolError("Error parsing school: '{}'. Exception raised: '{}'".format(input_string, pex))
 
-        if parsed_school[2]:
-            return School(parsed_school[2])
+        if parsed_school[0]:
+            return School(parsed_school[0])
         else:
             raise ParseSchoolError("Error parsing school: '{}'".format(input_string))
 
@@ -193,8 +207,8 @@ class EasyTeXParser(object):
         except ParseException as pex:
             raise ParseCourseError("Error parsing course: '{}'. Exception raised: '{}'".format(input_string, pex))
 
-        if parsed_course[2]:
-            return Course(parsed_course[2])
+        if parsed_course[0]:
+            return Course(parsed_course[0])
         else:
             raise ParseCourseError("Error parsing course: '{}'".format(input_string))
 
@@ -205,8 +219,8 @@ class EasyTeXParser(object):
         except ParseException as pex:
             raise ParseDueDateError("Error parsing due date: '{}'. Exception raised: '{}'".format(input_string, pex))
 
-        if parsed_due_date[2]:
-            return DueDate(parsed_due_date[2])
+        if parsed_due_date[0]:
+            return DueDate(parsed_due_date[0])
         else:
             raise ParseDueDateError("Error parsing due date: '{}'".format(input_string))
 
@@ -216,49 +230,88 @@ class EasyTeXParser(object):
             parsed_label = label.parseString(input_string)
         except ParseException as pex:
             raise ParseLabelError("Error parsing label: '{}'. Exception raised: '{}'".format(input_string, pex))
-        if parsed_label[2]:
-            return Label(parsed_label[2])
+
+        if parsed_label[0]:
+            return Label(parsed_label[0])
         else:
             raise ParseLabelError("Error parsing label: '{}'".format(input_string))
 
     @staticmethod
     def parse_statement(input_string):
         try:
-            parsed_statement = statement.parseString(input_string)
+            indented_block = statement.parseString(input_string)  # Returns list of lists
+            unjoined_statement = indented_block[0]
         except ParseException as pex:
             raise ParseStatementError("Error parsing statement: '{}'. Exception raised: '{}'". format(input_string, pex))
 
-        if parsed_statement[2]:
-            return Statement(parsed_statement[2])
+        if unjoined_statement:
+            joined_statement = newline.join(unjoined_statement)
+            parsed_statement = joined_statement
+            return Statement(parsed_statement)
         else:
             raise ParseStatementError("Error parsing statement: '{}'".format(input_string))
 
     @staticmethod
     def parse_solution(input_string):
         try:
-            parsed_solution = solution.parseString(input_string)
+            indented_block = solution.parseString(input_string)  # Returns list of lists
+            unjoined_solution = indented_block[0]
         except ParseException as pex:
             raise ParseSolutionError("Error parsing solution: '{}'. Exception raised: '{}'".format(input_string, pex))
 
-        if parsed_solution[2]:
-            return Solution(parsed_solution[2])
+        if unjoined_solution:
+            joined_solution = newline.join(unjoined_solution)
+            parsed_solution = joined_solution + "\n"
+            return Solution(parsed_solution)
         else:
             raise ParseSolutionError("Error parsing solution: '{}'".format(input_string))
 
-    # TODO
     @staticmethod
     def parse_problem(input_string):
-        return None
+        try:
+            indented_block = problem.parseString(input_string)
+        except ParseException as pex:
+            raise ParseProblemError("Error parsing problem: '{}'. Exception raised: '{}'".format(input_string, pex))
 
-    # TODO
+        # TODO: Enforce label as optional
+        if indented_block[0] and indented_block[1] and indented_block[2]:
+            label = "".join(indented_block[0])
+            statement = newline.join(indented_block[1])
+            solution = newline.join(indented_block[2]) + "\n"  # TODO: Investigate this
+            return Problem(Label(label), Statement(statement), Solution(solution))
+        else:
+            raise ParseProblemError("Error parsing problem: '{}'".format(input_string))
+
     @staticmethod
     def parse_content(input_string):
-        return None
+        try:
+            indented_block = content.parseString(input_string)
+            unjoined_content = indented_block[0]
+        except ParseException as pex:
+            raise ParseContentError("Error parsing content: '{}'. Exception raised: '{}'".format(input_string, pex))
 
-    # TODO
+        if unjoined_content:
+            joined_content = newline.join(unjoined_content)
+            parsed_content = joined_content + "\n"
+            return Content(parsed_content)
+        else:
+            raise ParseContentError("Error parsing content: '{}'".format(input_string))
+
+
     @staticmethod
     def parse_section(input_string):
-        return None
+        try:
+            indented_block = section.parseString(input_string)
+        except ParseException as pex:
+            raise ParseSectionError("Error parsing section: '{}'. Exception raised: '{}'".format(input_string, pex))
+
+        if indented_block[0] and indented_block[1]:
+            title = "".join(indented_block[0])
+            content = newline.join(indented_block[1]) + "\n"  # TODO: Investigate this
+            return Section(Title(title), Content(content))
+        else:
+            raise ParseSectionError("Error parsing section: '{}'".format(input_string))
+
 
     # TODO
     @staticmethod
@@ -274,3 +327,14 @@ class EasyTeXParser(object):
     @staticmethod
     def parse_document(input_string):
         return None
+
+'''
+for i,s in enumerate(difflib.ndiff(parsed_content.text, content_text)):
+    if s[0]==' ': continue
+    elif s[0]=='-':
+        print(u'Delete "{}" from position {}'.format(s[-1],i))
+    elif s[0]=='+':
+        print(u'Add "{}" to position {}'.format(s[-1],i))
+print()
+
+'''

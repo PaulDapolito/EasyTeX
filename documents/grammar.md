@@ -26,7 +26,7 @@ As is supported by EasyTeX's formally stated grammar below, any textual content 
 	symbol = "[" | "]" | "{" | "}" | "(" | ")" | "<" | ">"
 	       		 | "'" | '"' | "=" | "|" | "." | "," | ";" 
 	       		 | "\" | "/" | ":" | "-" | "$" | "?" | "!" 
-	       		 | "*" | "_" | "+" | "#" ;
+	       		 | "*" | "_" | "+" | "#" | "^" | "`" ;
 	space = " " ;
 	tab = space, space, space, space ;
 	newline = "\n" ;

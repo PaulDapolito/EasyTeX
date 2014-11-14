@@ -1,1 +1,7 @@
-Carefully prove that if $L_1$ and $L_2$ are languages and $L_1 \subseteq L_2*$, then $L_1 * \subseteq L_2*$
+            The perihelion and aphelion of asteroid \emph{Apollo} in its
+            orbit around the Sun are \val{0.964 \times 10^8}{km} and \val{3.473 \times
+            10^8}{km}, respectively.  Apollo therefore swings in and out past
+            Earth's orbit.  Find (a ) the semimajor axis (b) the eccentricity (c)
+            the period of Apollo's orbit in years.  Apollo is only one of many
+            ``Apollo asteroids'' that cross Earth's orbit.  Some asteroids have
+            struck Earth in the past, and others will strike in the future.
