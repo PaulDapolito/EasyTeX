@@ -375,15 +375,3 @@ class EasyTeXParser(object):
             return self.parse_problem_set(input_string)
         else:
             raise ParseDocumentError("Error parsing document: '{}'".format(input_string))
-
-
-'''
-for i,s in enumerate(difflib.ndiff(parsed_content.text, content_text)):
-    if s[0]==' ': continue
-    elif s[0]=='-':
-        print(u'Delete "{}" from position {}'.format(s[-1],i))
-    elif s[0]=='+':
-        print(u'Add "{}" to position {}'.format(s[-1],i))
-print()
-
-'''

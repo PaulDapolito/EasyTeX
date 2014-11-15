@@ -58,14 +58,14 @@ class EasyTeXParserTests(unittest.TestCase):
     def parse_basic_author_test(self):
         input_string = open("test_text_files/shared/basic_author.txt").read()
         parsed_author = self.parser.parse_author(input_string)
-        author_text = open("test_text_files/shared/basic_text_author.txt").read()
+        author_text = open("test_text_files/shared/basic_author.raw").read()
 
         self.assertEqual(Author(author_text), parsed_author)
 
     def parse_advanced_author_test(self):
         input_string = open("test_text_files/shared/advanced_author.txt").read()
         parsed_author = self.parser.parse_author(input_string)
-        author_text = open("test_text_files/shared/advanced_text_author.txt").read()
+        author_text = open("test_text_files/shared/advanced_author.raw").read()
 
         self.assertEqual(Author(author_text), parsed_author)
 
@@ -73,14 +73,14 @@ class EasyTeXParserTests(unittest.TestCase):
     def parse_single_collaborator_test(self):
         input_string = open("test_text_files/shared/single_collaborator.txt").read()
         parsed_collaborators = self.parser.parse_collaborators(input_string)
-        collaborator_text = open("test_text_files/shared/single_text_collaborator.txt").read()
+        collaborator_text = open("test_text_files/shared/single_collaborator.raw").read()
 
         self.assertEqual([Collaborator(collaborator_text)], parsed_collaborators)
 
     def parse_multiple_collaborators_test(self):
         input_string = open("test_text_files/shared/multiple_collaborators.txt").read()
         parsed_collaborators = self.parser.parse_collaborators(input_string)
-        collaborators_list = open("test_text_files/shared/multiple_text_collaborators.txt").read().split(", ")
+        collaborators_list = open("test_text_files/shared/multiple_collaborators.raw").read().split(", ")
 
         self.assertEqual([Collaborator(collab) for collab in collaborators_list], parsed_collaborators)
 
@@ -88,14 +88,14 @@ class EasyTeXParserTests(unittest.TestCase):
     def parse_basic_date_test(self):
         input_string = open("test_text_files/memorandums/basic_date.txt").read()
         parsed_date = self.parser.parse_date(input_string)
-        date_text = open("test_text_files/memorandums/basic_text_date.txt").read()
+        date_text = open("test_text_files/memorandums/basic_date.raw").read()
 
         self.assertEqual(Date(date_text), parsed_date)
 
     def parse_date_with_symbols_test(self):
         input_string = open("test_text_files/memorandums/date_with_symbols.txt").read()
         parsed_date = self.parser.parse_date(input_string)
-        date_text = open("test_text_files/memorandums/text_date_with_symbols.txt").read()
+        date_text = open("test_text_files/memorandums/date_with_symbols.raw").read()
 
         self.assertEqual(Date(date_text), parsed_date)
 
@@ -103,14 +103,14 @@ class EasyTeXParserTests(unittest.TestCase):
     def parse_basic_title_test(self):
         input_string = open("test_text_files/shared/basic_title.txt").read()
         parsed_title = self.parser.parse_title(input_string)
-        title_text = open("test_text_files/shared/basic_text_title.txt").read()
+        title_text = open("test_text_files/shared/basic_title.raw").read()
 
         self.assertEqual(Title(title_text), parsed_title)
 
     def parse_advanced_title_test(self):
         input_string = open("test_text_files/shared/advanced_title.txt").read()
         parsed_title = self.parser.parse_title(input_string)
-        title_text = open("test_text_files/shared/advanced_text_title.txt").read()
+        title_text = open("test_text_files/shared/advanced_title.raw").read()
 
         self.assertEqual(Title(title_text), parsed_title)
 
@@ -118,14 +118,14 @@ class EasyTeXParserTests(unittest.TestCase):
     def parse_basic_subtitle_test(self):
         input_string = open("test_text_files/memorandums/basic_subtitle.txt").read()
         parsed_subtitle = self.parser.parse_subtitle(input_string)
-        subtitle_text = open("test_text_files/memorandums/basic_text_subtitle.txt").read()
+        subtitle_text = open("test_text_files/memorandums/basic_subtitle.raw").read()
 
         self.assertEqual(Subtitle(subtitle_text), parsed_subtitle)
 
     def parse_advanced_subtitle_test(self):
         input_string = open("test_text_files/memorandums/advanced_subtitle.txt").read()
         parsed_subtitle = self.parser.parse_subtitle(input_string)
-        subtitle_text = open("test_text_files/memorandums/advanced_text_subtitle.txt").read()
+        subtitle_text = open("test_text_files/memorandums/advanced_subtitle.raw").read()
 
         self.assertEqual(Subtitle(subtitle_text), parsed_subtitle)
 
@@ -133,14 +133,14 @@ class EasyTeXParserTests(unittest.TestCase):
     def parse_basic_school_test(self):
         input_string = open("test_text_files/problem_sets/basic_school.txt").read()
         parsed_school = self.parser.parse_school(input_string)
-        school_text = open("test_text_files/problem_sets/basic_text_school.txt").read()
+        school_text = open("test_text_files/problem_sets/basic_school.raw").read()
 
         self.assertEqual(School(school_text), parsed_school)
 
     def parse_school_with_symbols_test(self):
         input_string = open("test_text_files/problem_sets/school_with_symbols.txt").read()
         parsed_school = self.parser.parse_school(input_string)
-        school_text = open("test_text_files/problem_sets/text_school_with_symbols.txt").read()
+        school_text = open("test_text_files/problem_sets/school_with_symbols.raw").read()
 
         self.assertEqual(School(school_text), parsed_school)
 
@@ -148,14 +148,14 @@ class EasyTeXParserTests(unittest.TestCase):
     def parse_basic_course_test(self):
         input_string = open("test_text_files/problem_sets/basic_course.txt").read()
         parsed_course = self.parser.parse_course(input_string)
-        course_text = open("test_text_files/problem_sets/basic_text_course.txt").read()
+        course_text = open("test_text_files/problem_sets/basic_course.raw").read()
 
         self.assertEqual(Course(course_text), parsed_course)
 
     def parse_course_with_symbols_test(self):
         input_string = open("test_text_files/problem_sets/course_with_symbols.txt").read()
         parsed_course = self.parser.parse_course(input_string)
-        course_text = open("test_text_files/problem_sets/text_course_with_symbols.txt").read()
+        course_text = open("test_text_files/problem_sets/course_with_symbols.raw").read()
 
         self.assertEqual(Course(course_text), parsed_course)
 
@@ -163,14 +163,14 @@ class EasyTeXParserTests(unittest.TestCase):
     def parse_basic_due_date_test(self):
         input_string = open("test_text_files/problem_sets/basic_due_date.txt").read()
         parsed_due_date = self.parser.parse_due_date(input_string)
-        due_date_text = open("test_text_files/problem_sets/basic_text_due_date.txt").read()
+        due_date_text = open("test_text_files/problem_sets/basic_due_date.raw").read()
 
         self.assertEqual(DueDate(due_date_text), parsed_due_date)
 
     def parse_due_date_with_symbols_test(self):
         input_string = open("test_text_files/problem_sets/due_date_with_symbols.txt").read()
         parsed_due_date = self.parser.parse_due_date(input_string)
-        due_date_text = open("test_text_files/problem_sets/text_due_date_with_symbols.txt").read()
+        due_date_text = open("test_text_files/problem_sets/due_date_with_symbols.raw").read()
 
         self.assertEqual(DueDate(due_date_text), parsed_due_date)
 
@@ -178,14 +178,14 @@ class EasyTeXParserTests(unittest.TestCase):
     def parse_basic_label_test(self):
         input_string = open("test_text_files/problem_sets/basic_label.txt").read()
         parsed_label = self.parser.parse_label(input_string)
-        label_text = open("test_text_files/problem_sets/basic_text_label.txt").read()
+        label_text = open("test_text_files/problem_sets/basic_label.raw").read()
 
         self.assertEqual(Label(label_text), parsed_label)
 
     def parse_label_with_symbols_test(self):
         input_string = open("test_text_files/problem_sets/label_with_symbols.txt").read()
         parsed_label = self.parser.parse_label(input_string)
-        label_text = open("test_text_files/problem_sets/text_label_with_symbols.txt").read()
+        label_text = open("test_text_files/problem_sets/label_with_symbols.raw").read()
 
         self.assertEqual(Label(label_text), parsed_label)
 
@@ -193,14 +193,14 @@ class EasyTeXParserTests(unittest.TestCase):
     def parse_basic_statement_test(self):  # Test a space-separated statement
         input_string = open("test_text_files/problem_sets/basic_statement.txt").read()
         parsed_statement = self.parser.parse_statement(input_string)
-        statement_text = open("test_text_files/problem_sets/basic_text_statement.txt").read()
+        statement_text = open("test_text_files/problem_sets/basic_statement.raw").read()
 
         self.assertEqual(Statement(statement_text), parsed_statement)
 
     def parse_advanced_statement_test(self):  # Test a return-separated statement
         input_string = open("test_text_files/problem_sets/advanced_statement.txt").read()
         parsed_statement = self.parser.parse_statement(input_string)
-        statement_text = open("test_text_files/problem_sets/advanced_text_statement.txt").read()
+        statement_text = open("test_text_files/problem_sets/advanced_statement.raw").read()
 
         self.assertEqual(Statement(statement_text), parsed_statement)
 
@@ -208,7 +208,7 @@ class EasyTeXParserTests(unittest.TestCase):
     def parse_basic_solution_test(self):
         input_string = open("test_text_files/problem_sets/basic_solution.txt").read()
         parsed_solution = self.parser.parse_solution(input_string)
-        solution_text = open("test_text_files/problem_sets/basic_text_solution.txt").read()
+        solution_text = open("test_text_files/problem_sets/basic_solution.raw").read()
 
         self.assertEqual(Solution(solution_text), parsed_solution)
 
@@ -217,9 +217,9 @@ class EasyTeXParserTests(unittest.TestCase):
         input_string = open("test_text_files/problem_sets/basic_problem.txt").read()
         parsed_problem = self.parser.parse_problem(input_string)
 
-        label = open("test_text_files/problem_sets/basic_text_label.txt").read()
-        statement = open("test_text_files/problem_sets/advanced_text_statement.txt").read()
-        solution = open("test_text_files/problem_sets/basic_text_solution.txt").read()
+        label = open("test_text_files/problem_sets/basic_label.raw").read()
+        statement = open("test_text_files/problem_sets/advanced_statement.raw").read()
+        solution = open("test_text_files/problem_sets/basic_solution.raw").read()
 
         self.assertEqual(Problem(Label(label), Statement(statement), Solution(solution)), parsed_problem)
 
@@ -227,14 +227,14 @@ class EasyTeXParserTests(unittest.TestCase):
     def parse_basic_content_test(self):
         input_string = open("test_text_files/memorandums/basic_content.txt").read()
         parsed_content = self.parser.parse_content(input_string)
-        content_text = open("test_text_files/memorandums/basic_text_content.txt").read()
+        content_text = open("test_text_files/memorandums/basic_content.raw").read()
 
         self.assertEqual(Content(content_text), parsed_content)
 
     def parse_advanced_content_test(self):
         input_string = open("test_text_files/memorandums/advanced_content.txt").read()
         parsed_content = self.parser.parse_content(input_string)
-        content_text = open("test_text_files/memorandums/advanced_text_content.txt").read()
+        content_text = open("test_text_files/memorandums/advanced_content.raw").read()
 
         self.assertEqual(Content(content_text), parsed_content)
 
@@ -242,14 +242,14 @@ class EasyTeXParserTests(unittest.TestCase):
     def parse_basic_section_test(self):
         input_string = open("test_text_files/memorandums/basic_section.txt").read()
         parsed_section = self.parser.parse_section(input_string)
-        content_text = open("test_text_files/memorandums/basic_text_content.txt").read()
+        content_text = open("test_text_files/memorandums/basic_content.raw").read()
 
         self.assertEqual(Section(Title("Abstract"), Content(content_text)), parsed_section)
 
     def parse_advanced_section_test(self):
         input_string = open("test_text_files/memorandums/advanced_section.txt").read()
         parsed_section = self.parser.parse_section(input_string)
-        content_text = open("test_text_files/memorandums/advanced_text_content.txt").read()
+        content_text = open("test_text_files/memorandums/advanced_content.raw").read()
 
         self.assertEqual(Section(Title("Summary"), Content(content_text)), parsed_section)
 
