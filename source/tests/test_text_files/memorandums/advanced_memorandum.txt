@@ -1,9 +1,9 @@
 memorandum:
     author: Paul Dapolito
-    collaborators: Michael, Rojesh
-    date: October 31, 2014
-    title: A Canonical Example of EasyTeX
-    subtitle: Quick, easy, and syntactically charming!
+    collaborators: Robert, Angela, Daniel
+    date: 09/21/2015
+    title: Basic title
+    subtitle: Super \underline{Advanced} Subtitle
 
     section:
         title: Abstract

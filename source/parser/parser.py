@@ -103,14 +103,11 @@ content = Suppress(Literal("content:") + White(newline)) + \
 
 section = Suppress(White(tab) + Literal("section:") + LineEnd()) + title + content
 
-problem_set = Literal("problem_set:") + newline + author + newline + ZeroOrMore(collaborators) + newline \
-                                      + Optional(due_date + newline) + Optional(title + newline) \
-                                      + Optional(course + newline) + Optional(school + newline) \
-                                      + OneOrMore(problem + newline)
+problem_set = Literal("problem_set") + Suppress(Literal(":") + LineEnd()) + author + Group(collaborators) + due_date \
+              + title + course + school + Group(OneOrMore(Group(problem)))
 
-memorandum = Literal("memorandum:") + newline + author + newline + ZeroOrMore(collaborators) + newline \
-                                    + Optional(date + newline) + title + Optional(subtitle + newline) \
-                                    + OneOrMore(section + newline)
+memorandum = Literal("memorandum") + Suppress(Literal(":") + LineEnd()) + author + Group(collaborators) + date \
+             + title + subtitle + Group(OneOrMore(Group(section)))
 
 document = memorandum | problem_set
 
@@ -312,21 +309,73 @@ class EasyTeXParser(object):
         else:
             raise ParseSectionError("Error parsing section: '{}'".format(input_string))
 
-
-    # TODO
+    # TODO: Incorporate optionality
     @staticmethod
     def parse_problem_set(input_string):
-        return None
+        try:
+            indented_block = problem_set.parseString(input_string)
+        except ParseException as pex:
+            raise ParseProblemSetError("Error parsing problem set: '{}'. Exception raised: '{}'".format(input_string, pex))
 
-    # TODO
+        if indented_block:
+            author = Author(indented_block[1])
+            collaborators = [Collaborator(name) for name in indented_block[2]]
+            due_date = DueDate(indented_block[3])
+            title = Title(indented_block[4])
+            course = Course(indented_block[5])
+            school = School(indented_block[6])
+
+            problems = list()
+            for problem in indented_block[7]:
+                label = Label(problem[0])
+                statement = Statement(newline.join(problem[1]))
+                solution = Solution(newline.join(problem[2]) + "\n")
+                problems.append(Problem(label, statement, solution))
+
+            return ProblemSet(author, collaborators, due_date, title, course, school, problems)
+        else:
+            raise ParseProblemSetError("Error parsing problem set: '{}'".format(input_string))
+
+    # TODO: Incorporate optionality
     @staticmethod
     def parse_memorandum(input_string):
-        return None
+        try:
+            indented_block = memorandum.parseString(input_string)
+        except ParseException as pex:
+            raise ParseMemorandumError("Error parsing memorandum: '{}'. Exception raised: '{}'".format(input_string, pex))
 
-    # TODO
-    @staticmethod
-    def parse_document(input_string):
-        return None
+        if indented_block:
+            author = Author(indented_block[1])
+            collaborators = [Collaborator(name) for name in indented_block[2]]
+            date = Date(indented_block[3])
+            title = Title(indented_block[4])
+            subtitle = Subtitle(indented_block[5])
+
+            sections = list()
+            for section in indented_block[6]:
+                section_title = Title("".join(section[0]))
+                content = Content(newline.join(section[1]) + "\n")
+                sections.append(Section(section_title, content))
+
+            return Memorandum(author, collaborators, date, title, subtitle, sections)
+        else:
+            raise ParseMemorandumError("Error parsing memorandum: '{}'".format(input_string))
+
+    def parse_document(self, input_string):
+        try:
+            indented_block = document.parseString(input_string)
+        except ParseException as pex:
+            raise ParseDocumentError("Error parsing document: '{}'. Exception raised: '{}'".format(input_string, pex))
+
+        if indented_block is None:
+            raise ParseDocumentError("Error parsing document: '{}'".format(input_string))
+        elif indented_block[0] == "memorandum":
+            return self.parse_memorandum(input_string)
+        elif indented_block[1] == "problem_set":
+            return self.parse_problem_set(input_string)
+        else:
+            raise ParseDocumentError("Error parsing document: '{}'".format(input_string))
+
 
 '''
 for i,s in enumerate(difflib.ndiff(parsed_content.text, content_text)):
