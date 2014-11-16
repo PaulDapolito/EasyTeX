@@ -6,7 +6,7 @@ EasyTeX is designed to allow users to express their technical work using their f
 
 When the EasyTeX tool executes, it takes an input file and attempts to parse it using EasyTeX's [parser](https://github.com/PaulDapolito/EasyTeX/blob/master/source/parser/parser.py). This parser scans the text file for various EasyTeX components (such as problems, collaborators, sections, among others) and creates an internal representation of Python objects that holds the inputted text that corresponds to each EasyTeX component. Each of these objects has a method to output its data members to LaTeX, and EasyTeX follows an iterative approach to output syntactically correct LaTeX code for each internally represented component of a user's document. This LaTeX code is then saved on a user's machine and passed to a LaTeX compiler to produce a typeset `.pdf` document. 
 
-<div id="container" style="width: 500px" align="center">
+<div id="container" style="width: 500px; margin-bottom: 10px;" align="center">
     <img src="./images/computational_model.png"/>
     EasyTeX Computational Model
 </div>
@@ -15,28 +15,28 @@ From EasyTeX's computational model above, we can see that EasyTeX's parser takes
 
 An EasyTeX [ProblemSet](https://github.com/PaulDapolito/EasyTeX/blob/master/source/ir/problem_sets/problem_set.py) consists of an [Author](https://github.com/PaulDapolito/EasyTeX/blob/master/source/ir/shared/author.py), any number of [Collaborators](https://github.com/PaulDapolito/EasyTeX/blob/master/source/ir/shared/collaborator.py), an optional [DueDate](https://github.com/PaulDapolito/EasyTeX/blob/master/source/ir/problem_sets/due_date.py), an optional [Title](https://github.com/PaulDapolito/EasyTeX/blob/master/source/ir/shared/title.py), an optional [Course](https://github.com/PaulDapolito/EasyTeX/blob/master/source/ir/problem_sets/course.py), an optional [School](https://github.com/PaulDapolito/EasyTeX/blob/master/source/ir/problem_sets/school.py), and any number of [Problems](https://github.com/PaulDapolito/EasyTeX/blob/master/source/ir/problem_sets/problem.py). EasyTeX problems consist of an optional [Label](https://github.com/PaulDapolito/EasyTeX/blob/master/source/ir/problem_sets/label.py), a [Statement](https://github.com/PaulDapolito/EasyTeX/blob/master/source/ir/problem_sets/statement.py), and a [Solution](https://github.com/PaulDapolito/EasyTeX/blob/master/source/ir/problem_sets/solution.py).
 
-<div id="container" style="width: 500px" align="center">
+<div id="container" style="width: 500px; margin-bottom: 10px;" align="center">
     <img src="./images/problem_set.png"/>
     EasyTeX `ProblemSet` (* denotes optional field)
 </div>
 
 An EasyTeX [Memorandum](https://github.com/PaulDapolito/EasyTeX/blob/master/source/ir/memorandums/memorandum.py) consists of an [Author](https://github.com/PaulDapolito/EasyTeX/blob/master/source/ir/shared/author.py), any number of [Collaborators](https://github.com/PaulDapolito/EasyTeX/blob/master/source/ir/shared/collaborator.py), an optional [Date](https://github.com/PaulDapolito/EasyTeX/blob/master/source/ir/memorandums/date.py), a [Title](https://github.com/PaulDapolito/EasyTeX/blob/master/source/ir/shared/title.py), an optional [Subtitle](https://github.com/PaulDapolito/EasyTeX/blob/master/source/ir/memorandums/subtitle.py), and any number of [Sections](https://github.com/PaulDapolito/EasyTeX/blob/master/source/ir/memorandums/section.py). EasyTeX sections consist of a [Title](https://github.com/PaulDapolito/EasyTeX/blob/master/source/ir/shared/title.py) and [Content](https://github.com/PaulDapolito/EasyTeX/blob/master/source/ir/memorandums/content.py).
 
-<div id="container" style="width: 500px" align="center">
+<div id="container" style="width: 500px; margin-bottom: 10px;" align="center">
     <img src="./images/memorandum.png"/>
     EasyTeX `Memorandum` (* denotes optional field)
 </div>
 
 EasyTeX users can specify a `ProblemSet` or a `Memorandum` by creating a text file that matches the EasyTeX specification. When the EasyTeX tool executes, their inputted text is parsed into a corresponding internal representation using the hierarchy of objects described above. The user can manipulate and re-configure these data by repeatedly invoking EasyTeX on their input file. The control flow of this process is controlled by EasyTeX's parser and internal representation. EasyTeX's parser traverses through each line of the user's text file and attempts to create an internal representation using the aforementioned Python classes. If the user's text file is syntactically valid and can be parsed, then the EasyTeX parser yields an internally represented EasyTeX document which is either a `ProblemSet` or a `Memorandum`. Control flow is then handed to this internally represented document which iteratively calls the `latex_output` function of each `EasyTeXElement`. This method produces properly formatted LaTeX code for each component of EasyTeX's internal representation, which is saved on the user's file system in a `.tex` file. The top-level EasyTeX `Document` then invokes a LaTeX compiler on this `.tex` file to produce a `.pdf` for the user. This control flow, from start to finish, is invoked by the user on the command-line with an input file, and I plan to incorporate several different command-line options to allow EasyTeX users to manipulate this control flow to fit their specific needs.
 
-<div id="container" style="width: 500px" align="center">
+<div id="container" style="width: 500px; margin-bottom: 10px;" align="center">
     <img src="./images/control_flow.png"/>
     EasyTeX Control Flow
 </div>
 
 An program in the EasyTeX DSL requires an input text file. This file does not necessarily need to have a `.txt` extension, but its contents must consist of text that matches the EasyTeX specification. If this inputted text file can be parsed into a valid internal representation, the EasyTeX tool yields a `.tex` file consisting of syntactically correct LaTeX code that corresponds to the user's EasyTeX document as well as a `.pdf` consisting of the user's typeset work.
 
-<div id="container" style="width: 500px" align="center">
+<div id="container" style="width: 500px; margin-bottom: 10px;" align="center">
     <img src="./images/input_and_output.png"/>
     EasyTeX Input and Output
 </div>
