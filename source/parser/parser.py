@@ -1,7 +1,6 @@
 __author__ = 'Paul Dapolito'
 
 from pyparsing import *
-import difflib
 
 from errors.parser.shared.parse_text_error import ParseTextError
 
