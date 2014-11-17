@@ -36,23 +36,23 @@ As is supported by EasyTeX's formally stated grammar below, any textual content 
 	character = letter | number | symbol | whitespace ;
 	text = {character} ;
 
-	author = "author:", space, text ;
+	author = "author:", space, text, newline ;
 	collaborator = text ;
-	collaborators = "collaborators:", space, {collaborator} ;
-	date = "date:", space, text ;
-	title = "title:", space, text ; 
-	subtitle = "subtitle:", space, text ;
+	collaborators = "collaborators:", space, {collaborator}, newline ;
+	date = "date:", space, text, newline ;
+	title = "title:", space, text, newline ; 
+	subtitle = "subtitle:", space, text, newline ;
 
-	school = "school:", space, text ;
-	course = "course:", space, text ;
-	due_date = "due_date:", space, text ;
+	school = "school:", space, text, newline ;
+	course = "course:", space, text, newline ;
+	due_date = "due_date:", space, text, newline ;
 
-	label = "label:", space, {character} ;
-	statement = "statement:", space, {character} ;
-	solution = "solution:", newline, tab, {character} ;
+	label = "label:", space, {character}, newline ;
+	statement = "statement:", newline, tab, {character}, newline ;
+	solution = "solution:", newline, tab, {character}, newline ;
 	problem = "problem:", newline, tab, [label], statement, solution ;
 
-	content = "content:", newline, tab, text ;
+	content = "content:", newline, tab, text, newline ;
 	section = "section:", newline, tab, title, content ;
 
 	problem_set = "problem_set:", newline, tab, author, [collaborators], [due_date], [title], [course], [school], {problem} ;
