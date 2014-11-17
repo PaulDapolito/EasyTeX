@@ -39,11 +39,11 @@ I have already chosen a host language (Python) and target language (LaTeX) for m
   <tr>
     <td class="tg-031e">11/9 - 11/15</td>
     <td class="tg-031e">1) complete implementing parser<br>2) complete language design and implementation overview<br>3) add complete sample documents</td>
-    <td class="tg-031e">- Preliminary parser<br> - Language Design and Implementation Overview<br>- Sample documents</td>
+    <td class="tg-031e">- Preliminary parser<br> - Language design and implementation overview<br>- Sample documents</td>
   </tr>
   <tr>
     <td class="tg-031e">11/16 - 11/22</td>
-    <td class="tg-031e">1) implement outputting functionality<br>2) begin implementing semantics tests<br>3) create prototype demonstration<br>4) update grammar 5) finalize parser</td>
+    <td class="tg-031e">1) implement outputting functionality<br>2) begin implementing semantics tests<br>3) create prototype demonstration<br>4) update grammar <br>5) finalize parser</td>
     <td class="tg-031e">- Outputting functionality<br>- EasyTeX prototype<br>- Finalized parser<br>- Finalized grammar</td>
   </tr>
   <tr>
