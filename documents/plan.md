@@ -48,8 +48,8 @@ I have already chosen a host language (Python) and target language (LaTeX) for m
   </tr>
   <tr>
     <td class="tg-031e">11/23 - 11/29</td>
-    <td class="tg-031e">1) implement end-to-end PDF generation<br>2) solicit peer feedback<br>3) implement design changes as per user feedback<br>4) begin working on preliminary evaluation</td>
-    <td class="tg-031e"><br>- End-to-end PDF generation<br>- Changelog derived from feedback<br><br></td>
+    <td class="tg-031e">1) finish semantics tests <br>2) implement end-to-end PDF generation<br>3) solicit peer feedback<br>4) implement design changes as per user feedback<br>5) begin working on preliminary evaluation</td>
+    <td class="tg-031e">- Semantics tests<br>- End-to-end PDF generation<br>- Changelog derived from feedback<br><br></td>
   </tr>
   <tr>
     <td class="tg-031e">11/30 - 12/6</td>
