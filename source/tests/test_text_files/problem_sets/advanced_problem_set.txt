@@ -10,13 +10,7 @@ problem_set:
         label: 1
 
         statement:
-            The perihelion and aphelion of asteroid \emph{Apollo} in its
-            orbit around the Sun are \val{0.964 \times 10^8}{km} and \val{3.473 \times
-            10^8}{km}, respectively.  Apollo therefore swings in and out past
-            Earth's orbit.  Find (a ) the semimajor axis (b) the eccentricity (c)
-            the period of Apollo's orbit in years.  Apollo is only one of many
-            ``Apollo asteroids'' that cross Earth's orbit.  Some asteroids have
-            struck Earth in the past, and others will strike in the future.
+            What is the rate of change $f'$ of a function $f$ at the point $a$?
 
         solution:
             Suppose $L_1$ is some arbitrary language over an alphabet $\Sigma$ with words $l_1,l_2,l_3,...,l_{n-1},l_{n}$. $L_1$ is defined as:

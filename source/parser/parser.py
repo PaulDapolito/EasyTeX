@@ -364,13 +364,13 @@ class EasyTeXParser(object):
         try:
             indented_block = document.parseString(input_string)
         except ParseException as pex:
-            raise ParseDocumentError("Error parsing document: '{}'. Exception raised: '{}'".format(input_string, pex))
+            raise ParseDocumentError("Error parsing document. Exception raised: '{}'".format(input_string, pex))
 
         if indented_block is None:
-            raise ParseDocumentError("Error parsing document: '{}'".format(input_string))
+            raise ParseDocumentError("Error parsing document: found no indented block!".format(input_string))
         elif indented_block[0] == "memorandum":
             return self.parse_memorandum(input_string)
-        elif indented_block[1] == "problem_set":
+        elif indented_block[0] == "problem_set":
             return self.parse_problem_set(input_string)
         else:
-            raise ParseDocumentError("Error parsing document: '{}'".format(input_string))
+            raise ParseDocumentError("Error parsing document: found no indented block!".format(input_string))

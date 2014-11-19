@@ -218,7 +218,7 @@ class EasyTeXParserTests(unittest.TestCase):
         parsed_problem = self.parser.parse_problem(input_string)
 
         label = open("test_text_files/problem_sets/basic_label.raw").read()
-        statement = open("test_text_files/problem_sets/advanced_statement.raw").read()
+        statement = open("test_text_files/problem_sets/basic_statement.raw").read()
         solution = open("test_text_files/problem_sets/basic_solution.raw").read()
 
         self.assertEqual(Problem(Label(label), Statement(statement), Solution(solution)), parsed_problem)
