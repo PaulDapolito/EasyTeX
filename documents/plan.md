@@ -44,7 +44,7 @@ I have already chosen a host language (Python) and target language (LaTeX) for m
   <tr>
     <td class="tg-031e">11/16 - 11/22</td>
     <td class="tg-031e">1) implement outputting functionality<br>2) begin implementing semantics tests<br>3) create prototype demonstration<br>4) update grammar <br>5) finalize parser</td>
-    <td class="tg-031e">- Outputting functionality<br>- EasyTeX prototype<br>- Finalized parser<br>- Finalized grammar</td>
+    <td class="tg-031e">- Outputting functionality<br>- EasyTeX prototype<br></td>
   </tr>
   <tr>
     <td class="tg-031e">11/23 - 11/29</td>
