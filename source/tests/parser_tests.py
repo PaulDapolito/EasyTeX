@@ -54,7 +54,7 @@ class EasyTeXParserTests(unittest.TestCase):
 
     # Problem Set Tests
     ## Test a problem set with one problem and all optional fields filled
-    def parse_full_problem_set_1_test(self):  # Test a problem set with one problem and all optional fields filled
+    def parse_full_problem_set_1_test(self):
         input_string = open("test_text_files/problem_sets/full_problem_set_1/full_problem_set_1.txt").read()
         parsed_problem_set = self.parser.parse_document(input_string)
 
@@ -448,7 +448,7 @@ class EasyTeXParserTests(unittest.TestCase):
         problem_2_statement_txt = open("test_text_files/problem_sets/partial_problem_set_7/problem_2_statement.txt").read()
         problem_2_statement = Statement(problem_2_statement_txt)
 
-        problem_2_solution_txt = open("test_text_files/problem_sets/partial_problem_set_6/problem_2_solution.txt").read()
+        problem_2_solution_txt = open("test_text_files/problem_sets/partial_problem_set_7/problem_2_solution.txt").read()
         problem_2_solution = Solution(problem_2_solution_txt)
 
         problem_2 = Problem(problem_2_label, problem_2_statement, problem_2_solution)

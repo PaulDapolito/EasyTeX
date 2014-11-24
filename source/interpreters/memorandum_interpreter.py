@@ -6,7 +6,6 @@ class MemorandumInterpreter(object):
     def interpret_memorandum(cls, memorandum):
         document_class = "\documentclass[letterpaper, boxed]{hmcpset}"
         package_spec = "\usepackage[margin=1in]{geometry}"
-
         begin_document = "\\begin{document}"
         begin_center = "\\begin{center}"
 
@@ -16,29 +15,39 @@ class MemorandumInterpreter(object):
         if memorandum.subtitle is not None:
             subtitle = "\\textit{" + memorandum.subtitle.text + "} \\\\"
         else:
-            subtitle = ""
+            subtitle = None
 
         author = "\\large{" + memorandum.author.name + "} \\\\"
 
-        # Accumulate collaborators
-        collaborators = ""
-        if memorandum.collaborators[0]:
-            collaborators += memorandum.collaborators[0].name
-        for collaborator in memorandum.collaborators[1:]:
-            collaborators += ", " + collaborator.name
-        collaborators = "Worked with " + collaborators
-        collaborators = "\\large{" + collaborators + "} \\\\"
+        # Check for collaborators
+        if memorandum.collaborators is not None:
+            # Accumulate collaborators
+            collaborators = ""
+            if memorandum.collaborators[0]:
+                collaborators += memorandum.collaborators[0].name
+            for collaborator in memorandum.collaborators[1:]:
+                collaborators += ", " + collaborator.name
+            collaborators = "Worked with " + collaborators
+            collaborators = "\\large{" + collaborators + "} \\\\"
+        else:
+            collaborators = None
 
-        date = "\\large{" + memorandum.date.date_string + "}"
+        # Check for date
+        if memorandum.date is not None:
+            date = "\\large{" + memorandum.date.date_string + "}"
+        else:
+            date = None
 
         end_center = "\\end{center}"
 
+        # Accumulate sections
         sections = ""
         for section in memorandum.sections:
             sections += cls.interpret_section(section)
 
         end_document = "\\end{document}"
 
+        # Accumulate and filter document
         document_as_list = [
             document_class,
             package_spec,
@@ -53,7 +62,8 @@ class MemorandumInterpreter(object):
             sections,
             end_document
         ]
-        accumulated_document = "\n".join(document_as_list)
+        filtered_document = [elem for elem in document_as_list if elem is not None]
+        accumulated_document = "\n".join(filtered_document)
 
         return accumulated_document
 

@@ -28,7 +28,7 @@ problem_set:
                 $$ L_1 = \{l_1, l_2, l_3,...,l_{n-1}, l_{n}\} $$
 
             For the languages $L_1$ and $L_2$, we are given that that $L_1 \subseteq L_2*$. Using the fact that $L_1 \subseteq L_2*$ and the definition of the Kleene star operation, $L_2*$ must be such that:
-                $$ \{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} \subseteq L_2* #
+                $$ \{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} \subseteq L_2* $$
 
             Using the definition of the Kleene star operation again, we know that $L_1*$ is given by:
                 $$ L_1* =  \{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} $$
