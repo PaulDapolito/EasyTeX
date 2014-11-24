@@ -30,11 +30,11 @@ EasyTeX makes use of a wide variety of Python modules. In order to use these mod
 
 1. Clone the repository using `git`:
 
-	git clone https://github.com/PaulDapolito/EasyTeX.git
+	`git clone https://github.com/PaulDapolito/EasyTeX.git`
 
 2. In the root directory of the project, run the `bootstrap.sh` script (may require use of `sudo`):
 
-	./bootstrap.sh
+	`./bootstrap.sh`
 
 ## Usage Instructions
 
@@ -59,6 +59,6 @@ When this process completes, we will see 4 new files in the `samples` directory:
 1. `memorandum_sample_1.pdf`: `.pdf` file corresponding to the inputted EasyTeX file.
 2. `memorandum_sample_1.tex`: `.tex` file corresponding to the inputted EasyTeX file. This is the `.tex` file that is used to produce the `.pdf` file.
 3. `memorandum_sample_1.log`: `.log` file from the creation of the `.pdf` file.
-4. 'memorandum_sample_1.aux': `.aux` file from the creation of the `.pdf` file.
+4. `memorandum_sample_1.aux': `.aux` file from the creation of the `.pdf` file.
 
 
