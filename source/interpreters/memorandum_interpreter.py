@@ -11,7 +11,13 @@ class MemorandumInterpreter(object):
         begin_center = "\\begin{center}"
 
         title = "\\Large{\\textbf{" + memorandum.title.text + "}} \\\\ "
-        subtitle = "\\textit{" + memorandum.subtitle.text + "} \\\\"
+
+        # Check for subtitle
+        if memorandum.subtitle is not None:
+            subtitle = "\\textit{" + memorandum.subtitle.text + "} \\\\"
+        else:
+            subtitle = ""
+
         author = "\\large{" + memorandum.author.name + "} \\\\"
 
         # Accumulate collaborators

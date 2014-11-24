@@ -14,7 +14,7 @@ EasyTeX relies on the `pdflatex` command-line tool in order to create PDF docume
 
 ### Python
 
-Use of EasyTeX relies on [Python](https://www.python.org/) 2.7. If your machine does not already have Python installed, you can [download it](https://www.python.org/downloads/) from the web.
+Use of EasyTeX relies on [Python](https://www.python.org/) 2.7.x. If your machine does not already have Python installed, you can [download it](https://www.python.org/downloads/) from the web.
 
 ### pip
 
