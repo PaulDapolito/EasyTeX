@@ -38,7 +38,7 @@ EasyTeX makes use of a wide variety of Python modules. In order to use these mod
 
 ## Usage Instructions
 
-EasyTeX includes a shell script to allow you to use the tool for end-to-end PDF generation. If you have a file that meets EasyTeX's specifications, you can generate a PDF for your file by executing `./easytex.sh file_name`. This will create a PDF (or `.tex` file if `pdflatex` is not installed) in the same directory as the file. Happy typesetting!
+EasyTeX includes a shell script to allow you to use the tool for end-to-end PDF generation. If you have a file that meets EasyTeX's specifications (as per [grammar.md](https://github.com/PaulDapolito/EasyTeX/blob/master/documents/grammar.md)), you can generate a PDF for your file by executing `./easytex.sh file_name`. This will create a PDF (or `.tex` file if `pdflatex` is not installed) in the same directory as the file. Happy typesetting!
 
 ## Sample Usage
 
