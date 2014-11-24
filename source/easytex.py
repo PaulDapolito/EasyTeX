@@ -32,10 +32,12 @@ def main():
     output_tex_file.write(output_latex_text)
 
     # Check for pdflatex, output PDF file if it exists
-    # DEVNULL hides output of Popen'd subprocess
     status, result = getstatusoutput("pdflatex -v")
     if status == 0:
+        # Point pdflatex to the correct output directory
         output_directory = os.path.dirname(os.path.relpath(input_file_name))
+
+        # Execute bash command, hiding output using DEVNULL
         bash_command = "pdflatex -output-directory={} {}".format(output_directory, output_file_name)
         DEVNULL = open(os.devnull, 'wb')
         subprocess.Popen(bash_command.split(), stdout=DEVNULL, stderr=subprocess.STDOUT)
