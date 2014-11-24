@@ -13,7 +13,3 @@ class Date(EasyTeXElement):
 
     def __eq__(self, other):
         return self.date_string == other.date_string
-
-    # TODO: Implement proper LaTeX output
-    def latex_output(self):
-        pass

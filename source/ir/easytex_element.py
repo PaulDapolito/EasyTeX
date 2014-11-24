@@ -7,9 +7,5 @@ class EasyTeXElement(object):
     __metaclass__ = ABCMeta
 
     @abstractmethod
-    def latex_output(self):
-        pass
-
-    @abstractmethod
     def __eq__(self, other):
         pass

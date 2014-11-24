@@ -29,7 +29,3 @@ class Memorandum(EasyTeXElement):
                self.title == other.title and \
                self.subtitle == other.subtitle and \
                self.sections == other.sections
-
-    # TODO: Implement proper LaTeX output
-    def latex_output(self):
-        pass

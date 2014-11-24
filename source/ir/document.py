@@ -17,7 +17,3 @@ class Document(EasyTeXElement):
 
     def __eq__(self, other):
         return self.problem_set == other.problem_set and self.memorandum == other.memorandum
-
-    # TODO: Implement proper LaTeX output
-    def latex_output(self):
-        pass

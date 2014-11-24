@@ -13,7 +13,3 @@ class Title(EasyTeXElement):
 
     def __eq__(self, other):
         return self.text == other.text
-
-    # TODO: Implement proper LaTeX output
-    def latex_output(self):
-        pass

@@ -29,7 +29,3 @@ class ProblemSet(EasyTeXElement):
                self.course == other.course and \
                self.school == other.school and \
                self.problems == other.problems
-
-    # TODO: Implement proper LaTeX output
-    def latex_output(self):
-        pass
