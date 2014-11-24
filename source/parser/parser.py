@@ -82,16 +82,16 @@ collaborators_group = Group(delimitedList(collaborator))
 collaborators_ignored = Suppress(Literal("collaborators:") + White(space))
 optional_collaborators = Optional(collaborators_ignored + collaborators_group, default=[])
 
-## Date
-date = Suppress(Literal("date:") + White(space)) + restOfLine
+## Date [Optional]
+optional_date = Optional(Suppress(Literal("date:") + White(space)) + restOfLine + Suppress(LineEnd()), default='')
 
 ## Title
-title = Suppress(Literal("title:") + White(space)) + restOfLine
+title = Suppress(Literal("title:") + White(space)) + restOfLine + Suppress(LineEnd())
 
 ## Title [Optional]
 optional_title = Optional(title, default='')
 
-## Optional Subtitle
+## Subtitle [Optional]
 optional_subtitle = Optional(Suppress(Literal("subtitle:") + White(space)) + restOfLine, default='')
 
 ## School [Optional]
@@ -125,7 +125,7 @@ content_lines = Group(OneOrMore(Regex(ur'\s\s\s\s\s\s\s\s\s\s\s\s(.+)').leaveWhi
 content = Suppress(Literal("content:") + White(newline)) + content_lines
 
 ## Section
-section = Group(Suppress(White(tab) + Literal("section:") + LineEnd()) + title + content)
+section = Group(Suppress(Literal("section:") + LineEnd()) + title + content)
 
 ## Problem Set
 problem_set_identifier = Literal("problem_set")
@@ -137,11 +137,11 @@ problem_set = problem_set_identifier + problem_set_ignored + problem_set_content
 ## Memorandum
 memorandum_header = Literal("memorandum")
 memorandum_ignored = Suppress(Literal(":") + LineEnd())
-memorandum_contents = author + optional_collaborators + date + title + optional_subtitle + Group(OneOrMore(section))
+memorandum_contents = author + optional_collaborators + optional_date + title + optional_subtitle + Group(OneOrMore(section))
 memorandum = memorandum_header + memorandum_ignored + memorandum_contents
 
 ## Document
-document = problem_set
+document = problem_set | memorandum
 
 
 class EasyTeXParser(object):
@@ -343,7 +343,6 @@ class EasyTeXParser(object):
         else:
             raise ParseSectionError("Error parsing section: '{}'".format(input_string))
 
-    # TODO: Incorporate optionality
     @staticmethod
     def parse_problem_set(parsed_block):
         author = Author(parsed_block[0])
@@ -404,28 +403,44 @@ class EasyTeXParser(object):
 
     # TODO: Incorporate optionality
     @staticmethod
-    def parse_memorandum(input_string):
-        try:
-            indented_block = memorandum.parseString(input_string)
-        except ParseException as pex:
-            raise ParseMemorandumError("Error parsing memorandum: '{}'. Exception raised: '{}'".format(input_string, pex))
+    def parse_memorandum(parsed_block):
+        author = Author(parsed_block[0])
 
-        if indented_block:
-            author = Author(indented_block[1])
-            collaborators = [Collaborator(name) for name in indented_block[3]]
-            date = Date(indented_block[4])
-            title = Title(indented_block[5])
-            subtitle = Subtitle(indented_block[6])
-
-            sections = list()
-            for section in indented_block[7]:
-                section_title = Title("".join(section[0]))
-                content = Content(newline.join(section[1]) + "\n")
-                sections.append(Section(section_title, content))
-
-            return Memorandum(author, collaborators, date, title, subtitle, sections)
+        # Check for collaborators
+        if parsed_block[1]:
+            collaborators = [Collaborator(collab) for collab in parsed_block[1]]
         else:
-            raise ParseMemorandumError("Error parsing memorandum: '{}'".format(input_string))
+            collaborators = None
+
+        # Check for date
+        if parsed_block[2]:
+            date = Date(parsed_block[2])
+        else:
+            date = None
+
+        title = Title(parsed_block[3])
+
+        # Check for subtitle
+        if parsed_block[4]:
+            subtitle = Subtitle(parsed_block[4])
+        else:
+            subtitle = None
+
+        # Accumulate sections
+        sections = list()
+        for section in parsed_block[5]:
+            section_title = Title(section[0])
+
+            # Strip leftmost whitespace from every line of content
+            content_stripped = [line.lstrip() for line in section[1]]
+            content_txt = newline.join(content_stripped)
+            content = Content(content_txt)
+
+            sections.append(Section(section_title, content))
+
+        # Create and return memorandum
+        memorandum = Memorandum(author, collaborators, date, title, subtitle, sections)
+        return memorandum
 
     def parse_document(self, input_string):
         try:
@@ -436,8 +451,9 @@ class EasyTeXParser(object):
         if indented_block is None or indented_block[1:] is None:
             raise ParseDocumentError("Error parsing document: found no indented block!".format(input_string))
         elif indented_block[0] == "memorandum":
-            return self.parse_memorandum(input_string)
+            return self.parse_memorandum(indented_block[1:])
         elif indented_block[0] == "problem_set":
             return self.parse_problem_set(indented_block[1:])
         else:
             raise ParseDocumentError("Error parsing document: found no indented block!".format(input_string))
+

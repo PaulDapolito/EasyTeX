@@ -1,3 +1,16 @@
+memorandum:
+    author: Paul Dapolito
+    date: 09/21/2015
+    title: Basic title
+    subtitle: Super \underline{Advanced} Subtitle
+
+    section:
+        title: Abstract
+        content:
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare viverra mauris in elementum. Phasellus hendrerit ullamcorper ante sed aliquam. Nunc tellus nibh, interdum eu tellus id, convallis commodo lacus. Curabitur quis mi condimentum, lacinia lacus eu, lobortis felis. Donec porttitor nibh eget diam rhoncus pretium. In id sapien quis elit aliquet auctor. Etiam eros mauris, sollicitudin id lacus vel, volutpat mattis lectus. Nunc laoreet pretium feugiat. Integer condimentum, magna quis venenatis imperdiet, enim nulla congue odio, ac mollis dui ipsum eget magna.
+
+    section:
+        title: Summary
         content:
             Praesent et accumsan tellus, ac tincidunt nulla. Aliquam eget erat sed tellus dictum blandit. Maecenas ut imperdiet tortor. Vestibulum eget neque fringilla, vehicula lacus id, elementum dolor. Suspendisse potenti. Morbi dignissim purus non sem dapibus, id convallis lectus lacinia. Morbi id turpis porttitor, euismod tellus a, bibendum urna. Nunc imperdiet vestibulum euismod. Phasellus at imperdiet nisl. Integer in justo nunc. Integer vel odio non mauris ultricies pretium vel vel eros. Mauris sed leo ultrices, cursus enim vitae, fringilla felis. Curabitur eu semper mauris. Sed sodales diam orci, ut commodo lacus fringilla in. Duis commodo arcu quis sem volutpat, id consequat mi aliquam.
 

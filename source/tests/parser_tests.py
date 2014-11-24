@@ -25,8 +25,6 @@ from ir.memorandums.section import Section
 from ir.problem_sets.problem_set import ProblemSet
 from ir.memorandums.memorandum import Memorandum
 
-from ir.document import Document
-
 
 class EasyTeXParserTests(unittest.TestCase):
     def setUp(self):
@@ -54,8 +52,8 @@ class EasyTeXParserTests(unittest.TestCase):
 
         self.assertEqual(input_string, parsed_string)
 
-    # Problem Set Tests TODO: Add tests for optionality
-    # Test a problem set with one problem and all optional fields filled
+    # Problem Set Tests
+    ## Test a problem set with one problem and all optional fields filled
     def parse_full_problem_set_1_test(self):  # Test a problem set with one problem and all optional fields filled
         input_string = open("test_text_files/problem_sets/full_problem_set_1/full_problem_set_1.txt").read()
         parsed_problem_set = self.parser.parse_document(input_string)
@@ -86,7 +84,7 @@ class EasyTeXParserTests(unittest.TestCase):
             ProblemSet(author, collaborators, due_date, title, course, school, [problem]),
             parsed_problem_set)
 
-    # Test a problem set with two problems and all optional fields filled
+    ## Test a problem set with two problems and all optional fields filled
     def parse_full_problem_set_2_test(self):
         input_string = open("test_text_files/problem_sets/full_problem_set_2/full_problem_set_2.txt").read()
         parsed_problem_set = self.parser.parse_document(input_string)
@@ -128,7 +126,7 @@ class EasyTeXParserTests(unittest.TestCase):
             ProblemSet(author, collaborators, due_date, title, course, school, [problem_1, problem_2]),
             parsed_problem_set)
 
-    # Test a problem set with two problems that are missing labels and all other optional fields filled
+    ## Test a problem set with two problems that are missing labels and all other optional fields filled
     def parse_full_problem_set_3_test(self):
         input_string = open("test_text_files/problem_sets/full_problem_set_3/full_problem_set_3.txt").read()
         parsed_problem_set = self.parser.parse_document(input_string)
@@ -168,7 +166,7 @@ class EasyTeXParserTests(unittest.TestCase):
             ProblemSet(author, collaborators, due_date, title, course, school, [problem_1, problem_2]),
             parsed_problem_set)
 
-    # Test a problem set with two problems and no collaborators
+    ## Test a problem set with two problems and no collaborators
     def parse_partial_problem_set_1_test(self):
         input_string = open("test_text_files/problem_sets/partial_problem_set_1/partial_problem_set_1.txt").read()
         parsed_problem_set = self.parser.parse_document(input_string)
@@ -209,7 +207,7 @@ class EasyTeXParserTests(unittest.TestCase):
             ProblemSet(author, collaborators, due_date, title, course, school, [problem_1, problem_2]),
             parsed_problem_set)
 
-    # Test a problem set with two problems and no due date
+    ## Test a problem set with two problems and no due date
     def parse_partial_problem_set_2_test(self):
         input_string = open("test_text_files/problem_sets/partial_problem_set_2/partial_problem_set_2.txt").read()
         parsed_problem_set = self.parser.parse_document(input_string)
@@ -251,7 +249,7 @@ class EasyTeXParserTests(unittest.TestCase):
             ProblemSet(author, collaborators, due_date, title, course, school, [problem_1, problem_2]),
             parsed_problem_set)
 
-    # Test a problem set with two problems and no title
+    ## Test a problem set with two problems and no title
     def parse_partial_problem_set_3_test(self):
         input_string = open("test_text_files/problem_sets/partial_problem_set_3/partial_problem_set_3.txt").read()
         parsed_problem_set = self.parser.parse_document(input_string)
@@ -293,7 +291,7 @@ class EasyTeXParserTests(unittest.TestCase):
             ProblemSet(author, collaborators, due_date, title, course, school, [problem_1, problem_2]),
             parsed_problem_set)
 
-    # Test a problem set with two problems and no course
+    ## Test a problem set with two problems and no course
     def parse_partial_problem_set_4_test(self):
         input_string = open("test_text_files/problem_sets/partial_problem_set_4/partial_problem_set_4.txt").read()
         parsed_problem_set = self.parser.parse_document(input_string)
@@ -335,7 +333,7 @@ class EasyTeXParserTests(unittest.TestCase):
             ProblemSet(author, collaborators, due_date, title, course, school, [problem_1, problem_2]),
             parsed_problem_set)
 
-    # Test a problem set with two problems and no school
+    ## Test a problem set with two problems and no school
     def parse_partial_problem_set_5_test(self):
         input_string = open("test_text_files/problem_sets/partial_problem_set_5/partial_problem_set_5.txt").read()
         parsed_problem_set = self.parser.parse_document(input_string)
@@ -377,7 +375,7 @@ class EasyTeXParserTests(unittest.TestCase):
             ProblemSet(author, collaborators, due_date, title, course, school, [problem_1, problem_2]),
             parsed_problem_set)
 
-    # Test a problem set with two problems and no school, course, or title
+    ## Test a problem set with two problems and no school, course, or title
     def parse_partial_problem_set_6_test(self):
         input_string = open("test_text_files/problem_sets/partial_problem_set_6/partial_problem_set_6.txt").read()
         parsed_problem_set = self.parser.parse_document(input_string)
@@ -419,7 +417,7 @@ class EasyTeXParserTests(unittest.TestCase):
             ProblemSet(author, collaborators, due_date, title, course, school, [problem_1, problem_2]),
             parsed_problem_set)
 
-    # Test a problem set with two problems and no collaborators or due date
+    ## Test a problem set with two problems and no collaborators or due date
     def parse_partial_problem_set_7_test(self):
         input_string = open("test_text_files/problem_sets/partial_problem_set_7/partial_problem_set_7.txt").read()
         parsed_problem_set = self.parser.parse_document(input_string)
@@ -459,7 +457,7 @@ class EasyTeXParserTests(unittest.TestCase):
             ProblemSet(author, collaborators, due_date, title, course, school, [problem_1, problem_2]),
             parsed_problem_set)
 
-    # Test a problem set with two problems and no optional fields filled
+    ## Test a problem set with two problems and no optional fields filled
     def parse_partial_problem_set_8_test(self):
         input_string = open("test_text_files/problem_sets/partial_problem_set_8/partial_problem_set_8.txt").read()
         parsed_problem_set = self.parser.parse_document(input_string)
@@ -500,7 +498,7 @@ class EasyTeXParserTests(unittest.TestCase):
 
    # Test a problem set with two problems and no optional fields filled
 
-    # Test a problem set with two problems that are missing labels and no optional fields filled
+    ## Test a problem set with two problems that are missing labels and no optional fields filled
     def parse_partial_problem_set_9_test(self):
         input_string = open("test_text_files/problem_sets/partial_problem_set_9/partial_problem_set_9.txt").read()
         parsed_problem_set = self.parser.parse_document(input_string)
@@ -537,55 +535,185 @@ class EasyTeXParserTests(unittest.TestCase):
             ProblemSet(author, collaborators, due_date, title, course, school, [problem_1, problem_2]),
             parsed_problem_set)
 
-    '''
     # Memorandum Tests
-    def parse_basic_memorandum_test(self):  # Test a memorandum with one section and all optional fields filled
-        input_string = open("test_text_files/memorandums/basic_memorandum.txt").read()
-        parsed_memorandum = self.parser.parse_memorandum(input_string)
+    ## Test a memorandum with one section and all optional fields filled
+    def parse_full_memorandum_1_test(self):
+        input_string = open("test_text_files/memorandums/full_memorandum_1/full_memorandum_1.txt").read()
+        parsed_memorandum = self.parser.parse_document(input_string)
 
-        author = self.parser.parse_author(open("test_text_files/shared/basic_author.txt").read())
-        collaborators = self.parser.parse_collaborators(open("test_text_files/shared/multiple_collaborators.txt").read())
-        date = self.parser.parse_date(open("test_text_files/memorandums/date_with_symbols.txt").read())
-        title = self.parser.parse_title(open("test_text_files/shared/basic_title.txt").read())
-        subtitle = self.parser.parse_subtitle(open("test_text_files/memorandums/advanced_subtitle.txt").read())
-        section = self.parser.parse_section(open("test_text_files/memorandums/basic_section.txt").read())
+        author = Author(open("test_text_files/memorandums/full_memorandum_1/author.txt").read())
+
+        collaborators_txt = open("test_text_files/memorandums/full_memorandum_1/collaborators.txt").read().split(", ")
+        collaborators = [Collaborator(collab) for collab in collaborators_txt]
+
+        date = Date(open("test_text_files/memorandums/full_memorandum_1/date.txt").read())
+        title = Title(open("test_text_files/memorandums/full_memorandum_1/title.txt").read())
+        subtitle = Subtitle(open("test_text_files/memorandums/full_memorandum_1/subtitle.txt").read())
+
+        section_1_title = Title(open("test_text_files/memorandums/full_memorandum_1/section_1_title.txt").read())
+        section_1_content = Content(open("test_text_files/memorandums/full_memorandum_1/section_1_content.txt").read())
+        section_1 = Section(section_1_title, section_1_content)
 
         self.assertEqual(
-            Memorandum(author, collaborators, date, title, subtitle, [section]),
+            Memorandum(author, collaborators, date, title, subtitle, [section_1]),
             parsed_memorandum
         )
 
-    def parse_advanced_memorandum_test(self):  # Test a memorandum with multiple sections and all optional fields filled
-        input_string = open("test_text_files/memorandums/advanced_memorandum.txt").read()
-        parsed_memorandum = self.parser.parse_memorandum(input_string)
+    ## Test a memorandum with two sections and all optional fields filled
+    def parse_full_memorandum_2_test(self):
+        input_string = open("test_text_files/memorandums/full_memorandum_2/full_memorandum_2.txt").read()
+        parsed_memorandum = self.parser.parse_document(input_string)
 
-        author = self.parser.parse_author(open("test_text_files/shared/basic_author.txt").read())
-        collaborators = self.parser.parse_collaborators(open("test_text_files/shared/multiple_collaborators.txt").read())
-        date = self.parser.parse_date(open("test_text_files/memorandums/date_with_symbols.txt").read())
-        title = self.parser.parse_title(open("test_text_files/shared/basic_title.txt").read())
-        subtitle = self.parser.parse_subtitle(open("test_text_files/memorandums/advanced_subtitle.txt").read())
-        section_1 = self.parser.parse_section(open("test_text_files/memorandums/basic_section.txt").read())
-        section_2 = self.parser.parse_section(open("test_text_files/memorandums/advanced_section.txt").read())
+        author = Author(open("test_text_files/memorandums/full_memorandum_2/author.txt").read())
+
+        collaborators_txt = open("test_text_files/memorandums/full_memorandum_2/collaborators.txt").read().split(", ")
+        collaborators = [Collaborator(collab) for collab in collaborators_txt]
+
+        date = Date(open("test_text_files/memorandums/full_memorandum_2/date.txt").read())
+        title = Title(open("test_text_files/memorandums/full_memorandum_2/title.txt").read())
+        subtitle = Subtitle(open("test_text_files/memorandums/full_memorandum_2/subtitle.txt").read())
+
+        section_1_title = Title(open("test_text_files/memorandums/full_memorandum_2/section_1_title.txt").read())
+        section_1_content = Content(open("test_text_files/memorandums/full_memorandum_2/section_1_content.txt").read())
+        section_1 = Section(section_1_title, section_1_content)
+
+        section_2_title = Title(open("test_text_files/memorandums/full_memorandum_2/section_2_title.txt").read())
+        section_2_content = Content(open("test_text_files/memorandums/full_memorandum_2/section_2_content.txt").read())
+        section_2 = Section(section_2_title, section_2_content)
 
         self.assertEqual(
             Memorandum(author, collaborators, date, title, subtitle, [section_1, section_2]),
             parsed_memorandum
         )
 
-    # Document Tests
-    def parse_basic_problem_set_document(self):
-        input_string = open("test_text_files/problem_sets/advanced_problem_set.txt").read()
-        parsed_document = self.parser.parse_document(input_string)
+    ## Test a memorandum with two sections and no collaborators
+    def parse_partial_memorandum_1_test(self):
+        input_string = open("test_text_files/memorandums/partial_memorandum_1/partial_memorandum_1.txt").read()
+        parsed_memorandum = self.parser.parse_document(input_string)
 
-        problem_set = self.parser.parse_problem_set(open("test_text_files/problem_sets/advanced_problem_set.txt").read())
+        author = Author(open("test_text_files/memorandums/partial_memorandum_1/author.txt").read())
 
-        self.assertEqual(Document(problem_set=problem_set, memorandum=None), parsed_document)
+        collaborators = None
 
-    def parse_basic_memorandum_document(self):
-        input_string = open("test_text_files/memorandums/advanced_memorandum.txt").read()
-        parsed_document = self.parser.parse_document(input_string)
+        date = Date(open("test_text_files/memorandums/partial_memorandum_1/date.txt").read())
+        title = Title(open("test_text_files/memorandums/partial_memorandum_1/title.txt").read())
+        subtitle = Subtitle(open("test_text_files/memorandums/partial_memorandum_1/subtitle.txt").read())
 
-        memorandum = self.parser.parse_memorandum(open("test_text_files/memorandums/advanced_memorandum.txt").read())
+        section_1_title = Title(open("test_text_files/memorandums/partial_memorandum_1/section_1_title.txt").read())
+        section_1_content = Content(open("test_text_files/memorandums/partial_memorandum_1/section_1_content.txt").read())
+        section_1 = Section(section_1_title, section_1_content)
 
-        self.assertEqual(Document(problem_set=None, memorandum=memorandum), parsed_document)
-    '''
+        section_2_title = Title(open("test_text_files/memorandums/partial_memorandum_1/section_2_title.txt").read())
+        section_2_content = Content(open("test_text_files/memorandums/partial_memorandum_1/section_2_content.txt").read())
+        section_2 = Section(section_2_title, section_2_content)
+
+        self.assertEqual(
+            Memorandum(author, collaborators, date, title, subtitle, [section_1, section_2]),
+            parsed_memorandum
+        )
+
+    ## Test a memorandum with two sections and no date
+    def parse_partial_memorandum_2_test(self):
+        input_string = open("test_text_files/memorandums/partial_memorandum_2/partial_memorandum_2.txt").read()
+        parsed_memorandum = self.parser.parse_document(input_string)
+
+        author = Author(open("test_text_files/memorandums/partial_memorandum_2/author.txt").read())
+
+        collaborators_txt = open("test_text_files/memorandums/partial_memorandum_2/collaborators.txt").read().split(", ")
+        collaborators = [Collaborator(collab) for collab in collaborators_txt]
+
+        date = None
+        title = Title(open("test_text_files/memorandums/partial_memorandum_2/title.txt").read())
+        subtitle = Subtitle(open("test_text_files/memorandums/partial_memorandum_2/subtitle.txt").read())
+
+        section_1_title = Title(open("test_text_files/memorandums/partial_memorandum_2/section_1_title.txt").read())
+        section_1_content = Content(open("test_text_files/memorandums/partial_memorandum_2/section_1_content.txt").read())
+        section_1 = Section(section_1_title, section_1_content)
+
+        section_2_title = Title(open("test_text_files/memorandums/partial_memorandum_2/section_2_title.txt").read())
+        section_2_content = Content(open("test_text_files/memorandums/partial_memorandum_2/section_2_content.txt").read())
+        section_2 = Section(section_2_title, section_2_content)
+
+        self.assertEqual(
+            Memorandum(author, collaborators, date, title, subtitle, [section_1, section_2]),
+            parsed_memorandum
+        )
+
+    ## Test a memorandum with two sections and no subtitle
+    def parse_partial_memorandum_3_test(self):
+        input_string = open("test_text_files/memorandums/partial_memorandum_3/partial_memorandum_3.txt").read()
+        parsed_memorandum = self.parser.parse_document(input_string)
+
+        author = Author(open("test_text_files/memorandums/partial_memorandum_3/author.txt").read())
+
+        collaborators_txt = open("test_text_files/memorandums/partial_memorandum_3/collaborators.txt").read().split(", ")
+        collaborators = [Collaborator(collab) for collab in collaborators_txt]
+
+        date = Date(open("test_text_files/memorandums/partial_memorandum_3/date.txt").read())
+        title = Title(open("test_text_files/memorandums/partial_memorandum_3/title.txt").read())
+        subtitle = None
+
+        section_1_title = Title(open("test_text_files/memorandums/partial_memorandum_3/section_1_title.txt").read())
+        section_1_content = Content(open("test_text_files/memorandums/partial_memorandum_3/section_1_content.txt").read())
+        section_1 = Section(section_1_title, section_1_content)
+
+        section_2_title = Title(open("test_text_files/memorandums/partial_memorandum_3/section_2_title.txt").read())
+        section_2_content = Content(open("test_text_files/memorandums/partial_memorandum_3/section_2_content.txt").read())
+        section_2 = Section(section_2_title, section_2_content)
+
+        self.assertEqual(
+            Memorandum(author, collaborators, date, title, subtitle, [section_1, section_2]),
+            parsed_memorandum
+        )
+
+    ## Test a memorandum with two sections and no collaborators or date
+    def parse_partial_memorandum_4_test(self):
+        input_string = open("test_text_files/memorandums/partial_memorandum_4/partial_memorandum_4.txt").read()
+        parsed_memorandum = self.parser.parse_document(input_string)
+
+        author = Author(open("test_text_files/memorandums/partial_memorandum_4/author.txt").read())
+
+        collaborators = None
+
+        date = None
+        title = Title(open("test_text_files/memorandums/partial_memorandum_4/title.txt").read())
+        subtitle = Subtitle(open("test_text_files/memorandums/partial_memorandum_4/subtitle.txt").read())
+
+        section_1_title = Title(open("test_text_files/memorandums/partial_memorandum_4/section_1_title.txt").read())
+        section_1_content = Content(open("test_text_files/memorandums/partial_memorandum_4/section_1_content.txt").read())
+        section_1 = Section(section_1_title, section_1_content)
+
+        section_2_title = Title(open("test_text_files/memorandums/partial_memorandum_4/section_2_title.txt").read())
+        section_2_content = Content(open("test_text_files/memorandums/partial_memorandum_4/section_2_content.txt").read())
+        section_2 = Section(section_2_title, section_2_content)
+
+        self.assertEqual(
+            Memorandum(author, collaborators, date, title, subtitle, [section_1, section_2]),
+            parsed_memorandum
+        )
+
+    ## Test a memorandum with two sections and no optional fields filled
+    def parse_partial_memorandum_5_test(self):
+        input_string = open("test_text_files/memorandums/partial_memorandum_5/partial_memorandum_5.txt").read()
+        parsed_memorandum = self.parser.parse_document(input_string)
+
+        author = Author(open("test_text_files/memorandums/partial_memorandum_5/author.txt").read())
+
+        collaborators = None
+
+        date = None
+        title = Title(open("test_text_files/memorandums/partial_memorandum_5/title.txt").read())
+        subtitle = None
+
+        section_1_title = Title(open("test_text_files/memorandums/partial_memorandum_5/section_1_title.txt").read())
+        section_1_content = Content(open("test_text_files/memorandums/partial_memorandum_5/section_1_content.txt").read())
+        section_1 = Section(section_1_title, section_1_content)
+
+        section_2_title = Title(open("test_text_files/memorandums/partial_memorandum_5/section_2_title.txt").read())
+        section_2_content = Content(open("test_text_files/memorandums/partial_memorandum_5/section_2_content.txt").read())
+        section_2 = Section(section_2_title, section_2_content)
+
+        self.assertEqual(
+            Memorandum(author, collaborators, date, title, subtitle, [section_1, section_2]),
+            parsed_memorandum
+        )
