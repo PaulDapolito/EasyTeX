@@ -73,42 +73,75 @@ terminals = alphas + digits + symbols + whitespace
 text = ZeroOrMore(Word(terminals)).leaveWhitespace()
 
 # Grammar
+## Author
 author = Suppress(Literal("author:") + White(space)) + restOfLine
 
+## Collaborators [Optional]
 collaborator = Word(alphas)
-collaborators = Suppress(Literal("collaborators:") + White(space)) + delimitedList(collaborator)
+collaborators_group = Group(delimitedList(collaborator))
+collaborators_ignored = Suppress(Literal("collaborators:") + White(space))
+optional_collaborators = Optional(collaborators_ignored + collaborators_group, default=[])
 
+## Date
 date = Suppress(Literal("date:") + White(space)) + restOfLine
 
+## Title
 title = Suppress(Literal("title:") + White(space)) + restOfLine
-subtitle = Suppress(Literal("subtitle:") + White(space)) + restOfLine
 
-school = Suppress(Literal("school:") + White(space)) + restOfLine
-course = Suppress(Literal("course:") + White(space)) + restOfLine
-due_date = Suppress(Literal("due_date:") + White(space)) + restOfLine
+## Title [Optional]
+optional_title = Optional(title, default='')
 
-label = Suppress(Literal("label:") + White(space)) + restOfLine + Suppress(LineEnd())
+## Optional Subtitle
+optional_subtitle = Optional(Suppress(Literal("subtitle:") + White(space)) + restOfLine, default='')
 
-statement = Suppress(Literal("statement:") + White(newline)) + \
-            Group(OneOrMore(Regex(ur'\s\s\s\s\s\s\s\s\s\s\s\s(.+)').leaveWhitespace() + Suppress(White(newline))))
+## School [Optional]
+optional_school = Optional(Suppress(Literal("school:") + White(space)) + restOfLine, default='')
 
-solution = Suppress(Literal("solution:") + White(newline)) + \
-            Group(OneOrMore(Regex(ur'\s\s\s\s\s\s\s\s\s\s\s\s(.+)').leaveWhitespace() + Suppress(White(newline))))
+## Course [Optional]
+optional_course = Optional(Suppress(Literal("course:") + White(space)) + restOfLine, default='')
 
-problem = Suppress(White(tab) + Literal("problem:") + LineEnd()) + label + statement + solution
+## Due Date [Optional]
+optional_due_date = Optional(Suppress(Literal("due_date:") + White(space)) + restOfLine, default='')
 
-content = Suppress(Literal("content:") + White(newline)) + \
-            Group(OneOrMore(Regex(ur'\s\s\s\s\s\s\s\s\s\s\s\s(.+)').leaveWhitespace() + Suppress(White(newline))))
+## Label [Optional]
+optional_label = Optional(Suppress(Literal("label:") + White(space)) + restOfLine + Suppress(LineEnd()), default='')
 
-section = Suppress(White(tab) + Literal("section:") + LineEnd()) + title + content
+## Statement
+statement_ignored = Suppress(Literal("statement:") + White(newline))
+statement_lines = Group(OneOrMore(Regex(ur'\s\s\s\s\s\s\s\s\s\s\s\s(.+)').leaveWhitespace() + Suppress(White(newline))))
+statement = statement_ignored + statement_lines
 
-problem_set = Literal("problem_set") + Suppress(Literal(":") + LineEnd()) + author + Group(collaborators) + due_date \
-              + title + course + school + Group(OneOrMore(Group(problem)))
+## Solution
+solution_ignored = Suppress(Literal("solution:") + White(newline))
+solution_lines = Group(OneOrMore(Regex(ur'\s\s\s\s\s\s\s\s\s\s\s\s(.+)').leaveWhitespace() + Suppress(White(newline))))
+solution = solution_ignored + solution_lines
 
-memorandum = Literal("memorandum") + Suppress(Literal(":") + LineEnd()) + author + Group(collaborators) + date \
-             + title + subtitle + Group(OneOrMore(Group(section)))
+## Problem
+problem_ignored = Suppress(Literal("problem:") + LineEnd())
+problem = problem_ignored + Group(optional_label + statement + solution)
 
-document = memorandum | problem_set
+## Content
+content_lines = Group(OneOrMore(Regex(ur'\s\s\s\s\s\s\s\s\s\s\s\s(.+)').leaveWhitespace() + Suppress(White(newline))))
+content = Suppress(Literal("content:") + White(newline)) + content_lines
+
+## Section
+section = Group(Suppress(White(tab) + Literal("section:") + LineEnd()) + title + content)
+
+## Problem Set
+problem_set_identifier = Literal("problem_set")
+problem_set_ignored = Suppress(Literal(":") + LineEnd())
+problem_set_contents = author + optional_collaborators + optional_due_date + optional_title + optional_course + optional_school
+problem_set_problems = Group(OneOrMore(problem))
+problem_set = problem_set_identifier + problem_set_ignored + problem_set_contents + problem_set_problems
+
+## Memorandum
+memorandum_header = Literal("memorandum")
+memorandum_ignored = Suppress(Literal(":") + LineEnd())
+memorandum_contents = author + optional_collaborators + date + title + optional_subtitle + Group(OneOrMore(section))
+memorandum = memorandum_header + memorandum_ignored + memorandum_contents
+
+## Document
+document = problem_set
 
 
 class EasyTeXParser(object):
@@ -139,12 +172,14 @@ class EasyTeXParser(object):
     @staticmethod
     def parse_collaborators(input_string):
         try:
-            parsed_collaborators = collaborators.parseString(input_string)
+            parsed_collaborators = optional_collaborators.parseString(input_string)
         except ParseException as pex:
             raise ParseCollaboratorsError("Error parsing collaborators: '{}'. Exception raised: '{}'".format(input_string, pex))
 
-        if parsed_collaborators[0]:
-            return [Collaborator(name) for name in parsed_collaborators]
+        print parsed_collaborators
+
+        if parsed_collaborators[1:]:
+            return [Collaborator(name) for name in parsed_collaborators[1:]]
         else:
             raise ParseCollaboratorsError("Error parsing collaborators: '{}'".format(input_string))
 
@@ -175,7 +210,7 @@ class EasyTeXParser(object):
     @staticmethod
     def parse_subtitle(input_string):
         try:
-            parsed_subtitle = subtitle.parseString(input_string)
+            parsed_subtitle = optional_subtitle.parseString(input_string)
         except ParseException as pex:
             raise ParseSubtitleError("Error parsing subtitle: '{}'. Exception raised: '{}'".format(input_string, pex))
 
@@ -187,7 +222,7 @@ class EasyTeXParser(object):
     @staticmethod
     def parse_school(input_string):
         try:
-            parsed_school = school.parseString(input_string)
+            parsed_school = optional_school.parseString(input_string)
         except ParseException as pex:
             raise ParseSchoolError("Error parsing school: '{}'. Exception raised: '{}'".format(input_string, pex))
 
@@ -199,7 +234,7 @@ class EasyTeXParser(object):
     @staticmethod
     def parse_course(input_string):
         try:
-            parsed_course = course.parseString(input_string)
+            parsed_course = optional_course.parseString(input_string)
         except ParseException as pex:
             raise ParseCourseError("Error parsing course: '{}'. Exception raised: '{}'".format(input_string, pex))
 
@@ -211,7 +246,7 @@ class EasyTeXParser(object):
     @staticmethod
     def parse_due_date(input_string):
         try:
-            parsed_due_date = due_date.parseString(input_string)
+            parsed_due_date = optional_due_date.parseString(input_string)
         except ParseException as pex:
             raise ParseDueDateError("Error parsing due date: '{}'. Exception raised: '{}'".format(input_string, pex))
 
@@ -223,7 +258,7 @@ class EasyTeXParser(object):
     @staticmethod
     def parse_label(input_string):
         try:
-            parsed_label = label.parseString(input_string)
+            parsed_label = optional_label.parseString(input_string)
         except ParseException as pex:
             raise ParseLabelError("Error parsing label: '{}'. Exception raised: '{}'".format(input_string, pex))
 
@@ -310,30 +345,62 @@ class EasyTeXParser(object):
 
     # TODO: Incorporate optionality
     @staticmethod
-    def parse_problem_set(input_string):
-        try:
-            indented_block = problem_set.parseString(input_string)
-        except ParseException as pex:
-            raise ParseProblemSetError("Error parsing problem set: '{}'. Exception raised: '{}'".format(input_string, pex))
+    def parse_problem_set(parsed_block):
+        author = Author(parsed_block[0])
 
-        if indented_block:
-            author = Author(indented_block[1])
-            collaborators = [Collaborator(name) for name in indented_block[2]]
-            due_date = DueDate(indented_block[3])
-            title = Title(indented_block[4])
-            course = Course(indented_block[5])
-            school = School(indented_block[6])
-
-            problems = list()
-            for problem in indented_block[7]:
-                label = Label(problem[0])
-                statement = Statement(newline.join(problem[1]))
-                solution = Solution(newline.join(problem[2]) + "\n")
-                problems.append(Problem(label, statement, solution))
-
-            return ProblemSet(author, collaborators, due_date, title, course, school, problems)
+        # Check for collaborators
+        if parsed_block[1]:
+            collaborators = [Collaborator(collab) for collab in parsed_block[1]]
         else:
-            raise ParseProblemSetError("Error parsing problem set: '{}'".format(input_string))
+            collaborators = None
+
+        # Check for due date
+        if parsed_block[2] is not "":
+            due_date = DueDate(parsed_block[2])
+        else:
+            due_date = None
+
+        # Check for title
+        if parsed_block[3] is not "":
+            title = Title(parsed_block[3])
+        else:
+            title = None
+
+        # Check for course
+        if parsed_block[4] is not "":
+            course = Course(parsed_block[4])
+        else:
+            course = None
+
+        # Check for school
+        if parsed_block[5] is not "":
+            school = School(parsed_block[5])
+        else:
+            school = None
+
+        # Accumulate problems
+        problems = list()
+        for problem in parsed_block[6]:
+            # Check for label
+            if problem[0] is not "":
+                label = Label(problem[0])
+            else:
+                label = None
+
+            # Strip leftmost whitespace from every line of statement and solution
+            statement_stripped = [line.lstrip() for line in problem[1]]
+            statement_txt = newline.join(statement_stripped)
+            statement = Statement(statement_txt)
+
+            solution_stripped = [line.lstrip() for line in problem[2]]
+            solution_txt = newline.join(solution_stripped) + "\n"
+            solution = Solution(solution_txt)
+
+            problems.append(Problem(label, statement, solution))
+
+        # Create and return problem set
+        problem_set = ProblemSet(author, collaborators, due_date, title, course, school, problems)
+        return problem_set
 
     # TODO: Incorporate optionality
     @staticmethod
@@ -345,13 +412,13 @@ class EasyTeXParser(object):
 
         if indented_block:
             author = Author(indented_block[1])
-            collaborators = [Collaborator(name) for name in indented_block[2]]
-            date = Date(indented_block[3])
-            title = Title(indented_block[4])
-            subtitle = Subtitle(indented_block[5])
+            collaborators = [Collaborator(name) for name in indented_block[3]]
+            date = Date(indented_block[4])
+            title = Title(indented_block[5])
+            subtitle = Subtitle(indented_block[6])
 
             sections = list()
-            for section in indented_block[6]:
+            for section in indented_block[7]:
                 section_title = Title("".join(section[0]))
                 content = Content(newline.join(section[1]) + "\n")
                 sections.append(Section(section_title, content))
@@ -364,13 +431,13 @@ class EasyTeXParser(object):
         try:
             indented_block = document.parseString(input_string)
         except ParseException as pex:
-            raise ParseDocumentError("Error parsing document. Exception raised: '{}'".format(input_string, pex))
+            raise ParseDocumentError("Error parsing document. Exception raised: '{}'".format(pex))
 
-        if indented_block is None:
+        if indented_block is None or indented_block[1:] is None:
             raise ParseDocumentError("Error parsing document: found no indented block!".format(input_string))
         elif indented_block[0] == "memorandum":
             return self.parse_memorandum(input_string)
         elif indented_block[0] == "problem_set":
-            return self.parse_problem_set(input_string)
+            return self.parse_problem_set(indented_block[1:])
         else:
             raise ParseDocumentError("Error parsing document: found no indented block!".format(input_string))

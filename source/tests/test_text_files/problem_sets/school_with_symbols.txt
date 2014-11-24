@@ -1,1 +1,0 @@
-    school: Dallas Science School: \textbf{magnet}

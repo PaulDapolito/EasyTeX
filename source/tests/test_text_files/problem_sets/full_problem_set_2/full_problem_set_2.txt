@@ -1,0 +1,47 @@
+problem_set:
+    author: Paul Dapolito
+    collaborators: Robert, Angela, Daniel
+    due_date: September 21, 2015
+    title: Basic title
+    course: Programming Languages
+    school: Staten Island Academy
+
+    problem:
+        label: 1
+
+        statement:
+            What is the rate of change $f'$ of a function $f$ at the point $a$?
+            
+        solution:
+            Suppose $L_1$ is some arbitrary language over an alphabet $\Sigma$ with words $l_1,l_2,l_3,...,l_{n-1},l_{n}$. $L_1$ is defined as:
+                $$ L_1 = \{l_1, l_2, l_3,...,l_{n-1}, l_{n}\} $$
+
+            For the languages $L_1$ and $L_2$, we are given that that $L_1 \subseteq L_2*$. Using the fact that $L_1 \subseteq L_2*$ and the definition of the Kleene star operation, $L_2*$ must be such that:
+                $$ \{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} \subseteq L_2* $$
+
+            Using the definition of the Kleene star operation again, we know that $L_1*$ is given by:
+                $$ L_1* =  \{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} $$
+
+            Thus, Equation 1 becomes:
+                $$ L_1* \subseteq L_2* $$
+
+            And we have thus proven that if $L_1$ and $L_2$ are languages and $L_1 \subseteq L_2*$, then $L_1 * \subseteq L_2*$. QED.
+
+    problem:
+        label: 2
+        statement:
+            Carefully prove that if $L_1$ and $L_2$ are languages and $L_1 \subseteq L_2*$, then $L_1 * \subseteq L_2*$
+        solution:
+            Suppose $L_1$ is some arbitrary language over an alphabet $\Sigma$ with words $l_1,l_2,l_3,...,l_{n-1},l_{n}$. $L_1$ is defined as:
+                $$ L_1 = \{l_1, l_2, l_3,...,l_{n-1}, l_{n}\} $$
+
+            For the languages $L_1$ and $L_2$, we are given that that $L_1 \subseteq L_2*$. Using the fact that $L_1 \subseteq L_2*$ and the definition of the Kleene star operation, $L_2*$ must be such that:
+                $$ \{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} \subseteq L_2* #
+
+            Using the definition of the Kleene star operation again, we know that $L_1*$ is given by:
+                $$ L_1* =  \{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} $$
+
+            Thus, Equation 1 becomes:
+                $$ L_1* \subseteq L_2* $$
+
+            And we have thus proven that if $L_1$ and $L_2$ are languages and $L_1 \subseteq L_2*$, then $L_1 * \subseteq L_2*$. QED.
