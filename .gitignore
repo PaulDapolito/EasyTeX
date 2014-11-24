@@ -1,1 +1,6 @@
 *.gliffy
+venv/
+*.log
+*.tex
+*.pdf
+*.aux
