@@ -11,4 +11,5 @@ virtualenv venv
 # Activate virtual environment and install necessary packages
 source venv/bin/activate
 pip install pyparsing
+pip install coverage
 pip install nose

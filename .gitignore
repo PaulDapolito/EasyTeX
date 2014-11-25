@@ -1,6 +1,10 @@
 *.gliffy
+*.pyc
 venv/
 *.log
 *.tex
 *.pdf
 *.aux
+.idea/
+cover/
+.coverage
