@@ -128,7 +128,7 @@ class EasyTeXParserTests(unittest.TestCase):
 
     # Memorandum Tests
     ## Test a memorandum with one section and all optional fields filled
-    def interpret_full_memorandum_1(self):
+    def interpret_full_memorandum_1_test(self):
         input_string = open("test_text_files/memorandums/full_memorandum_1/full_memorandum_1.txt").read()
         parsed_memorandum = self.parser.parse_document(input_string)
 
@@ -137,7 +137,7 @@ class EasyTeXParserTests(unittest.TestCase):
         self.assertEqual(interpreted_memorandum, expected_tex_file)
 
     ## Test a memorandum with two sections and all optional fields filled
-    def interpret_full_memorandum_2(self):
+    def interpret_full_memorandum_2_test(self):
         input_string = open("test_text_files/memorandums/full_memorandum_2/full_memorandum_2.txt").read()
         parsed_memorandum = self.parser.parse_document(input_string)
 
@@ -146,7 +146,7 @@ class EasyTeXParserTests(unittest.TestCase):
         self.assertEqual(interpreted_memorandum, expected_tex_file)
 
     ## Test a memorandum with two sections and no collaborators
-    def interpret_partial_memorandum_1(self):
+    def interpret_partial_memorandum_1_test(self):
         input_string = open("test_text_files/memorandums/partial_memorandum_1/partial_memorandum_1.txt").read()
         parsed_memorandum = self.parser.parse_document(input_string)
 
@@ -155,7 +155,7 @@ class EasyTeXParserTests(unittest.TestCase):
         self.assertEqual(interpreted_memorandum, expected_tex_file)
 
     ## Test a memorandum with two sections and no date
-    def interpret_partial_memorandum_2(self):
+    def interpret_partial_memorandum_2_test(self):
         input_string = open("test_text_files/memorandums/partial_memorandum_2/partial_memorandum_2.txt").read()
         parsed_memorandum = self.parser.parse_document(input_string)
 
@@ -164,7 +164,7 @@ class EasyTeXParserTests(unittest.TestCase):
         self.assertEqual(interpreted_memorandum, expected_tex_file)
 
     ## Test a memorandum with two sections and no subtitle
-    def interpret_partial_memorandum_3(self):
+    def interpret_partial_memorandum_3_test(self):
         input_string = open("test_text_files/memorandums/partial_memorandum_3/partial_memorandum_3.txt").read()
         parsed_memorandum = self.parser.parse_document(input_string)
 
@@ -173,7 +173,7 @@ class EasyTeXParserTests(unittest.TestCase):
         self.assertEqual(interpreted_memorandum, expected_tex_file)
 
     ## Test a memorandum with two sections and no collaborators or date
-    def interpret_partial_memorandum_4(self):
+    def interpret_partial_memorandum_4_test(self):
         input_string = open("test_text_files/memorandums/partial_memorandum_4/partial_memorandum_4.txt").read()
         parsed_memorandum = self.parser.parse_document(input_string)
 
@@ -182,7 +182,7 @@ class EasyTeXParserTests(unittest.TestCase):
         self.assertEqual(interpreted_memorandum, expected_tex_file)
 
     ## Test a memorandum with two sections and no optional fields filled
-    def interpret_partial_memorandum_5(self):
+    def interpret_partial_memorandum_5_test(self):
         input_string = open("test_text_files/memorandums/partial_memorandum_5/partial_memorandum_5.txt").read()
         parsed_memorandum = self.parser.parse_document(input_string)
 
