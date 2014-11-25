@@ -1,0 +1,7 @@
+problem_set:
+    author: Paul Dapolito
+    collaborators: Robert, Angela, Daniel
+    due_date: September 21, 2015
+    title: Basic title
+    course: Programming Languages
+    school: Staten Island Academy

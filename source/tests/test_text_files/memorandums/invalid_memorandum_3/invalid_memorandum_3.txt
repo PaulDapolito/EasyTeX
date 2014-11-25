@@ -1,0 +1,6 @@
+memorandum:
+    author: Paul Dapolito
+    collaborators: Robert, Angela, Daniel
+    date: 09/21/2015
+    title: Basic title
+    subtitle: Super \underline{Advanced} Subtitle

@@ -25,6 +25,8 @@ from ir.memorandums.section import Section
 from ir.problem_sets.problem_set import ProblemSet
 from ir.memorandums.memorandum import Memorandum
 
+from errors.parser.parse_document_error import ParseDocumentError
+
 
 class EasyTeXParserTests(unittest.TestCase):
     def setUp(self):
@@ -34,19 +36,19 @@ class EasyTeXParserTests(unittest.TestCase):
         self.assertEqual(1, 1)
 
     # Text Tests
-    def parse_basic_text_test(self):
+    def test_that_basic_text_can_be_parsed(self):
         input_string = "Basic"
         parsed_string = self.parser.parse_text(input_string)
 
         self.assertEqual(input_string, parsed_string)
 
-    def parse_text_with_spaces_test(self):
+    def test_that_text_with_spaces_can_be_parsed(self):
         input_string = "One Space"
         parsed_string = self.parser.parse_text(input_string)
 
         self.assertEqual(input_string, parsed_string)
 
-    def parse_text_with_symbols_test(self):
+    def test_that_text_with_symbols_can_be_parsed(self):
         input_string = "\\textbf{Hello World}"
         parsed_string = self.parser.parse_text(input_string)
 
@@ -54,7 +56,7 @@ class EasyTeXParserTests(unittest.TestCase):
 
     # Problem Set Tests
     ## Test a problem set with one problem and all optional fields filled
-    def parse_full_problem_set_1_test(self):
+    def test_that_problem_set_can_have_one_problem(self):
         input_string = open("test_text_files/problem_sets/full_problem_set_1/full_problem_set_1.txt").read()
         parsed_problem_set = self.parser.parse_document(input_string)
 
@@ -85,7 +87,7 @@ class EasyTeXParserTests(unittest.TestCase):
             parsed_problem_set)
 
     ## Test a problem set with two problems and all optional fields filled
-    def parse_full_problem_set_2_test(self):
+    def test_that_problem_set_can_have_multiple_problems(self):
         input_string = open("test_text_files/problem_sets/full_problem_set_2/full_problem_set_2.txt").read()
         parsed_problem_set = self.parser.parse_document(input_string)
 
@@ -127,7 +129,7 @@ class EasyTeXParserTests(unittest.TestCase):
             parsed_problem_set)
 
     ## Test a problem set with two problems that are missing labels and all other optional fields filled
-    def parse_full_problem_set_3_test(self):
+    def test_that_problem_set_problems_can_exclude_labels(self):
         input_string = open("test_text_files/problem_sets/full_problem_set_3/full_problem_set_3.txt").read()
         parsed_problem_set = self.parser.parse_document(input_string)
 
@@ -167,7 +169,7 @@ class EasyTeXParserTests(unittest.TestCase):
             parsed_problem_set)
 
     ## Test a problem set with two problems and all optional fields filled in an alternate order
-    def parse_full_problem_set_4_test(self):
+    def test_that_problem_set_header_fields_can_be_reordered(self):
         input_string = open("test_text_files/problem_sets/full_problem_set_4/full_problem_set_4.txt").read()
         parsed_problem_set = self.parser.parse_document(input_string)
 
@@ -208,9 +210,8 @@ class EasyTeXParserTests(unittest.TestCase):
             ProblemSet(author, collaborators, due_date, title, course, school, [problem_1, problem_2]),
             parsed_problem_set)
 
-
     ## Test a problem set with two problems and no collaborators
-    def parse_partial_problem_set_1_test(self):
+    def test_that_problem_set_collaborators_are_optional(self):
         input_string = open("test_text_files/problem_sets/partial_problem_set_1/partial_problem_set_1.txt").read()
         parsed_problem_set = self.parser.parse_document(input_string)
 
@@ -251,7 +252,7 @@ class EasyTeXParserTests(unittest.TestCase):
             parsed_problem_set)
 
     ## Test a problem set with two problems and no due date
-    def parse_partial_problem_set_2_test(self):
+    def test_that_problem_set_due_date_is_optional(self):
         input_string = open("test_text_files/problem_sets/partial_problem_set_2/partial_problem_set_2.txt").read()
         parsed_problem_set = self.parser.parse_document(input_string)
 
@@ -293,7 +294,7 @@ class EasyTeXParserTests(unittest.TestCase):
             parsed_problem_set)
 
     ## Test a problem set with two problems and no title
-    def parse_partial_problem_set_3_test(self):
+    def test_that_problem_set_title_is_optional(self):
         input_string = open("test_text_files/problem_sets/partial_problem_set_3/partial_problem_set_3.txt").read()
         parsed_problem_set = self.parser.parse_document(input_string)
 
@@ -335,7 +336,7 @@ class EasyTeXParserTests(unittest.TestCase):
             parsed_problem_set)
 
     ## Test a problem set with two problems and no course
-    def parse_partial_problem_set_4_test(self):
+    def test_that_problem_set_course_is_optional(self):
         input_string = open("test_text_files/problem_sets/partial_problem_set_4/partial_problem_set_4.txt").read()
         parsed_problem_set = self.parser.parse_document(input_string)
 
@@ -377,7 +378,7 @@ class EasyTeXParserTests(unittest.TestCase):
             parsed_problem_set)
 
     ## Test a problem set with two problems and no school
-    def parse_partial_problem_set_5_test(self):
+    def test_that_problem_set_school_is_optional(self):
         input_string = open("test_text_files/problem_sets/partial_problem_set_5/partial_problem_set_5.txt").read()
         parsed_problem_set = self.parser.parse_document(input_string)
 
@@ -418,8 +419,8 @@ class EasyTeXParserTests(unittest.TestCase):
             ProblemSet(author, collaborators, due_date, title, course, school, [problem_1, problem_2]),
             parsed_problem_set)
 
-    ## Test a problem set with two problems and no school, course, or title
-    def parse_partial_problem_set_6_test(self):
+    ## Test a problem set with two problems and no school, no course, and no title
+    def test_that_problem_set_can_exclude_school_course_and_title(self):
         input_string = open("test_text_files/problem_sets/partial_problem_set_6/partial_problem_set_6.txt").read()
         parsed_problem_set = self.parser.parse_document(input_string)
 
@@ -460,8 +461,8 @@ class EasyTeXParserTests(unittest.TestCase):
             ProblemSet(author, collaborators, due_date, title, course, school, [problem_1, problem_2]),
             parsed_problem_set)
 
-    ## Test a problem set with two problems and no collaborators or due date
-    def parse_partial_problem_set_7_test(self):
+    ## Test a problem set with two problems and no collaborators and no due date
+    def test_that_problem_set_can_exclude_collaborators_and_due_date(self):
         input_string = open("test_text_files/problem_sets/partial_problem_set_7/partial_problem_set_7.txt").read()
         parsed_problem_set = self.parser.parse_document(input_string)
 
@@ -501,7 +502,7 @@ class EasyTeXParserTests(unittest.TestCase):
             parsed_problem_set)
 
     ## Test a problem set with two problems and no optional fields filled
-    def parse_partial_problem_set_8_test(self):
+    def test_that_problem_set_can_exclude_all_optional_fields(self):
         input_string = open("test_text_files/problem_sets/partial_problem_set_8/partial_problem_set_8.txt").read()
         parsed_problem_set = self.parser.parse_document(input_string)
 
@@ -542,7 +543,7 @@ class EasyTeXParserTests(unittest.TestCase):
    # Test a problem set with two problems and no optional fields filled
 
     ## Test a problem set with two problems that are missing labels and no optional fields filled
-    def parse_partial_problem_set_9_test(self):
+    def test_that_problem_set_and_problems_can_exclude_all_optional_fields(self):
         input_string = open("test_text_files/problem_sets/partial_problem_set_9/partial_problem_set_9.txt").read()
         parsed_problem_set = self.parser.parse_document(input_string)
 
@@ -580,7 +581,7 @@ class EasyTeXParserTests(unittest.TestCase):
 
     # Memorandum Tests
     ## Test a memorandum with one section and all optional fields filled
-    def parse_full_memorandum_1_test(self):
+    def test_that_memorandum_can_have_one_section(self):
         input_string = open("test_text_files/memorandums/full_memorandum_1/full_memorandum_1.txt").read()
         parsed_memorandum = self.parser.parse_document(input_string)
 
@@ -603,7 +604,7 @@ class EasyTeXParserTests(unittest.TestCase):
         )
 
     ## Test a memorandum with two sections and all optional fields filled
-    def parse_full_memorandum_2_test(self):
+    def test_that_memorandum_can_have_multiple_sections(self):
         input_string = open("test_text_files/memorandums/full_memorandum_2/full_memorandum_2.txt").read()
         parsed_memorandum = self.parser.parse_document(input_string)
 
@@ -630,7 +631,7 @@ class EasyTeXParserTests(unittest.TestCase):
         )
 
     ## Test a memorandum with two sections and all optional fields filled in an alternate order
-    def parse_full_memorandum_3_test(self):
+    def test_that_memorandum_header_fields_can_be_reordered(self):
         input_string = open("test_text_files/memorandums/full_memorandum_3/full_memorandum_3.txt").read()
         parsed_memorandum = self.parser.parse_document(input_string)
 
@@ -657,7 +658,7 @@ class EasyTeXParserTests(unittest.TestCase):
         )
 
     ## Test a memorandum with two sections and no collaborators
-    def parse_partial_memorandum_1_test(self):
+    def test_that_memorandum_collaborators_are_optional(self):
         input_string = open("test_text_files/memorandums/partial_memorandum_1/partial_memorandum_1.txt").read()
         parsed_memorandum = self.parser.parse_document(input_string)
 
@@ -683,7 +684,7 @@ class EasyTeXParserTests(unittest.TestCase):
         )
 
     ## Test a memorandum with two sections and no date
-    def parse_partial_memorandum_2_test(self):
+    def test_that_memorandum_date_is_optional(self):
         input_string = open("test_text_files/memorandums/partial_memorandum_2/partial_memorandum_2.txt").read()
         parsed_memorandum = self.parser.parse_document(input_string)
 
@@ -710,7 +711,7 @@ class EasyTeXParserTests(unittest.TestCase):
         )
 
     ## Test a memorandum with two sections and no subtitle
-    def parse_partial_memorandum_3_test(self):
+    def test_that_memorandum_subtitle_is_optional(self):
         input_string = open("test_text_files/memorandums/partial_memorandum_3/partial_memorandum_3.txt").read()
         parsed_memorandum = self.parser.parse_document(input_string)
 
@@ -736,8 +737,8 @@ class EasyTeXParserTests(unittest.TestCase):
             parsed_memorandum
         )
 
-    ## Test a memorandum with two sections and no collaborators or date
-    def parse_partial_memorandum_4_test(self):
+    ## Test a memorandum with two sections and no collaborators and no date
+    def test_that_memorandum_can_exclude_collaborators_and_date(self):
         input_string = open("test_text_files/memorandums/partial_memorandum_4/partial_memorandum_4.txt").read()
         parsed_memorandum = self.parser.parse_document(input_string)
 
@@ -763,7 +764,7 @@ class EasyTeXParserTests(unittest.TestCase):
         )
 
     ## Test a memorandum with two sections and no optional fields filled
-    def parse_partial_memorandum_5_test(self):
+    def test_that_memorandum_can_exclude_all_optional_fields(self):
         input_string = open("test_text_files/memorandums/partial_memorandum_5/partial_memorandum_5.txt").read()
         parsed_memorandum = self.parser.parse_document(input_string)
 
@@ -787,3 +788,29 @@ class EasyTeXParserTests(unittest.TestCase):
             Memorandum(author, collaborators, date, title, subtitle, [section_1, section_2]),
             parsed_memorandum
         )
+
+    # Failure Tests
+    ## Test that a problem set with no author does not parse
+    def test_that_problem_set_author_is_required(self):
+        input_string = open("test_text_files/problem_sets/invalid_problem_set_1/invalid_problem_set_1.txt").read()
+        self.assertRaises(ParseDocumentError, self.parser.parse_document, input_string)
+
+    ## Test that a problem set with no problems does not parse
+    def test_that_problem_set_must_have_problems(self):
+        input_string = open("test_text_files/problem_sets/invalid_problem_set_2/invalid_problem_set_2.txt").read()
+        self.assertRaises(ParseDocumentError, self.parser.parse_document, input_string)
+
+    ## Test that a memorandum with no author does not parse
+    def test_that_memorandum_author_is_required(self):
+        input_string = open("test_text_files/memorandums/invalid_memorandum_1/invalid_memorandum_1.txt").read()
+        self.assertRaises(ParseDocumentError, self.parser.parse_document, input_string)
+
+    ## Test that a memorandum with no title does not parse
+    def test_that_memorandum_title_is_required(self):
+        input_string = open("test_text_files/memorandums/invalid_memorandum_2/invalid_memorandum_2.txt").read()
+        self.assertRaises(ParseDocumentError, self.parser.parse_document, input_string)
+
+    ## Test that a memorandum with no sections does not parse
+    def test_that_memorandum_must_have_sections(self):
+        input_string = open("test_text_files/memorandums/invalid_memorandum_3/invalid_memorandum_3.txt").read()
+        self.assertRaises(ParseDocumentError, self.parser.parse_document, input_string)
