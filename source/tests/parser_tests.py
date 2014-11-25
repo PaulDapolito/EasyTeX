@@ -166,6 +166,49 @@ class EasyTeXParserTests(unittest.TestCase):
             ProblemSet(author, collaborators, due_date, title, course, school, [problem_1, problem_2]),
             parsed_problem_set)
 
+    ## Test a problem set with two problems and all optional fields filled in an alternate order
+    def parse_full_problem_set_4_test(self):
+        input_string = open("test_text_files/problem_sets/full_problem_set_4/full_problem_set_4.txt").read()
+        parsed_problem_set = self.parser.parse_document(input_string)
+
+        author = Author(open("test_text_files/problem_sets/full_problem_set_4/author.txt").read())
+
+        collaborators_txt = open("test_text_files/problem_sets/full_problem_set_4/collaborators.txt").read().split(", ")
+        collaborators = [Collaborator(collab) for collab in collaborators_txt]
+
+        due_date = DueDate(open("test_text_files/problem_sets/full_problem_set_4/due_date.txt").read())
+
+        title = Title(open("test_text_files/problem_sets/full_problem_set_4/title.txt").read())
+        course = Course(open("test_text_files/problem_sets/full_problem_set_4/course.txt").read())
+        school = School(open("test_text_files/problem_sets/full_problem_set_4/school.txt").read())
+
+        problem_1_label_txt = open("test_text_files/problem_sets/full_problem_set_4/problem_1_label.txt").read()
+        problem_1_label = Label(problem_1_label_txt)
+
+        problem_1_statement_txt = open("test_text_files/problem_sets/full_problem_set_4/problem_1_statement.txt").read()
+        problem_1_statement = Statement(problem_1_statement_txt)
+
+        problem_1_solution_txt = open("test_text_files/problem_sets/full_problem_set_4/problem_1_solution.txt").read()
+        problem_1_solution = Solution(problem_1_solution_txt)
+
+        problem_1 = Problem(problem_1_label, problem_1_statement, problem_1_solution)
+
+        problem_2_label_txt = open("test_text_files/problem_sets/full_problem_set_4/problem_2_label.txt").read()
+        problem_2_label = Label(problem_2_label_txt)
+
+        problem_2_statement_txt = open("test_text_files/problem_sets/full_problem_set_4/problem_2_statement.txt").read()
+        problem_2_statement = Statement(problem_2_statement_txt)
+
+        problem_2_solution_txt = open("test_text_files/problem_sets/full_problem_set_4/problem_2_solution.txt").read()
+        problem_2_solution = Solution(problem_2_solution_txt)
+
+        problem_2 = Problem(problem_2_label, problem_2_statement, problem_2_solution)
+
+        self.assertEqual(
+            ProblemSet(author, collaborators, due_date, title, course, school, [problem_1, problem_2]),
+            parsed_problem_set)
+
+
     ## Test a problem set with two problems and no collaborators
     def parse_partial_problem_set_1_test(self):
         input_string = open("test_text_files/problem_sets/partial_problem_set_1/partial_problem_set_1.txt").read()
@@ -575,6 +618,33 @@ class EasyTeXParserTests(unittest.TestCase):
 
         section_1_title = Title(open("test_text_files/memorandums/full_memorandum_2/section_1_title.txt").read())
         section_1_content = Content(open("test_text_files/memorandums/full_memorandum_2/section_1_content.txt").read())
+        section_1 = Section(section_1_title, section_1_content)
+
+        section_2_title = Title(open("test_text_files/memorandums/full_memorandum_2/section_2_title.txt").read())
+        section_2_content = Content(open("test_text_files/memorandums/full_memorandum_2/section_2_content.txt").read())
+        section_2 = Section(section_2_title, section_2_content)
+
+        self.assertEqual(
+            Memorandum(author, collaborators, date, title, subtitle, [section_1, section_2]),
+            parsed_memorandum
+        )
+
+    ## Test a memorandum with two sections and all optional fields filled in an alternate order
+    def parse_full_memorandum_3_test(self):
+        input_string = open("test_text_files/memorandums/full_memorandum_3/full_memorandum_3.txt").read()
+        parsed_memorandum = self.parser.parse_document(input_string)
+
+        author = Author(open("test_text_files/memorandums/full_memorandum_3/author.txt").read())
+
+        collaborators_txt = open("test_text_files/memorandums/full_memorandum_3/collaborators.txt").read().split(", ")
+        collaborators = [Collaborator(collab) for collab in collaborators_txt]
+
+        date = Date(open("test_text_files/memorandums/full_memorandum_3/date.txt").read())
+        title = Title(open("test_text_files/memorandums/full_memorandum_3/title.txt").read())
+        subtitle = Subtitle(open("test_text_files/memorandums/full_memorandum_3/subtitle.txt").read())
+
+        section_1_title = Title(open("test_text_files/memorandums/full_memorandum_3/section_1_title.txt").read())
+        section_1_content = Content(open("test_text_files/memorandums/full_memorandum_3/section_1_content.txt").read())
         section_1 = Section(section_1_title, section_1_content)
 
         section_2_title = Title(open("test_text_files/memorandums/full_memorandum_2/section_2_title.txt").read())

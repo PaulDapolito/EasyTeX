@@ -145,6 +145,15 @@ class EasyTeXParserTests(unittest.TestCase):
         expected_tex_file = open("test_text_files/memorandums/full_memorandum_2/full_memorandum_2.tex").read()
         self.assertEqual(interpreted_memorandum, expected_tex_file)
 
+    ## Test a memorandum with two sections and all optional fields filled in an alternate order
+    def interpret_full_memorandum_3_test(self):
+        input_string = open("test_text_files/memorandums/full_memorandum_3/full_memorandum_3.txt").read()
+        parsed_memorandum = self.parser.parse_document(input_string)
+
+        interpreted_memorandum = self.interpreter.interpret_document(parsed_memorandum)
+        expected_tex_file = open("test_text_files/memorandums/full_memorandum_3/full_memorandum_3.tex").read()
+        self.assertEqual(interpreted_memorandum, expected_tex_file)
+
     ## Test a memorandum with two sections and no collaborators
     def interpret_partial_memorandum_1_test(self):
         input_string = open("test_text_files/memorandums/partial_memorandum_1/partial_memorandum_1.txt").read()
