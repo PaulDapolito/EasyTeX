@@ -6,6 +6,7 @@ __author__ = 'Paul Dapolito'
 import sys
 import os
 import subprocess
+import shlex
 from commands import getstatusoutput
 from parser.parser import EasyTeXParser
 
@@ -14,7 +15,8 @@ from interpreters.interpreter import EasyTeXInterpreter
 
 # Usage: ./easytex.py input_file_name
 def main():
-    input_file_name = sys.argv[1]
+    # Rejoin command-line arguments
+    input_file_name = " ".join(sys.argv[1:])
 
     # Open and read input file
     input_file = open(input_file_name, 'r')
@@ -35,12 +37,13 @@ def main():
     status, result = getstatusoutput("pdflatex -v")
     if status == 0:
         # Point pdflatex to the correct output directory
-        output_directory = os.path.dirname(os.path.relpath(input_file_name))
+        output_directory = os.path.dirname(os.path.realpath(input_file_name))
 
         # Execute bash command, hiding output using DEVNULL
-        bash_command = "pdflatex -output-directory={} {}".format(output_directory, output_file_name)
+        bash_command = "pdflatex -output-directory='{}' '{}'".format(output_directory, output_file_name)
+        split_bash_command = shlex.split(bash_command)
         DEVNULL = open(os.devnull, 'wb')
-        subprocess.Popen(bash_command.split(), stdout=DEVNULL, stderr=subprocess.STDOUT)
+        subprocess.Popen(split_bash_command, stdout=DEVNULL, stderr=subprocess.STDOUT)
 
 
 if __name__ == "__main__":
