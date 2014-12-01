@@ -48,7 +48,7 @@ class ProblemSetInterpreter(object):
         problems = ""
         problems += cls.interpret_problem(problem_set.problems[0])
         for problem in problem_set.problems[1:]:
-            problems += "\pagebreak" + cls.interpret_problem(problem)
+            problems += "\n" + "\pagebreak" + "\n" + cls.interpret_problem(problem)
 
         end_document = "\\end{document}"
 
