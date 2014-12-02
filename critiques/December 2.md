@@ -72,6 +72,16 @@ trick, and that wouldn't take too much time.
 **How do you think I can make the installation/setup procedure easier for 
   EasyTeX users? What were your experiences like with the language's 
   installation/setup procedure?**
+  
+Currently, I'm having a slight problem. I have LaTeX on my machine, and 
+python, and installed pip. However, it isn't recognizing pdflatex, which 
+exists, so I'm confused. I noticed something minor while messing with this -
+you should add a blank line at the end of `easytex.sh`, that shit 
+doesn't pass linecheck! (I tried to `cat` it and it looked funny.) Minor 
+problem, I can always open the generated TeX in the appropriate editor and 
+generate the pdf from there, but that seems unecessarily confusing.
+
+Your README instructions were helpful, thank you!
 
 **What do you think of the language's error-handling and output? Did you find 
   it easy to identify and fix errors based on EasyTeX's output?**
