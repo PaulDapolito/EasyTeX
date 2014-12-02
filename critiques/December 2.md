@@ -65,9 +65,24 @@ trick, and that wouldn't take too much time.
 
 **What things do you wish were different about the language's format and 
   specification?**
+  
+One thing (small) that I find myself wishing were different is the style of 
+the outputted .tex file. When you first described this project, you envisioned 
+mostly a way to bypass some of the uglier tex code, but you also mentioned the 
+possibility of this being a means to teach the basics of TeXing to new students
+/people. The  code you output, with no whitespace or indentation, is really 
+hard to read and would hardly encourage anyone to dig through it and try to 
+learn from it. Adding blank spaces between problems, between the header and 
+the body, that kind of thing, might make this slightly easier on the eyes. At 
+the same time, I realize this isn't the main focus of the project, but I'm 
+looking at the TeX output quite a bit to gain an understanding of what your 
+prokject is capable of, so that's why I have an issue with it.
 
 **Do you think it is of high priority to provide an environment for the 
   language?**
+
+I think the sublime option should be doable, but I still think the 
+whitespace is higher priority, if you think you can make headway on it.
 
 **How do you think I can make the installation/setup procedure easier for 
   EasyTeX users? What were your experiences like with the language's 
@@ -86,10 +101,30 @@ Your README instructions were helpful, thank you!
 **What do you think of the language's error-handling and output? Did you find 
   it easy to identify and fix errors based on EasyTeX's output?**
 
+Some easy errors that are currently being handled by latex might be basic 
+enough to include on your end, but maybe that's my reaction only because 
+I see the easytex output:
+```
+Running EasyTeX!
+EasyTeX completed computation!
+```
+And then have to open the .tex up in a tex editor to compile it and get an 
+error so simple as a `missing $ inserted`. If pdflatex were working, I might 
+see both immediately, and wouldn't have this disconnect. I think this brings 
+up another point - it's hard to tell the difference between what is text  
+that you parse and deal with (is it the separaction of heading and main  
+sections of the body) and what text just gets dumped to TeX. This might make  
+it difficult to detect errors.
+
 **What do you think needs to be changed about the language, its runtime 
   process, or its installation/setup procedure?**
+
+I don't know why I'm not getting pdf output directly, that'd be nice. No other
+qualms for now.
 
 **What do you see as the most important aspect of the project in continuing 
   development?**
 
+I pretty much answered this above. Short version: I think user testing and 
+whitespace enforcing are more important/relevant than installation things.
 
