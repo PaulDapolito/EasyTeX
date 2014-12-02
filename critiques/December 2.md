@@ -2,7 +2,14 @@
 
 You did so much, I hope you still got to enjoy your Thanksgiving break!
 
-## Response to Evalutation thus far
+## Response to Evaluation of work so far
+
+Congrats on getting so much done. I'm glad the dictionary trick using 
+`setResultsName` allowed you to create a more flexible ordering of header 
+information, along with maintaining requirements for minimum information. The 
+fact that you kept your implementation modular should really help if you want 
+to work on allowing the user to be more picky about formatting, which you 
+mention as a potential jumping-off point.
 
 ## Response to goals moving foward
 
@@ -54,5 +61,25 @@ providing documentation/how-to information for newcomers to the language. This
 would be nice, a few paragraphs and a set of example documents should do the 
 trick, and that wouldn't take too much time.
 
+## Response to Notebook questions
+
+**What things do you wish were different about the language's format and 
+  specification?**
+
+**Do you think it is of high priority to provide an environment for the 
+  language?**
+
+**How do you think I can make the installation/setup procedure easier for 
+  EasyTeX users? What were your experiences like with the language's 
+  installation/setup procedure?**
+
+**What do you think of the language's error-handling and output? Did you find 
+  it easy to identify and fix errors based on EasyTeX's output?**
+
+**What do you think needs to be changed about the language, its runtime 
+  process, or its installation/setup procedure?**
+
+**What do you see as the most important aspect of the project in continuing 
+  development?**
 
 
