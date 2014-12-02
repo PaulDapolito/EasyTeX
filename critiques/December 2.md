@@ -37,6 +37,22 @@ initial design and seems to be a remaining weakness of your current design. It
 sounds like you've tried a lot of different ways to solve it, though, and have 
 hit a wall. Could you make a sublime environment (syntax highlighting and 
 suggested indentation included) to further encourage good indentation, or is 
-that not quite what you're looking for?
+that not quite what you're looking for? (Oh wait, you mention that as an 
+option at the end of your evaluation, so you had thought of it - I second it, 
+then, I think it might do much of what you're looking for.) It's not 
+necessarilly a solution to the whitespace problem, but it would make the 
+language more user friendly much faster than solving the indentation thing, 
+which might then be reported a little bit. If you have an avenue to follow for 
+the indentation though, I think that should maybe take priority. Would pyPEG 
+have the functionality you need, or is that not an option that's really open 
+at this point?
+
+User testing is good, be nice to the frosh! 
+
+The last main element you mention as a focus for the upcoming development is 
+providing documentation/how-to information for newcomers to the language. This 
+would be nice, a few paragraphs and a set of example documents should do the 
+trick, and that wouldn't take too much time.
+
 
 
