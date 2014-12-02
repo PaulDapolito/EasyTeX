@@ -111,9 +111,9 @@ EasyTeX completed computation!
 And then have to open the .tex up in a tex editor to compile it and get an 
 error so simple as a `missing $ inserted`. If pdflatex were working, I might 
 see both immediately, and wouldn't have this disconnect. I think this brings 
-up another point - it's hard to tell the difference between what is text  
-that you parse and deal with (is it the separaction of heading and main  
-sections of the body) and what text just gets dumped to TeX. This might make  
+up another point - it's hard to tell the difference between what is text 
+that you parse and deal with (is it the separaction of heading and main 
+sections of the body) and what text just gets dumped to TeX. This might make 
 it difficult to detect errors.
 
 **What do you think needs to be changed about the language, its runtime 
