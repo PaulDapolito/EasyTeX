@@ -1,0 +1,42 @@
+# Critique for the week ending on November 30th
+
+You did so much, I hope you still got to enjoy your Thanksgiving break!
+
+## Response to Evalutation thus far
+
+## Response to goals moving foward
+
+I'm not quite sure what you mean by allowing the user to specify formatting 
+and styling configurations. Do you mean to let users choose what package to 
+use, because I don't see how your language can generalize the specific 
+commands for each package into universal symbols. I'm afraid that this will go 
+one of two ways: either it's too verbose and complex, and your easyTeX looses 
+the simplicity it gained over traditional LaTeX, or it requires each user of a 
+package to adapt the easyTeX interface to the specific package. If it's the 
+first, I'm not sure that's worth it, unless you maintain a strict limit on the 
+number of explicit controls. If it's the second, maybe you should focus on 
+making it easy for people to adapt your language to these packages, rather 
+than doing it yourself for a select few? I don't even know if that's possible, 
+it's just a thought.
+
+For the dependency and downloading problem, I feel the pain. I agree that the
+time it takes to download and install LaTeX and all the other baggage that 
+comes with is ridiculus. However, that aspect of the project is really not
+DSL-related. It's important for the chance your language has of being useful
+and used, but it's a design and packaging problem that doesn't really relate 
+to what we've been doing in class. You've done so much already that this might
+not be a problem, but it still feels like an odd focus for the end of the 
+project. Besides, most people who would have use for your easyTeX might 
+eventually want to learn LaTeX anyways, isn't that why you let them view and 
+learn from the .tex source code? In this sense, downloading the full shabang 
+is painful, but at least they'll have done it.
+
+Your whitespace problem I think is a more appropriate place to focus your 
+attention for the last leg of the project. It was a major factor of your 
+initial design and seems to be a remaining weakness of your current design. It 
+sounds like you've tried a lot of different ways to solve it, though, and have 
+hit a wall. Could you make a sublime environment (syntax highlighting and 
+suggested indentation included) to further encourage good indentation, or is 
+that not quite what you're looking for?
+
+
