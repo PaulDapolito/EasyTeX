@@ -1,12 +1,12 @@
 __author__ = 'Paul Dapolito'
 
-from ir.problem_sets.problem_set import ProblemSet
-from ir.memorandums.memorandum import Memorandum
+from source.ir.problem_sets.problem_set import ProblemSet
+from source.ir.memorandums.memorandum import Memorandum
 
 from problem_set_interpreter import ProblemSetInterpreter
 from memorandum_interpreter import MemorandumInterpreter
 
-from errors.interpreters.interpret_document_error import InterpretDocumentError
+from source.errors.interpreters.interpret_document_error import InterpretDocumentError
 
 
 class EasyTeXInterpreter(object):

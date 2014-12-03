@@ -1,7 +1,7 @@
 __author__ = 'Paul Dapolito'
 
-from ir.easytex_element import EasyTeXElement
-from errors.ir.memorandums.date_error import DateError
+from source.ir.easytex_element import EasyTeXElement
+from source.errors.ir.memorandums.date_error import DateError
 
 
 class Date(EasyTeXElement):

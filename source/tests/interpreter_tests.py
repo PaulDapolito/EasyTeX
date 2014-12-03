@@ -2,8 +2,8 @@ __author__ = 'Paul Dapolito'
 
 import unittest
 
-from parser.parser import EasyTeXParser
-from interpreters.interpreter import EasyTeXInterpreter
+from source.parser.parser import EasyTeXParser
+from source.interpreters.interpreter import EasyTeXInterpreter
 
 
 class EasyTeXParserTests(unittest.TestCase):

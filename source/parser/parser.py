@@ -2,26 +2,25 @@ __author__ = 'Paul Dapolito'
 
 from pyparsing import *
 
-from errors.parser.parse_document_error import ParseDocumentError
-from errors.parser.parse_text_error import ParseTextError
+from source.errors.parser.parse_document_error import ParseDocumentError
+from source.errors.parser.parse_text_error import ParseTextError
 
-
-from ir.shared.author import Author
-from ir.shared.collaborator import Collaborator
-from ir.memorandums.date import Date
-from ir.shared.title import Title
-from ir.memorandums.subtitle import Subtitle
-from ir.problem_sets.school import School
-from ir.problem_sets.course import Course
-from ir.problem_sets.due_date import DueDate
-from ir.problem_sets.label import Label
-from ir.problem_sets.statement import Statement
-from ir.problem_sets.solution import Solution
-from ir.problem_sets.problem import Problem
-from ir.memorandums.content import Content
-from ir.memorandums.section import Section
-from ir.problem_sets.problem_set import ProblemSet
-from ir.memorandums.memorandum import Memorandum
+from source.ir.shared.author import Author
+from source.ir.shared.collaborator import Collaborator
+from source.ir.memorandums.date import Date
+from source.ir.shared.title import Title
+from source.ir.memorandums.subtitle import Subtitle
+from source.ir.problem_sets.school import School
+from source.ir.problem_sets.course import Course
+from source.ir.problem_sets.due_date import DueDate
+from source.ir.problem_sets.label import Label
+from source.ir.problem_sets.statement import Statement
+from source.ir.problem_sets.solution import Solution
+from source.ir.problem_sets.problem import Problem
+from source.ir.memorandums.content import Content
+from source.ir.memorandums.section import Section
+from source.ir.problem_sets.problem_set import ProblemSet
+from source.ir.memorandums.memorandum import Memorandum
 
 # Terminals
 caps = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"

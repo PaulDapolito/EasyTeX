@@ -8,9 +8,10 @@ import os
 import subprocess
 import shlex
 from commands import getstatusoutput
-from parser.parser import EasyTeXParser
 
-from interpreters.interpreter import EasyTeXInterpreter
+from source.parser.parser import EasyTeXParser
+
+from source.interpreters.interpreter import EasyTeXInterpreter
 
 
 # Usage: ./easytex.py input_file_name
