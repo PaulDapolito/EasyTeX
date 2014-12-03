@@ -131,7 +131,3 @@ class ProblemSetInterpreter(object):
         accumulated_problem = "".join(problem_as_list)
 
         return accumulated_problem
-
-
-
-

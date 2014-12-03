@@ -121,4 +121,3 @@ class MemorandumInterpreter(object):
         accumulated_section = "".join(section_as_list)
 
         return accumulated_section
-
