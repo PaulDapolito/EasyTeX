@@ -800,6 +800,16 @@ class EasyTeXParserTests(unittest.TestCase):
         input_string = open("test_text_files/problem_sets/invalid_problem_set_2/invalid_problem_set_2.txt").read()
         self.assertRaises(ParseDocumentError, self.parser.parse_document, input_string)
 
+    ## Test that a problem set's header fields must be indented correctly
+    def test_that_problem_set_headers_must_be_indented(self):
+        input_string = open("test_text_files/problem_sets/invalid_problem_set_3/invalid_problem_set_3.txt").read()
+        self.assertRaises(ParseDocumentError, self.parser.parse_document, input_string)
+
+    ## Tests that a problem set's problems must be indented correctly
+    def test_that_problem_set_problems_must_be_indented(self):
+        input_string = open("test_text_files/problem_sets/invalid_problem_set_4/invalid_problem_set_4.txt").read()
+        self.assertRaises(ParseDocumentError, self.parser.parse_document, input_string)
+
     ## Test that a memorandum with no author does not parse
     def test_that_memorandum_author_is_required(self):
         input_string = open("test_text_files/memorandums/invalid_memorandum_1/invalid_memorandum_1.txt").read()
@@ -813,4 +823,14 @@ class EasyTeXParserTests(unittest.TestCase):
     ## Test that a memorandum with no sections does not parse
     def test_that_memorandum_must_have_sections(self):
         input_string = open("test_text_files/memorandums/invalid_memorandum_3/invalid_memorandum_3.txt").read()
+        self.assertRaises(ParseDocumentError, self.parser.parse_document, input_string)
+
+    ## Test that a memorandum's header fields must be indented correctly
+    def test_that_memorandum_headers_must_be_indented(self):
+        input_string = open("test_text_files/memorandums/invalid_memorandum_4/invalid_memorandum_4.txt").read()
+        self.assertRaises(ParseDocumentError, self.parser.parse_document, input_string)
+
+    ## Test that a memorandum's sections must be indented correctly
+    def test_that_memorandum_sections_must_be_indented(self):
+        input_string = open("test_text_files/memorandums/invalid_memorandum_5/invalid_memorandum_5.txt").read()
         self.assertRaises(ParseDocumentError, self.parser.parse_document, input_string)

@@ -31,7 +31,7 @@ symbols = "[]{}()<>\'\"=|.,;\/:-$?!*_+#^`"
 
 space = " "
 newline = "\n"
-tab = space + space + space + space
+tab = 4*space
 whitespace = space + newline + tab
 
 terminals = alphas + digits + symbols + whitespace
@@ -39,84 +39,89 @@ text = ZeroOrMore(Word(terminals)).leaveWhitespace()
 
 # Grammar
 ## Author
-author_expr = Suppress(Literal("author:") + White(space)) + restOfLine
+author_expr = Suppress(White(tab) + Literal("author:") + White(space)) + restOfLine
 author = author_expr.setResultsName("author")
 
 ## Collaborators [Optional]
 collaborator = Word(alphas)
 collaborators_group = Group(delimitedList(collaborator))
-collaborators_ignored = Suppress(Literal("collaborators:") + White(space))
+collaborators_ignored = Suppress(White(tab) + Literal("collaborators:") + White(space))
 collaborators_expr = collaborators_ignored + collaborators_group
 optional_collaborators = Optional(collaborators_expr.setResultsName("collaborators"), default=list())
 
 ## Date [Optional]
-date_expr = Suppress(Literal("date:") + White(space)) + restOfLine + Suppress(LineEnd())
+date_expr = Suppress(White(tab) + Literal("date:") + White(space)) + restOfLine
 optional_date = Optional(date_expr.setResultsName("date"), default=list())
 
-## Title
-title_expr = Suppress(Literal("title:") + White(space)) + restOfLine + Suppress(LineEnd())
-title = title_expr.setResultsName("title")
+## Title Expressions
+title_expr = Suppress(White(tab) + Literal("title:") + White(space)) + restOfLine
+section_title_expr = Suppress(White(2*tab) + Literal("title:") + White(space)) + restOfLine
 
 ## Title [Optional]
-optional_title = Optional(title.setResultsName("title"), default=list())
+title = title_expr.setResultsName("title")
+
+## Title [Required]
+optional_title = Optional(title_expr.setResultsName("title"), default=list())
+optional_section_title = Optional(section_title_expr.setResultsName("title"), default=list())
 
 ## Subtitle [Optional]
-subtitle_expr = Suppress(Literal("subtitle:") + White(space)) + restOfLine
+subtitle_expr = Suppress(White(tab) + Literal("subtitle:") + White(space)) + restOfLine
 optional_subtitle = Optional(subtitle_expr.setResultsName("subtitle"), default=list())
 
 ## School [Optional]
-school_expr = Suppress(Literal("school:") + White(space)) + restOfLine
+school_expr = Suppress(White(tab) + Literal("school:") + White(space)) + restOfLine
 optional_school = Optional(school_expr.setResultsName("school"), default=list())
 
 ## Course [Optional]
-course_expr = Suppress(Literal("course:") + White(space)) + restOfLine
+course_expr = Suppress(White(tab) + Literal("course:") + White(space)) + restOfLine
 optional_course = Optional(course_expr.setResultsName("course"), default=list())
 
 ## Due Date [Optional]
-due_date_expr = Suppress(Literal("due_date:") + White(space)) + restOfLine
+due_date_expr = Suppress(White(tab) + Literal("due_date:") + White(space)) + restOfLine
 optional_due_date = Optional(due_date_expr.setResultsName("due_date"), default=list())
 
 ## Label [Optional]
-label_expr = Suppress(Literal("label:") + White(space)) + restOfLine + Suppress(LineEnd())
+label_expr = Suppress(White(2*tab) + Literal("label:") + White(space)) + restOfLine
 optional_label = Optional(label_expr.setResultsName("label"), default=list())
 
 ## Statement
-statement_ignored = Suppress(Literal("statement:") + White(newline))
+statement_ignored = Suppress(White(2*tab) + Literal("statement:") + White(newline))
 statement_lines = Group(OneOrMore(Regex(ur'\s\s\s\s\s\s\s\s\s\s\s\s(.+)').leaveWhitespace() + Suppress(White(newline))))
 statement_expr = statement_ignored + statement_lines
 statement = statement_expr.setResultsName("statement")
 
 ## Solution
-solution_ignored = Suppress(Literal("solution:") + White(newline))
+solution_ignored = Suppress(White(2*tab) + Literal("solution:") + White(newline))
 solution_lines = Group(OneOrMore(Regex(ur'\s\s\s\s\s\s\s\s\s\s\s\s(.+)').leaveWhitespace() + Suppress(White(newline))))
 solution_expr = solution_ignored + solution_lines
 solution = solution_expr.setResultsName("solution")
 
 ## Problem
-problem_ignored = Suppress(Literal("problem:") + LineEnd())
+problem_ignored = Suppress(White(tab) + Literal("problem:"))
 problem = problem_ignored + Group(optional_label + statement + solution)
 problems_expr = Group(OneOrMore(problem))
 problems = problems_expr.setResultsName("problems")
 
 ## Content
+content_ignored = Suppress(White(2*tab) + Literal("content:") + White(newline))
 content_lines = Group(OneOrMore(Regex(ur'\s\s\s\s\s\s\s\s\s\s\s\s(.+)').leaveWhitespace() + Suppress(White(newline))))
-content_expr = Suppress(Literal("content:") + White(newline)) + content_lines
+content_expr = content_ignored + content_lines
 content = content_expr.setResultsName("content")
 
 ## Section
-section = Group(Suppress(Literal("section:") + LineEnd()) + title + content)
+section = Group(Suppress(White(tab) + Literal("section:")) + optional_section_title + content)
 sections_expr = Group(OneOrMore(section))
 sections = sections_expr.setResultsName("sections")
 
 ## Problem Set
 problem_set_identifier = Literal("problem_set")
-problem_set_ignored = Suppress(Literal(":") + LineEnd())
+problem_set_ignored = Suppress(Literal(":"))
 problem_set_headers = author & optional_collaborators & optional_due_date & optional_title & optional_course & optional_school
 problem_set = problem_set_identifier + problem_set_ignored + problem_set_headers + problems
 
 ## Memorandum
 memorandum_identifier = Literal("memorandum")
-memorandum_ignored = Suppress(Literal(":") + LineEnd())
+memorandum_ignored = Suppress(Literal(":"))
 memorandum_headers = author & optional_collaborators & optional_date & title & optional_subtitle
 memorandum = memorandum_identifier + memorandum_ignored + memorandum_headers + sections
 
@@ -251,4 +256,3 @@ class EasyTeXParser(object):
             return self.parse_problem_set(indented_block)
         else:
             raise ParseDocumentError("Error parsing document: found no indented block!".format(input_string))
-
