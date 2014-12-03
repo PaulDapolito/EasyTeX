@@ -36,8 +36,13 @@ def main():
     # Check for pdflatex, output PDF file if it exists
     status, result = getstatusoutput("pdflatex -v")
     if status == 0:
-        # Point pdflatex to the correct output directory
+        # Point to the correct output directory
         output_directory = os.path.dirname(os.path.realpath(input_file_name))
+
+        # Add hmcpset class file to output directory
+        # TODO: Simply copy the file from the include directory using bash
+        hmcpset_class = open("source/include/hmcpset.cls").read()
+        open(output_directory + "/hmcpset.cls", "w").write(hmcpset_class)
 
         # Execute bash command, hiding output using DEVNULL
         bash_command = "pdflatex -output-directory='{}' '{}'".format(output_directory, output_file_name)
