@@ -1,23 +1,39 @@
 __author__ = 'Paul Dapolito'
 
+# Basic elements
+newline = "\n"
+tab = "    "
+
 
 class MemorandumInterpreter(object):
     @classmethod
     def interpret_memorandum(cls, memorandum):
+        # Memorandum headers
         document_class = "\documentclass[letterpaper, boxed]{hmcpset}"
+        document_class += newline
         package_spec = "\usepackage[margin=1in]{geometry}"
-        begin_document = "\\begin{document}"
-        begin_center = "\\begin{center}"
+        package_spec += newline
 
-        title = "\\Large{\\textbf{" + memorandum.title.text + "}} \\\\ "
+        begin_document = "\\begin{document}"
+        begin_document += newline
+
+        begin_center = tab + "\\begin{center}"
+        begin_center += newline
+
+        # Title
+        title = 2*tab + "\\Large{\\textbf{" + memorandum.title.text + "}} \\\\ "
+        title += newline
 
         # Check for subtitle
         if memorandum.subtitle is not None:
-            subtitle = "\\textit{" + memorandum.subtitle.text + "} \\\\"
+            subtitle = 2*tab + "\\textit{" + memorandum.subtitle.text + "} \\\\"
+            subtitle += newline
         else:
             subtitle = None
 
-        author = "\\large{" + memorandum.author.name + "} \\\\"
+        # Author
+        author = 2*tab + "\\large{" + memorandum.author.name + "} \\\\"
+        author += newline
 
         # Check for collaborators
         if memorandum.collaborators is not None:
@@ -28,22 +44,25 @@ class MemorandumInterpreter(object):
             for collaborator in memorandum.collaborators[1:]:
                 collaborators += ", " + collaborator.name
             collaborators = "Worked with " + collaborators
-            collaborators = "\\large{" + collaborators + "} \\\\"
+            collaborators = 2*tab + "\\large{" + collaborators + "} \\\\"
+            collaborators += newline
         else:
             collaborators = None
 
         # Check for date
         if memorandum.date is not None:
-            date = "\\large{" + memorandum.date.date_string + "}"
+            date = 2*tab + "\\large{" + memorandum.date.date_string + "}"
+            date += newline
         else:
             date = None
 
-        end_center = "\\end{center}"
+        end_center = tab + "\\end{center}"
+        end_center += newline
 
         # Accumulate sections
         sections = ""
         for section in memorandum.sections:
-            sections += cls.interpret_section(section)
+            sections += newline + cls.interpret_section(section)
 
         end_document = "\\end{document}"
 
@@ -51,7 +70,9 @@ class MemorandumInterpreter(object):
         document_as_list = [
             document_class,
             package_spec,
+            newline,
             begin_document,
+            newline,
             begin_center,
             title,
             subtitle,
@@ -60,24 +81,44 @@ class MemorandumInterpreter(object):
             date,
             end_center,
             sections,
-            end_document
+            newline,
+            end_document,
+            newline
         ]
         filtered_document = [elem for elem in document_as_list if elem is not None]
-        accumulated_document = "\n".join(filtered_document)
+        accumulated_document = "".join(filtered_document)
 
         return accumulated_document
 
     @classmethod
     def interpret_section(cls, section):
-        section_header = "\large \\begin{flushleft}"
-        section_title = "\\textbf{" + section.title.text + "}"
-        end_flush_left = "\\end{flushleft}"
-        normal_size = "\\normalsize"
+        section_header = tab + "\large \\begin{flushleft}"
+        section_header += newline
 
-        section_content = section.content.text
+        section_title = tab + "\\textbf{" + section.title.text + "}"
+        section_title += newline
 
-        section_as_list = [section_header, section_title, end_flush_left, normal_size, section_content]
-        accumulated_section = "\n".join(section_as_list)
+        end_flush_left = tab + "\\end{flushleft}"
+        end_flush_left += newline
+
+        normal_size = tab + "\\normalsize"
+        normal_size += newline
+
+        ## Add tabs to each line of content
+        content_text = section.content.text
+        split_content = content_text.split("\n")
+        content_lines_with_tabs = [2*tab + line for line in split_content]
+        content = "\n".join(content_lines_with_tabs)
+
+        section_as_list = [
+            section_header,
+            section_title,
+            end_flush_left,
+            normal_size,
+            content,
+            newline
+        ]
+        accumulated_section = "".join(section_as_list)
 
         return accumulated_section
 

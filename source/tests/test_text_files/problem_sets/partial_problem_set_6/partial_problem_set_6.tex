@@ -1,36 +1,45 @@
 \documentclass[11pt,letterpaper,boxed]{hmcpset}
 \usepackage[margin=0.9in]{geometry}
+
 \name{Paul Dapolito}
 \duedate{September 21, 2015}
+
 \begin{document}
-Worked with Robert, Angela, Daniel\\
-\begin{problem}[1]
-What is the rate of change $f'$ of a function $f$ at the point $a$?
-\end{problem}
-\begin{solution}
-Suppose $L_1$ is some arbitrary language over an alphabet $\Sigma$ with words $l_1,l_2,l_3,...,l_{n-1},l_{n}$. $L_1$ is defined as:
-$$ L_1 = \{l_1, l_2, l_3,...,l_{n-1}, l_{n}\} $$
-For the languages $L_1$ and $L_2$, we are given that that $L_1 \subseteq L_2*$. Using the fact that $L_1 \subseteq L_2*$ and the definition of the Kleene star operation, $L_2*$ must be such that:
-$$ \{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} \subseteq L_2* $$
-Using the definition of the Kleene star operation again, we know that $L_1*$ is given by:
-$$ L_1* =  \{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} $$
-Thus, Equation 1 becomes:
-$$ L_1* \subseteq L_2* $$
-And we have thus proven that if $L_1$ and $L_2$ are languages and $L_1 \subseteq L_2*$, then $L_1 * \subseteq L_2*$. QED.
-\end{solution}
-\pagebreak
-\begin{problem}[2]
-Carefully prove that if $L_1$ and $L_2$ are languages and $L_1 \subseteq L_2*$, then $L_1 * \subseteq L_2*$
-\end{problem}
-\begin{solution}
-Suppose $L_1$ is some arbitrary language over an alphabet $\Sigma$ with words $l_1,l_2,l_3,...,l_{n-1},l_{n}$. $L_1$ is defined as:
-$$ L_1 = \{l_1, l_2, l_3,...,l_{n-1}, l_{n}\} $$
-For the languages $L_1$ and $L_2$, we are given that that $L_1 \subseteq L_2*$. Using the fact that $L_1 \subseteq L_2*$ and the definition of the Kleene star operation, $L_2*$ must be such that:
-$$ \{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} \subseteq L_2* $$
-Using the definition of the Kleene star operation again, we know that $L_1*$ is given by:
-$$ L_1* =  \{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} $$
-Thus, Equation 1 becomes:
-$$ L_1* \subseteq L_2* $$
-And we have thus proven that if $L_1$ and $L_2$ are languages and $L_1 \subseteq L_2*$, then $L_1 * \subseteq L_2*$. QED.
-\end{solution}
+
+    Worked with Robert, Angela, Daniel\\
+
+    \begin{problem}[1]
+        What is the rate of change $f'$ of a function $f$ at the point $a$?
+    \end{problem}
+
+    \begin{solution}
+        Suppose $L_1$ is some arbitrary language over an alphabet $\Sigma$ with words $l_1,l_2,l_3,...,l_{n-1},l_{n}$. $L_1$ is defined as:
+        $$ L_1 = \{l_1, l_2, l_3,...,l_{n-1}, l_{n}\} $$
+        For the languages $L_1$ and $L_2$, we are given that that $L_1 \subseteq L_2*$. Using the fact that $L_1 \subseteq L_2*$ and the definition of the Kleene star operation, $L_2*$ must be such that:
+        $$ \{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} \subseteq L_2* $$
+        Using the definition of the Kleene star operation again, we know that $L_1*$ is given by:
+        $$ L_1* =  \{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} $$
+        Thus, Equation 1 becomes:
+        $$ L_1* \subseteq L_2* $$
+        And we have thus proven that if $L_1$ and $L_2$ are languages and $L_1 \subseteq L_2*$, then $L_1 * \subseteq L_2*$. QED.
+    \end{solution}
+
+    \pagebreak
+
+    \begin{problem}[2]
+        Carefully prove that if $L_1$ and $L_2$ are languages and $L_1 \subseteq L_2*$, then $L_1 * \subseteq L_2*$
+    \end{problem}
+
+    \begin{solution}
+        Suppose $L_1$ is some arbitrary language over an alphabet $\Sigma$ with words $l_1,l_2,l_3,...,l_{n-1},l_{n}$. $L_1$ is defined as:
+        $$ L_1 = \{l_1, l_2, l_3,...,l_{n-1}, l_{n}\} $$
+        For the languages $L_1$ and $L_2$, we are given that that $L_1 \subseteq L_2*$. Using the fact that $L_1 \subseteq L_2*$ and the definition of the Kleene star operation, $L_2*$ must be such that:
+        $$ \{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} \subseteq L_2* $$
+        Using the definition of the Kleene star operation again, we know that $L_1*$ is given by:
+        $$ L_1* =  \{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} $$
+        Thus, Equation 1 becomes:
+        $$ L_1* \subseteq L_2* $$
+        And we have thus proven that if $L_1$ and $L_2$ are languages and $L_1 \subseteq L_2*$, then $L_1 * \subseteq L_2*$. QED.
+    \end{solution}
+
 \end{document}
