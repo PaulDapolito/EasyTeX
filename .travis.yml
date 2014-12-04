@@ -1,0 +1,13 @@
+# Setup Python
+language: python
+python:
+  - "2.7"
+
+# Install dependencies
+install:
+  - "pip install pyparsing"
+  - "pip install coverage"
+  - "pip install nose"
+
+# Run tests
+script: "nosetests -w source/tests/"
