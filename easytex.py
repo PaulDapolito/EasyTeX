@@ -4,6 +4,7 @@ import sys
 import os
 import subprocess
 import shlex
+import shutil
 from commands import getstatusoutput
 
 from source.parser.parser import EasyTeXParser
@@ -37,9 +38,8 @@ def main():
         output_directory = os.path.dirname(os.path.realpath(input_file_name))
 
         # Add hmcpset class file to output directory
-        # TODO: Simply copy the file from the include directory using bash
-        hmcpset_class = open("source/include/hmcpset.cls").read()
-        open(output_directory + "/hmcpset.cls", "w").write(hmcpset_class)
+        hmcpset_path = "source/include/hmcpset.cls"
+        shutil.copy(hmcpset_path, output_directory)
 
         # Execute bash command, hiding output using DEVNULL
         bash_command = "pdflatex -output-directory='{}' '{}'".format(output_directory, output_file_name)
