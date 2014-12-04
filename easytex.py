@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-
-
 __author__ = 'Paul Dapolito'
 
 import sys
@@ -10,7 +7,6 @@ import shlex
 from commands import getstatusoutput
 
 from source.parser.parser import EasyTeXParser
-
 from source.interpreters.interpreter import EasyTeXInterpreter
 
 
