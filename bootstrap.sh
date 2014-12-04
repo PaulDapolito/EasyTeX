@@ -18,4 +18,3 @@ source /usr/local/EasyTeX/venv/bin/activate
 pip install pyparsing
 pip install coverage
 pip install nose
-pip install tex
