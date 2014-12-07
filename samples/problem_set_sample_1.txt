@@ -2,9 +2,9 @@ problem_set:
     author: Paul Dapolito
     collaborators: Robert, Angela, Daniel
     due_date: September 21, 2015
-    title: Super \underline{Advanced} Subtitle
-    course: \textbf{Domain-Specific} Languages
-    school: Dallas Science School: \textbf{magnet}
+    title: Basic Problem Set
+    course: Programming Languages
+    school: Harvey Mudd College
 
     problem:
         label: 1
@@ -13,35 +13,10 @@ problem_set:
             What is the rate of change $f'$ of a function $f$ at the point $a$?
 
         solution:
-            Suppose $L_1$ is some arbitrary language over an alphabet $\Sigma$ with words $l_1,l_2,l_3,...,l_{n-1},l_{n}$. $L_1$ is defined as:
-                $$ L_1 = \{l_1, l_2, l_3,...,l_{n-1}, l_{n}\} $$
-
-            For the languages $L_1$ and $L_2$, we are given that that $L_1 \subseteq L_2*$. Using the fact that $L_1 \subseteq L_2*$ and the definition of the Kleene star operation, $L_2*$ must be such that:
-                $$ \{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} \subseteq L_2* $$
-
-            Using the definition of the Kleene star operation again, we know that $L_1*$ is given by:
-                $$ L_1* =  \{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} $$
-
-            Thus, Equation 1 becomes:
-                $$ L_1* \subseteq L_2* $$
-
-            And we have thus proven that if $L_1$ and $L_2$ are languages and $L_1 \subseteq L_2*$, then $L_1 * \subseteq L_2*$. QED.
-
-    problem:
-        label: 2
-        statement:
-            Carefully prove that if $L_1$ and $L_2$ are languages and $L_1 \subseteq L_2*$, then $L_1 * \subseteq L_2*$
-        solution:
-            Suppose $L_1$ is some arbitrary language over an alphabet $\Sigma$ with words $l_1,l_2,l_3,...,l_{n-1},l_{n}$. $L_1$ is defined as:
-                $$ L_1 = \{l_1, l_2, l_3,...,l_{n-1}, l_{n}\} $$
-
-            For the languages $L_1$ and $L_2$, we are given that that $L_1 \subseteq L_2*$. Using the fact that $L_1 \subseteq L_2*$ and the definition of the Kleene star operation, $L_2*$ must be such that:
-                $$ \{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} \subseteq L_2* $$
-
-            Using the definition of the Kleene star operation again, we know that $L_1*$ is given by:
-                $$ L_1* =  \{\epsilon, l_1, l_2, l_3,...,l_{n-1}, l_{n},...\} $$
-
-            Thus, Equation 1 becomes:
-                $$ L_1* \subseteq L_2* $$
-
-            And we have thus proven that if $L_1$ and $L_2$ are languages and $L_1 \subseteq L_2*$, then $L_1 * \subseteq L_2*$. QED.
+            Suppose we have the model $M$ consisting of the set $A = \{\textrm{domestic cat, feline, mammal}\}$. Then, the
+            interpretation of ${\sim}$ is to be "is a". From this, we see that the first axiom $A0$ is satisfied, for
+            every domestic cat is a domestic cat, every feline is a feline, and every mammal is a mammal. Furthermore, we
+            see that the third axiom $A 2$ is satisfied, for if every domestic cat is a feline, and if every feline is a
+            mammal, then every domestic cat is a mammal. However, the axiom $A1$ does not hold, for it is not true that if
+            every domestic cat is a feline, then every feline is a domestic cat. Thus, we have found a model that
+            satisfies axioms $A0$ and $A2$, but not axiom $A1$. 
