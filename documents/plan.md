@@ -48,18 +48,18 @@ I have already chosen a host language (Python) and target language (LaTeX) for m
   </tr>
   <tr>
     <td class="tg-031e">11/23 - 11/29</td>
-    <td class="tg-031e">1) implement semantics tests <br>2) solicit peer feedback<br>3) implement design changes as per user feedback<br>4) begin working on preliminary evaluation</td>
-    <td class="tg-031e">- Semantics tests<br>- Changelog derived from feedback<br></td>
+    <td class="tg-031e">1) implement semantics tests <br>2) solicit peer feedback<br>3) implement design changes as per user feedback<br>4) complete preliminary evaluation</td>
+    <td class="tg-031e">- Semantics tests<br>- Preliminary Evaluation</td>
   </tr>
   <tr>
     <td class="tg-031e">11/30 - 12/6</td>
-    <td class="tg-031e">1) complete preliminary evaluation<br>2) begin implementing web interface using Tornado</td>
-    <td class="tg-031e">- preliminary evaluation</td>
+    <td class="tg-031e">1) implement enforcement of tabbed-delineation<br>2) format latex output<br>3) present grammar, document types, and tests in a readable fashion</td>
+    <td class="tg-031e">- Enforcement of tabbed-delineation<br>- Formatted LaTeX output<br> - Clean and readable grammar, sample documents, document specifications, and installation/testing/running instructions </td>
   </tr>
   <tr>
     <td class="tg-031e">12/7 - 12/12</td>
-    <td class="tg-031e">1) complete EasyTeX web interface<br>2) complete final write-up</td>
-    <td class="tg-031e">- EasyTeX web interface<br>- final write-up</td>
+    <td class="tg-031e">1) Complete Final Write-up<br>2) Add package specification to language<br>3) Look into implementing syntax highlighting<br>3) Look into implementing a web interface using Ace and Tornado</td>
+    <td class="tg-031e">- Final Write-up<br>- Ability to specify LaTeX packages in documents</td>
   </tr>
 </table>
 
