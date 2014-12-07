@@ -39,11 +39,17 @@ EasyTeX makes use of a wide variety of Python modules. In order to use these mod
 
 ## Usage Instructions
 
-EasyTeX includes a shell script to allow you to use the tool for end-to-end PDF generation. If you have a file that meets EasyTeX's specifications (as per [grammar.md](https://github.com/PaulDapolito/EasyTeX/blob/master/documents/grammar.md)), you can generate a PDF for your file by executing `./easytex.sh file_name`. This will create a PDF (or `.tex` file if `pdflatex` is not installed) in the same directory as the file. Happy typesetting!
+EasyTeX includes a shell script to allow you to use the tool for end-to-end PDF generation. EasyTeX currently supports two types of documents: [problem sets](https://github.com/PaulDapolito/EasyTeX/blob/master/documents/problem_set.md) and [memorandums](https://github.com/PaulDapolito/EasyTeX/blob/master/documents/problem_set.md). Some samples of these different EasyTeX documents are included in the project's [`samples`](https://github.com/PaulDapolito/EasyTeX/tree/master/samples) directory.
+
+If you have a file that meets EasyTeX's specifications (as per the language's [grammar](https://github.com/PaulDapolito/EasyTeX/blob/master/documents/grammar.md)), you can generate a PDF for your file by executing: 
+
+	./easytex.sh file_name 
+	
+This will create PDF and LaTeX files (or only a LaTeX file if `pdflatex` is not installed) in the same directory as the input file. Happy typesetting!
 
 ## Sample Usage
 
-Suppose we would like to create a PDF file from a sample EasyTeX file included in `samples/`. To begin this process, we must first download or clone this GitHub repository:
+Suppose we would like to create a PDF file from a sample EasyTeX file included in [`samples/`](https://github.com/PaulDapolito/EasyTeX/tree/master/samples). To begin this process, we must first download or clone this GitHub repository:
 
 	git clone https://github.com/PaulDapolito/EasyTeX.git
 
@@ -61,5 +67,7 @@ When this process completes, we will see 4 new files in the `samples` directory:
 2. `memorandum_sample_1.tex`: `.tex` file corresponding to the inputted EasyTeX file. This is the `.tex` file that is used to produce the `.pdf` file.
 3. `memorandum_sample_1.log`: `.log` file from the creation of the `.pdf` file.
 4. `memorandum_sample_1.aux`: `.aux` file from the creation of the `.pdf` file.
+
+For more information on the two particular types of EasyTeX documents, please refer to the pages specific to [problem sets](https://github.com/PaulDapolito/EasyTeX/blob/master/documents/problem_set.md) and [memorandums](https://github.com/PaulDapolito/EasyTeX/blob/master/documents/problem_set.md)!
 
 
