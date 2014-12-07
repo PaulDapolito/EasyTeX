@@ -33,9 +33,32 @@ EasyTeX makes use of a wide variety of Python modules. In order to use these mod
 
 	`git clone https://github.com/PaulDapolito/EasyTeX.git`
 
-2. In the root directory of the project, run the `bootstrap.sh` script (may require use of `sudo`):
+2. In the root directory of the project, run the [`bootstrap.sh`](https://github.com/PaulDapolito/EasyTeX/blob/master/bootstrap.sh) script (may require use of `sudo`):
 
 	`./bootstrap.sh`
+	
+## Running Tests
+
+In the case that you want to alter EasyTeX to fit your needs more specifically, contribute to the project, or otherwise verify that the language's parser and interpreter are functioning correctly, EasyTeX includes an automated testing suite. This suite leverages Python's robust testing modules which are installed to the project's virtual environment when the [`bootstrap.sh`](https://github.com/PaulDapolito/EasyTeX/blob/master/bootstrap.sh) script is executed. 
+
+To run the automated tests within the project's virtual environment, first activate the virtual environment (the [`virtualenv`](http://virtualenv.readthedocs.org/en/latest/) is installed to `/usr/local/EasyTeX/venv` by default) from the project's root dirctory:
+
+	source /usr/local/EasyTeX/venv/bin/activate
+	
+With the virtual environment activated, EasyTeX's tests can be run using [`nosetests`](https://nose.readthedocs.org/en/latest/):
+
+	nosetests source/tests
+	
+To see more verbose output from the execution of the project's tests:
+
+	nosetests -s -v source/tests
+	
+To run EasyTeX's testing framework with a code coverage analysis:
+
+	nosetests --with-coverage --cover-html source/tests
+	
+The above command runs EasyTeX's testing suite and creates a web interface revealing the code coverage of EasyTex's automated tests in the `cover` directory. This interface can be explored by opening `cover/index.html` in a web browser.
+
 
 ## Usage Instructions
 
@@ -53,11 +76,11 @@ Suppose we would like to create a PDF file from a sample EasyTeX file included i
 
 	git clone https://github.com/PaulDapolito/EasyTeX.git
 
-Be sure that your system satisfies the dependencies described above, and enter the root directory for the EasyTeX project. In a `bash` shell, run EasyTeX's `bootstrap.sh` script:
+Be sure that your system satisfies the dependencies described above, and enter the root directory for the EasyTeX project. In a `bash` shell, run EasyTeX's [`bootstrap.sh`](https://github.com/PaulDapolito/EasyTeX/blob/master/bootstrap.sh) script:
 	
 	./bootstrap.sh
 
-Now, to create `.pdf` and `.tex` files corresponding to the sample EasyTeX file `samples/memorandum_sample_1.txt`, execute the following command:
+Now, to create `.pdf` and `.tex` files corresponding to the sample EasyTeX file [`samples/memorandum_sample_1.txt`](https://github.com/PaulDapolito/EasyTeX/blob/master/samples/memorandum_sample_1.txt), execute the following command:
 	
 	./easytex.sh samples/memorandum_sample_1.txt
 
