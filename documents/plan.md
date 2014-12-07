@@ -54,7 +54,7 @@ I have already chosen a host language (Python) and target language (LaTeX) for m
   <tr>
     <td class="tg-031e">11/30 - 12/6</td>
     <td class="tg-031e">1) implement enforcement of tabbed-delineation<br>2) format latex output<br>3) present grammar, document types, and tests in a readable fashion</td>
-    <td class="tg-031e">- Enforcement of tabbed-delineation<br>- Formatted LaTeX output<br> - Clean and readable grammar, sample documents, document specifications, and installation/testing/running instructions </td>
+    <td class="tg-031e">- Enforcement of tabbed-delineation<br>- Formatted LaTeX output<br> - Clean and readable grammar, sample documents, document specifications, and installation, testing, and running instructions </td>
   </tr>
   <tr>
     <td class="tg-031e">12/7 - 12/12</td>
