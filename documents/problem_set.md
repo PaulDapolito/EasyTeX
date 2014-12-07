@@ -66,6 +66,30 @@
   </tr>
 </table>
 
+## General Layout
+Note: all fields are left empty to illuminate EasyTeX's tabbed-delineation!
+
+	problem_set:
+		author:
+		collaborators:
+		due_date:
+		title:
+		course:
+		school:
+		
+		problem:
+			label:
+			statement:
+			
+			solution:
+			
+		problem:
+			label:
+			statement:
+				
+			solution:
+			
+
 ## Samples
 
 ### Problem Set with One Problem (all optional fields filled)

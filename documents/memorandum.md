@@ -75,8 +75,7 @@ Note: all fields are left empty to illuminate EasyTeX's tabbed-delineation!
 				
 		section:
 			title:
-			content:
-			 
+			content: 
 
 ## Samples
 
