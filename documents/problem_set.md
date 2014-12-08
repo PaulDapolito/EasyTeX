@@ -93,7 +93,7 @@ Note: all fields are left empty to illuminate EasyTeX's tabbed-delineation!
 	    title: Basic Problem Set
 	    course: Programming Languages
 	    school: Harvey Mudd College
-	    packages: enumerate, graphicx, hmcpset
+	    packages: enumerate, graphicx
 
 	    problem:
 	        label: 1
