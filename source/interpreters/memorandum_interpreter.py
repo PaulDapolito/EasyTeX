@@ -14,6 +14,16 @@ class MemorandumInterpreter(object):
         package_spec = "\usepackage[margin=1in]{geometry}"
         package_spec += newline
 
+        # Accumulate packages
+        if memorandum.packages:
+            packages = ""
+            for package in memorandum.packages:
+                packages += "\usepackage{" + package.name + "}"
+                packages += newline
+            packages += newline
+        else:
+            packages = None
+
         begin_document = "\\begin{document}"
         begin_document += newline
 
@@ -71,6 +81,7 @@ class MemorandumInterpreter(object):
             document_class,
             package_spec,
             newline,
+            packages,
             begin_document,
             newline,
             begin_center,

@@ -12,34 +12,44 @@ class ProblemSetInterpreter(object):
         document_class = "\documentclass[11pt,letterpaper,boxed]{hmcpset}"
         package_spec = "\usepackage[margin=0.9in]{geometry}"
 
+        # Accumulate packages
+        if problem_set.packages:
+            packages = ""
+            for package in problem_set.packages:
+                packages += "\usepackage{" + package.name + "}"
+                packages += newline
+            packages += newline
+        else:
+            packages = None
+
         # Author
         author = "\\name{" + problem_set.author.name + "}"
-        author = author + newline
+        author += newline
 
         # Check for course and school
         if problem_set.course is not None and problem_set.school is not None:
             course_and_school = "\\class{" + problem_set.course.text + ", " + problem_set.school.text + "}"
-            course_and_school = course_and_school + newline
+            course_and_school += newline
         elif problem_set.course is not None:
             course_and_school = "\\class{" + problem_set.course.text + "}"
-            course_and_school = course_and_school + newline
+            course_and_school += newline
         elif problem_set.school is not None:
             course_and_school = "\\class{" + problem_set.school.text + "}"
-            course_and_school = course_and_school + newline
+            course_and_school += newline
         else:
             course_and_school = None
 
         # Check for title
         if problem_set.title is not None:
             title = "\\assignment{" + problem_set.title.text + "}"
-            title = title + newline
+            title += newline
         else:
             title = None
 
         # Check for due date
         if problem_set.due_date is not None:
             due_date = "\\duedate{" + problem_set.due_date.date_string + "}"
-            due_date = due_date + newline
+            due_date += newline
         else:
             due_date = None
 
@@ -71,6 +81,7 @@ class ProblemSetInterpreter(object):
             newline,
             package_spec,
             2*newline,
+            packages,
             author,
             course_and_school,
             title,

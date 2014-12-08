@@ -13,6 +13,7 @@ from source.ir.memorandums.subtitle import Subtitle
 from source.ir.problem_sets.school import School
 from source.ir.problem_sets.course import Course
 from source.ir.problem_sets.due_date import DueDate
+from source.ir.shared.package import Package
 from source.ir.problem_sets.label import Label
 from source.ir.problem_sets.statement import Statement
 from source.ir.problem_sets.solution import Solution
@@ -48,6 +49,13 @@ collaborators_group = Group(delimitedList(collaborator))
 collaborators_ignored = Suppress(White(tab) + Literal("collaborators:") + White(space))
 collaborators_expr = collaborators_ignored + collaborators_group
 optional_collaborators = Optional(collaborators_expr.setResultsName("collaborators"), default=list())
+
+## Packages [Optional]
+package = Word(alphas)
+packages_group = Group(delimitedList(package))
+packages_ignored = Suppress(White(tab) + Literal("packages:") + White(space))
+packages_expr = packages_ignored + packages_group
+optional_packages = Optional(packages_expr.setResultsName("packages"), default=list())
 
 ## Date [Optional]
 date_expr = Suppress(White(tab) + Literal("date:") + White(space)) + restOfLine
@@ -116,13 +124,13 @@ sections = sections_expr.setResultsName("sections")
 ## Problem Set
 problem_set_identifier = Literal("problem_set")
 problem_set_ignored = Suppress(Literal(":"))
-problem_set_headers = author & optional_collaborators & optional_due_date & optional_title & optional_course & optional_school
+problem_set_headers = author & optional_collaborators & optional_due_date & optional_title & optional_course & optional_school & optional_packages
 problem_set = problem_set_identifier + problem_set_ignored + problem_set_headers + problems
 
 ## Memorandum
 memorandum_identifier = Literal("memorandum")
 memorandum_ignored = Suppress(Literal(":"))
-memorandum_headers = author & optional_collaborators & optional_date & title & optional_subtitle
+memorandum_headers = author & optional_collaborators & optional_date & title & optional_subtitle & optional_packages
 memorandum = memorandum_identifier + memorandum_ignored + memorandum_headers + sections
 
 ## Document
@@ -153,6 +161,12 @@ class EasyTeXParser(object):
             collaborators = [Collaborator(collab) for collab in parsed_block["collaborators"][0]]
         else:
             collaborators = None
+
+        # Check for packages
+        if parsed_block["packages"]:
+            packages = [Package(package) for package in parsed_block["packages"][0]]
+        else:
+            packages = None
 
         # Check for due date
         if parsed_block["due_date"]:
@@ -199,7 +213,7 @@ class EasyTeXParser(object):
             problems.append(Problem(label, statement, solution))
 
         # Create and return problem set
-        problem_set = ProblemSet(author, collaborators, due_date, title, course, school, problems)
+        problem_set = ProblemSet(author, collaborators, due_date, title, course, school, packages, problems)
         return problem_set
 
     @staticmethod
@@ -211,6 +225,12 @@ class EasyTeXParser(object):
             collaborators = [Collaborator(collab) for collab in parsed_block["collaborators"][0]]
         else:
             collaborators = None
+
+       # Check for packages
+        if parsed_block["packages"]:
+            packages = [Package(package) for package in parsed_block["packages"][0]]
+        else:
+            packages = None
 
         # Check for date
         if parsed_block["date"]:
@@ -239,7 +259,7 @@ class EasyTeXParser(object):
             sections.append(Section(section_title, content))
 
         # Create and return memorandum
-        memorandum = Memorandum(author, collaborators, date, title, subtitle, sections)
+        memorandum = Memorandum(author, collaborators, date, title, subtitle, packages, sections)
         return memorandum
 
     def parse_document(self, input_string):

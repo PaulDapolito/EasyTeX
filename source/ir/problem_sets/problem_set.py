@@ -6,13 +6,14 @@ from source.errors.ir.problem_sets.problem_set_error import ProblemSetError
 
 class ProblemSet(EasyTeXElement):
     def __init__(self, author=None, collaborators=None, due_date=None, title=None,
-                 course=None, school=None, problems=None):
+                 course=None, school=None, packages=None, problems=None):
         self.author = author
         self.collaborators = collaborators
         self.due_date = due_date
         self.title = title
         self.course = course
         self.school = school
+        self.packages = packages
         self.problems = problems
 
         # EasyTeX problem set must have an author and at least one problem
@@ -28,4 +29,5 @@ class ProblemSet(EasyTeXElement):
                self.title == other.title and \
                self.course == other.course and \
                self.school == other.school and \
+               self.packages == other.packages and \
                self.problems == other.problems

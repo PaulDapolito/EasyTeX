@@ -6,12 +6,13 @@ from source.errors.ir.memorandums.memorandum_error import MemorandumError
 
 class Memorandum(EasyTeXElement):
     def __init__(self, author=None, collaborators=None, date=None, title=None,
-                 subtitle=None, sections=None):
+                 subtitle=None, packages=None, sections=None):
         self.author = author
         self.collaborators = collaborators
         self.date = date
         self.title = title
         self.subtitle = subtitle
+        self.packages = packages
         self.sections = sections
 
         # EasyTeX memorandums must have an author, a title, and at least one section
@@ -28,4 +29,5 @@ class Memorandum(EasyTeXElement):
                self.date == other.date and \
                self.title == other.title and \
                self.subtitle == other.subtitle and \
+               self.packages == other.packages and \
                self.sections == other.sections
