@@ -4,6 +4,7 @@ memorandum:
     date: 09/21/2015
     title: Troubled Records
     subtitle: Super \underline{Advanced} Subtitle
+    packages: graphicx
 
     section:
         title: Recording Recovery
