@@ -559,8 +559,6 @@ class EasyTeXParserTests(unittest.TestCase):
             ProblemSet(author, collaborators, due_date, title, course, school, [problem_1, problem_2]),
             parsed_problem_set)
 
-   # Test a problem set with two problems and no optional fields filled
-
     ## Test a problem set with two problems that are missing labels and no optional fields filled
     def test_that_problem_set_and_problems_can_exclude_all_optional_fields(self):
         folder_path = base_path + "/test_text_files/problem_sets/partial_problem_set_9/"
