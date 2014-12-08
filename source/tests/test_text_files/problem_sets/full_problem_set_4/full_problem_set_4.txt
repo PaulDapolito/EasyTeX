@@ -5,6 +5,7 @@ problem_set:
     due_date: September 21, 2015
     course: Programming Languages
     collaborators: Robert, Angela, Daniel
+    packages: enumerate
 
     problem:
         label: 1

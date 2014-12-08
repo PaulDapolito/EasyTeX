@@ -4,7 +4,7 @@ memorandum:
     date: 09/21/2015
     title: Basic title
     subtitle: Super \underline{Advanced} Subtitle
-    packages: graphicx, enumerate
+    packages: graphicx
 
     section:
         title: Abstract

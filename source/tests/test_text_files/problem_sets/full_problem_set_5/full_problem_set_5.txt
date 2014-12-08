@@ -1,6 +1,6 @@
 problem_set:
     author: Paul Dapolito
-    collaborators: Robert, Angela, Daniel
+    collaborators: Robert
     due_date: September 21, 2015
     title: Basic title
     course: Programming Languages
