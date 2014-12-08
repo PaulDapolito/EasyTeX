@@ -211,6 +211,36 @@ class EasyTeXParser(object):
         else:
             return None
 
+    @staticmethod
+    def parse_problem(problem):
+        # Check for label
+        if problem["label"]:
+            label = Label(problem["label"][0])
+        else:
+            label = None
+
+        # Strip leftmost whitespace from every line of statement and solution
+        statement_stripped = [line.lstrip() for line in problem["statement"][0]]
+        statement_txt = newline.join(statement_stripped)
+        statement = Statement(statement_txt)
+
+        solution_stripped = [line.lstrip() for line in problem["solution"][0]]
+        solution_txt = newline.join(solution_stripped) + "\n"
+        solution = Solution(solution_txt)
+
+        return Problem(label, statement, solution)
+
+    @staticmethod
+    def parse_section(section):
+        title = Title(section["title"][0])
+
+        # Strip leftmost whitespace from every line of content
+        content_stripped = [line.lstrip() for line in section["content"][0]]
+        content_txt = newline.join(content_stripped)
+        content = Content(content_txt)
+
+        return Section(title, content)
+
     def parse_problem_set(self, parsed_block):
         author = self.parse_author(parsed_block)
         collaborators = self.parse_collaborators(parsed_block)
@@ -223,22 +253,7 @@ class EasyTeXParser(object):
         # Accumulate problems
         problems = list()
         for problem in parsed_block["problems"]:
-            # Check for label
-            if problem["label"]:
-                label = Label(problem["label"][0])
-            else:
-                label = None
-
-            # Strip leftmost whitespace from every line of statement and solution
-            statement_stripped = [line.lstrip() for line in problem["statement"][0]]
-            statement_txt = newline.join(statement_stripped)
-            statement = Statement(statement_txt)
-
-            solution_stripped = [line.lstrip() for line in problem["solution"][0]]
-            solution_txt = newline.join(solution_stripped) + "\n"
-            solution = Solution(solution_txt)
-
-            problems.append(Problem(label, statement, solution))
+            problems.append(self.parse_problem(problem))
 
         # Create and return problem set
         problem_set = ProblemSet(author, collaborators, due_date, title, course, school, packages, problems)
@@ -255,14 +270,7 @@ class EasyTeXParser(object):
         # Accumulate sections
         sections = list()
         for section in parsed_block["sections"]:
-            section_title = Title(section["title"][0])
-
-            # Strip leftmost whitespace from every line of content
-            content_stripped = [line.lstrip() for line in section["content"][0]]
-            content_txt = newline.join(content_stripped)
-            content = Content(content_txt)
-
-            sections.append(Section(section_title, content))
+            sections.append(self.parse_section(section))
 
         # Create and return memorandum
         memorandum = Memorandum(author, collaborators, date, title, subtitle, packages, sections)
