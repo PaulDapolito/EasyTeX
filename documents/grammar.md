@@ -53,11 +53,18 @@ As is supported by EasyTeX's formally stated grammar below (elucidated more in t
 	solution = tab, tab, "solution:", newline, tab, tab, tab, {character}, newline ;
 	problem = tab, "problem:", newline, [label], statement, solution ;
 
+	package = text | text, space, comma, space ;
+	packages = tab, "packages:", space, {package}, newline ;
+
 	content = tab, tab, "content:", newline, tab, text, newline ;
 	section = tab, "section:", newline, tab, title, content ;
 
-	problem_set = "problem_set:", newline, author, [collaborators], [due_date], [title], [course], [school], {problem} ;
+	problem_set_headers = author, [collaborators], [due_date], [title], [course], [school], [packages] ;
+	problems = {problem} ;
+	problem_set = "problem_set:", newline, problem_set_headers, problems ;
 
-	memorandum = "memorandum:", newline, author, [collaborators], [date], title, [subtitle], {section} ;
+	memorandum_headers = author, [collaborators], [date], title, [subtitle], [packages] ;
+	sections = {section} ;
+	memorandum = "memorandum:", newline, memorandum_headers, sections ;
 
 	document = memorandum | problem_set ;

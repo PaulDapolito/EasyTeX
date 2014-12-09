@@ -27,6 +27,10 @@
     <td class="tg-031e">subtitle</td>
     <td class="tg-031e">Optional</td>
   </tr>
+  <tr>
+    <td class="tg-031e">packages</td>
+    <td class="tg-031e">Optional</td>
+  </tr>
 </table>
 
 ### Sections
@@ -54,6 +58,7 @@ Note: all fields are left empty to illuminate EasyTeX's tabbed-delineation!
 		date:
 		title:
 		subtitle:
+		packages: 
 		
 		section:
 			title:
@@ -73,6 +78,7 @@ Note: all fields are left empty to illuminate EasyTeX's tabbed-delineation!
 	    date: 09/21/2015
 	    title: Basic title
 	    subtitle: Super \underline{Advanced} Subtitle
+	    packages: graphicx
 
 	    section:
 	        title: Recording Recovery

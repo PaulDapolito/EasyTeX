@@ -200,6 +200,9 @@ class EasyTeXParserTests(unittest.TestCase):
         course = Course(open(folder_path + "course.txt").read())
         school = School(open(folder_path + "school.txt").read())
 
+        packages_txt = open(folder_path + "packages.txt").read().split(", ")
+        packages = [Package(package) for package in packages_txt]
+
         problem_1_label_txt = open(folder_path + "problem_1_label.txt").read()
         problem_1_label = Label(problem_1_label_txt)
 
@@ -224,11 +227,59 @@ class EasyTeXParserTests(unittest.TestCase):
 
         self.assertEqual(
             ProblemSet(author=author, collaborators=collaborators, due_date=due_date, title=title,
-                       course=course, school=school, problems=[problem_1, problem_2]),
+                       course=course, school=school, packages=packages, problems=[problem_1, problem_2]),
             parsed_problem_set)
 
-    ## Test a problem set with two problems, all optional fields filled, and packages included
-    def test_that_problem_set_can_include_packages(self):
+    ## Test a problem set with two problems, all optional fields filled, and one package included
+    def test_that_problem_set_can_include_one_package(self):
+        folder_path = base_path + "/test_text_files/problem_sets/full_problem_set_4/"
+
+        input_string = open(folder_path + "full_problem_set_4.txt").read()
+        parsed_problem_set = self.parser.parse_document(input_string)
+
+        author = Author(open(folder_path + "author.txt").read())
+
+        collaborators_txt = open(folder_path + "collaborators.txt").read().split(", ")
+        collaborators = [Collaborator(collab) for collab in collaborators_txt]
+
+        due_date = DueDate(open(folder_path + "due_date.txt").read())
+
+        title = Title(open(folder_path + "title.txt").read())
+        course = Course(open(folder_path + "course.txt").read())
+        school = School(open(folder_path + "school.txt").read())
+
+        packages_txt = open(folder_path + "packages.txt").read().split(", ")
+        packages = [Package(package) for package in packages_txt]
+
+        problem_1_label_txt = open(folder_path + "problem_1_label.txt").read()
+        problem_1_label = Label(problem_1_label_txt)
+
+        problem_1_statement_txt = open(folder_path + "problem_1_statement.txt").read()
+        problem_1_statement = Statement(problem_1_statement_txt)
+
+        problem_1_solution_txt = open(folder_path + "problem_1_solution.txt").read()
+        problem_1_solution = Solution(problem_1_solution_txt)
+
+        problem_1 = Problem(problem_1_label, problem_1_statement, problem_1_solution)
+
+        problem_2_label_txt = open(folder_path + "problem_2_label.txt").read()
+        problem_2_label = Label(problem_2_label_txt)
+
+        problem_2_statement_txt = open(folder_path + "problem_2_statement.txt").read()
+        problem_2_statement = Statement(problem_2_statement_txt)
+
+        problem_2_solution_txt = open(folder_path + "problem_2_solution.txt").read()
+        problem_2_solution = Solution(problem_2_solution_txt)
+
+        problem_2 = Problem(problem_2_label, problem_2_statement, problem_2_solution)
+
+        self.assertEqual(
+            ProblemSet(author=author, collaborators=collaborators, due_date=due_date, title=title,
+                       course=course, school=school, packages=packages, problems=[problem_1, problem_2]),
+            parsed_problem_set)
+
+    ## Test a problem set with two problems, all optional fields filled, and multiple packages included
+    def test_that_problem_set_can_include_multiple_packages(self):
         folder_path = base_path + "/test_text_files/problem_sets/full_problem_set_5/"
 
         input_string = open(folder_path + "full_problem_set_5.txt").read()
@@ -316,6 +367,102 @@ class EasyTeXParserTests(unittest.TestCase):
         self.assertEqual(
             ProblemSet(author=author, collaborators=collaborators, due_date=due_date, title=title,
                        course=course, school=school, problems=[problem_1, problem_2]),
+            parsed_problem_set)
+
+    ## Test a problem set with two problems and one collaborator
+    def test_that_problem_set_can_have_one_collaborator(self):
+        folder_path = base_path + "/test_text_files/problem_sets/full_problem_set_5/"
+
+        input_string = open(folder_path + "full_problem_set_5.txt").read()
+        parsed_problem_set = self.parser.parse_document(input_string)
+
+        author = Author(open(folder_path + "author.txt").read())
+
+        collaborators_txt = open(folder_path + "collaborators.txt").read().split(", ")
+        collaborators = [Collaborator(collab) for collab in collaborators_txt]
+
+        due_date = DueDate(open(folder_path + "due_date.txt").read())
+
+        title = Title(open(folder_path + "title.txt").read())
+        course = Course(open(folder_path + "course.txt").read())
+        school = School(open(folder_path + "school.txt").read())
+
+        packages_txt = open(folder_path + "packages.txt").read().split(", ")
+        packages = [Package(package) for package in packages_txt]
+
+        problem_1_label_txt = open(folder_path + "problem_1_label.txt").read()
+        problem_1_label = Label(problem_1_label_txt)
+
+        problem_1_statement_txt = open(folder_path + "problem_1_statement.txt").read()
+        problem_1_statement = Statement(problem_1_statement_txt)
+
+        problem_1_solution_txt = open(folder_path + "problem_1_solution.txt").read()
+        problem_1_solution = Solution(problem_1_solution_txt)
+
+        problem_1 = Problem(problem_1_label, problem_1_statement, problem_1_solution)
+
+        problem_2_label_txt = open(folder_path + "problem_2_label.txt").read()
+        problem_2_label = Label(problem_2_label_txt)
+
+        problem_2_statement_txt = open(folder_path + "problem_2_statement.txt").read()
+        problem_2_statement = Statement(problem_2_statement_txt)
+
+        problem_2_solution_txt = open(folder_path + "problem_2_solution.txt").read()
+        problem_2_solution = Solution(problem_2_solution_txt)
+
+        problem_2 = Problem(problem_2_label, problem_2_statement, problem_2_solution)
+
+        self.assertEqual(
+            ProblemSet(author=author, collaborators=collaborators, due_date=due_date, title=title,
+                       course=course, school=school, packages=packages, problems=[problem_1, problem_2]),
+            parsed_problem_set)
+
+    ## Test a problem set with two problems and multiple collaborators
+    def test_that_problem_set_can_have_multiple_collaborators(self):
+        folder_path = base_path + "/test_text_files/problem_sets/full_problem_set_4/"
+
+        input_string = open(folder_path + "full_problem_set_4.txt").read()
+        parsed_problem_set = self.parser.parse_document(input_string)
+
+        author = Author(open(folder_path + "author.txt").read())
+
+        collaborators_txt = open(folder_path + "collaborators.txt").read().split(", ")
+        collaborators = [Collaborator(collab) for collab in collaborators_txt]
+
+        due_date = DueDate(open(folder_path + "due_date.txt").read())
+
+        title = Title(open(folder_path + "title.txt").read())
+        course = Course(open(folder_path + "course.txt").read())
+        school = School(open(folder_path + "school.txt").read())
+
+        packages_txt = open(folder_path + "packages.txt").read().split(", ")
+        packages = [Package(package) for package in packages_txt]
+
+        problem_1_label_txt = open(folder_path + "problem_1_label.txt").read()
+        problem_1_label = Label(problem_1_label_txt)
+
+        problem_1_statement_txt = open(folder_path + "problem_1_statement.txt").read()
+        problem_1_statement = Statement(problem_1_statement_txt)
+
+        problem_1_solution_txt = open(folder_path + "problem_1_solution.txt").read()
+        problem_1_solution = Solution(problem_1_solution_txt)
+
+        problem_1 = Problem(problem_1_label, problem_1_statement, problem_1_solution)
+
+        problem_2_label_txt = open(folder_path + "problem_2_label.txt").read()
+        problem_2_label = Label(problem_2_label_txt)
+
+        problem_2_statement_txt = open(folder_path + "problem_2_statement.txt").read()
+        problem_2_statement = Statement(problem_2_statement_txt)
+
+        problem_2_solution_txt = open(folder_path + "problem_2_solution.txt").read()
+        problem_2_solution = Solution(problem_2_solution_txt)
+
+        problem_2 = Problem(problem_2_label, problem_2_statement, problem_2_solution)
+
+        self.assertEqual(
+            ProblemSet(author=author, collaborators=collaborators, due_date=due_date, title=title,
+                       course=course, school=school, packages=packages, problems=[problem_1, problem_2]),
             parsed_problem_set)
 
     ## Test a problem set with two problems and no due date
@@ -744,8 +891,8 @@ class EasyTeXParserTests(unittest.TestCase):
             parsed_memorandum
         )
 
-    ## Test a memorandum with two sections, all optional fields filled, and included packages
-    def test_that_memorandum_can_include_packages(self):
+    ## Test a memorandum with two sections, all optional fields filled, and one package included
+    def test_that_memorandum_can_include_one_package(self):
         folder_path = base_path + "/test_text_files/memorandums/full_memorandum_4/"
         input_string = open(folder_path + "full_memorandum_4.txt").read()
         parsed_memorandum = self.parser.parse_document(input_string)
@@ -776,6 +923,93 @@ class EasyTeXParserTests(unittest.TestCase):
             parsed_memorandum
         )
 
+    ## Test a memorandum with two sections, all optional fields filled, and multiple packages included
+    def test_that_memorandum_can_include_multiple_packages(self):
+        folder_path = base_path + "/test_text_files/memorandums/full_memorandum_5/"
+        input_string = open(folder_path + "full_memorandum_5.txt").read()
+        parsed_memorandum = self.parser.parse_document(input_string)
+
+        author = Author(open(folder_path + "author.txt").read())
+
+        collaborators_txt = open(folder_path + "collaborators.txt").read().split(", ")
+        collaborators = [Collaborator(collab) for collab in collaborators_txt]
+
+        date = Date(open(folder_path + "date.txt").read())
+        title = Title(open(folder_path + "title.txt").read())
+        subtitle = Subtitle(open(folder_path + "subtitle.txt").read())
+
+        packages_txt = open(folder_path + "packages.txt").read().split(", ")
+        packages = [Package(package) for package in packages_txt]
+
+        section_1_title = Title(open(folder_path + "section_1_title.txt").read())
+        section_1_content = Content(open(folder_path + "section_1_content.txt").read())
+        section_1 = Section(section_1_title, section_1_content)
+
+        self.assertEqual(
+            Memorandum(author=author, collaborators=collaborators, date=date,
+                       title=title, subtitle=subtitle, packages=packages, sections=[section_1]),
+            parsed_memorandum
+        )
+
+    ## Test a memorandum with two sections, all optional fields filled, and only one collaborator
+    def test_that_memorandum_can_have_one_collaborator(self):
+        folder_path = base_path + "/test_text_files/memorandums/full_memorandum_5/"
+        input_string = open(folder_path + "full_memorandum_5.txt").read()
+        parsed_memorandum = self.parser.parse_document(input_string)
+
+        author = Author(open(folder_path + "author.txt").read())
+
+        collaborators_txt = open(folder_path + "collaborators.txt").read().split(", ")
+        collaborators = [Collaborator(collab) for collab in collaborators_txt]
+
+        date = Date(open(folder_path + "date.txt").read())
+        title = Title(open(folder_path + "title.txt").read())
+        subtitle = Subtitle(open(folder_path + "subtitle.txt").read())
+
+        packages_txt = open(folder_path + "packages.txt").read().split(", ")
+        packages = [Package(package) for package in packages_txt]
+
+        section_1_title = Title(open(folder_path + "section_1_title.txt").read())
+        section_1_content = Content(open(folder_path + "section_1_content.txt").read())
+        section_1 = Section(section_1_title, section_1_content)
+
+        self.assertEqual(
+            Memorandum(author=author, collaborators=collaborators, date=date,
+                       title=title, subtitle=subtitle, packages=packages, sections=[section_1]),
+            parsed_memorandum
+        )
+
+    ## Test a memorandum with two sections, all optional fields filled, and multiple collaborators
+    def test_that_memorandum_can_have_multiple_collaborators(self):
+        folder_path = base_path + "/test_text_files/memorandums/full_memorandum_4/"
+        input_string = open(folder_path + "full_memorandum_4.txt").read()
+        parsed_memorandum = self.parser.parse_document(input_string)
+
+        author = Author(open(folder_path + "author.txt").read())
+
+        collaborators_txt = open(folder_path + "collaborators.txt").read().split(", ")
+        collaborators = [Collaborator(collab) for collab in collaborators_txt]
+
+        date = Date(open(folder_path + "date.txt").read())
+        title = Title(open(folder_path + "title.txt").read())
+        subtitle = Subtitle(open(folder_path + "subtitle.txt").read())
+
+        packages_txt = open(folder_path + "packages.txt").read().split(", ")
+        packages = [Package(package) for package in packages_txt]
+
+        section_1_title = Title(open(folder_path + "section_1_title.txt").read())
+        section_1_content = Content(open(folder_path + "section_1_content.txt").read())
+        section_1 = Section(section_1_title, section_1_content)
+
+        section_2_title = Title(open(folder_path + "section_2_title.txt").read())
+        section_2_content = Content(open(folder_path + "section_2_content.txt").read())
+        section_2 = Section(section_2_title, section_2_content)
+
+        self.assertEqual(
+            Memorandum(author=author, collaborators=collaborators, date=date,
+                       title=title, subtitle=subtitle, packages=packages, sections=[section_1, section_2]),
+            parsed_memorandum
+        )
 
     ## Test a memorandum with two sections and no collaborators
     def test_that_memorandum_collaborators_are_optional(self):

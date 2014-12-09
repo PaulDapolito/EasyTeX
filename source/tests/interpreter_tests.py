@@ -74,8 +74,22 @@ class EasyTeXParserTests(unittest.TestCase):
 
         self.assertEqual(interpreted_problem_set, expected_tex_file)
 
-    ## Test a problem set can include packages
-    def test_that_problem_set_can_include_packages(self):
+    ## Test a problem set can include one package
+    def test_that_problem_set_can_include_one_packages(self):
+        rel_path_to_txt_file = "test_text_files/problem_sets/full_problem_set_4/full_problem_set_4.txt"
+        full_path_txt_file = os.path.join(base_path, rel_path_to_txt_file)
+        input_string = open(full_path_txt_file).read()
+        parsed_problem_set = self.parser.parse_document(input_string)
+
+        interpreted_problem_set = self.interpreter.interpret_document(parsed_problem_set)
+        rel_path_to_tex_file = "test_text_files/problem_sets/full_problem_set_4/full_problem_set_4.tex"
+        full_path_tex_file = os.path.join(base_path, rel_path_to_tex_file)
+        expected_tex_file = open(full_path_tex_file).read()
+
+        self.assertEqual(interpreted_problem_set, expected_tex_file)
+
+    ## Test that a problem set can include multiple packages
+    def test_that_problem_set_can_include_multiple_packages(self):
         rel_path_to_txt_file = "test_text_files/problem_sets/full_problem_set_5/full_problem_set_5.txt"
         full_path_txt_file = os.path.join(base_path, rel_path_to_txt_file)
         input_string = open(full_path_txt_file).read()
@@ -101,6 +115,32 @@ class EasyTeXParserTests(unittest.TestCase):
         expected_tex_file = open(full_path_tex_file).read()
 
         self.assertEqual(interpreted_problem_set, expected_tex_file)
+
+    ## Test a problem set with two problems and one collaborator
+    def test_that_problem_set_can_have_one_collaborator(self):
+        rel_path_to_txt_file = "test_text_files/problem_sets/full_problem_set_5/full_problem_set_5.txt"
+        full_path_txt_file = os.path.join(base_path, rel_path_to_txt_file)
+        input_string = open(full_path_txt_file).read()
+        parsed_problem_set = self.parser.parse_document(input_string)
+
+        interpreted_problem_set = self.interpreter.interpret_document(parsed_problem_set)
+        rel_path_to_tex_file = "test_text_files/problem_sets/full_problem_set_5/full_problem_set_5.tex"
+        full_path_tex_file = os.path.join(base_path, rel_path_to_tex_file)
+        expected_tex_file = open(full_path_tex_file).read()
+
+        self.assertEqual(interpreted_problem_set, expected_tex_file)
+
+    ## Test a problem set with two problems and multiple collaborators
+    def test_that_problem_set_can_have_multiple_collaborators(self):
+        rel_path_to_txt_file = "test_text_files/problem_sets/full_problem_set_4/full_problem_set_4.txt"
+        full_path_txt_file = os.path.join(base_path, rel_path_to_txt_file)
+        input_string = open(full_path_txt_file).read()
+        parsed_problem_set = self.parser.parse_document(input_string)
+
+        interpreted_problem_set = self.interpreter.interpret_document(parsed_problem_set)
+        rel_path_to_tex_file = "test_text_files/problem_sets/full_problem_set_4/full_problem_set_4.tex"
+        full_path_tex_file = os.path.join(base_path, rel_path_to_tex_file)
+        expected_tex_file = open(full_path_tex_file).read()
 
     ## Test a problem set with two problems and no due date
     def test_that_problem_set_due_date_is_optional(self):
@@ -258,8 +298,48 @@ class EasyTeXParserTests(unittest.TestCase):
 
         self.assertEqual(interpreted_memorandum, expected_tex_file)
 
-    ## Test that a memorandum can include packages
-    def test_that_a_memorandum_can_include_packages(self):
+    ## Test that a memorandum can include one package
+    def test_that_memorandum_can_include_one_package(self):
+        rel_path_to_txt_file = "test_text_files/memorandums/full_memorandum_4/full_memorandum_4.txt"
+        full_path_txt_file = os.path.join(base_path, rel_path_to_txt_file)
+        input_string = open(full_path_txt_file).read()
+        parsed_memorandum = self.parser.parse_document(input_string)
+
+        interpreted_memorandum = self.interpreter.interpret_document(parsed_memorandum)
+        rel_path_to_tex_file = "test_text_files/memorandums/full_memorandum_4/full_memorandum_4.tex"
+        full_path_tex_file = os.path.join(base_path, rel_path_to_tex_file)
+        expected_tex_file = open(full_path_tex_file).read()
+
+        self.assertEqual(interpreted_memorandum, expected_tex_file)
+
+    def test_that_memorandum_can_include_multiple_packages(self):
+        rel_path_to_txt_file = "test_text_files/memorandums/full_memorandum_5/full_memorandum_5.txt"
+        full_path_txt_file = os.path.join(base_path, rel_path_to_txt_file)
+        input_string = open(full_path_txt_file).read()
+        parsed_memorandum = self.parser.parse_document(input_string)
+
+        interpreted_memorandum = self.interpreter.interpret_document(parsed_memorandum)
+        rel_path_to_tex_file = "test_text_files/memorandums/full_memorandum_5/full_memorandum_5.tex"
+        full_path_tex_file = os.path.join(base_path, rel_path_to_tex_file)
+        expected_tex_file = open(full_path_tex_file).read()
+
+        self.assertEqual(interpreted_memorandum, expected_tex_file)
+
+    ## Test a memorandum with two sections, all optional fields filled including only one collaborator
+    def test_that_memorandum_can_have_one_collaborator(self):
+        rel_path_to_txt_file = "test_text_files/memorandums/full_memorandum_5/full_memorandum_5.txt"
+        full_path_txt_file = os.path.join(base_path, rel_path_to_txt_file)
+        input_string = open(full_path_txt_file).read()
+        parsed_memorandum = self.parser.parse_document(input_string)
+
+        interpreted_memorandum = self.interpreter.interpret_document(parsed_memorandum)
+        rel_path_to_tex_file = "test_text_files/memorandums/full_memorandum_5/full_memorandum_5.tex"
+        full_path_tex_file = os.path.join(base_path, rel_path_to_tex_file)
+        expected_tex_file = open(full_path_tex_file).read()
+
+        self.assertEqual(interpreted_memorandum, expected_tex_file)
+
+    def test_that_memorandum_can_have_multiple_collaborators(self):
         rel_path_to_txt_file = "test_text_files/memorandums/full_memorandum_4/full_memorandum_4.txt"
         full_path_txt_file = os.path.join(base_path, rel_path_to_txt_file)
         input_string = open(full_path_txt_file).read()

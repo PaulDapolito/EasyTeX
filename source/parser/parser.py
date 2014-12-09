@@ -44,17 +44,13 @@ author_expr = Suppress(White(tab) + Literal("author:") + White(space)) + restOfL
 author = author_expr.setResultsName("author")
 
 ## Collaborators [Optional]
-collaborator = Word(alphas)
-collaborators_group = Group(delimitedList(collaborator))
 collaborators_ignored = Suppress(White(tab) + Literal("collaborators:") + White(space))
-collaborators_expr = collaborators_ignored + collaborators_group
+collaborators_expr = collaborators_ignored + restOfLine
 optional_collaborators = Optional(collaborators_expr.setResultsName("collaborators"), default=list())
 
 ## Packages [Optional]
-package = Word(alphas)
-packages_group = Group(delimitedList(package))
 packages_ignored = Suppress(White(tab) + Literal("packages:") + White(space))
-packages_expr = packages_ignored + packages_group
+packages_expr = packages_ignored + restOfLine
 optional_packages = Optional(packages_expr.setResultsName("packages"), default=list())
 
 ## Date [Optional]
@@ -94,13 +90,13 @@ optional_label = Optional(label_expr.setResultsName("label"), default=list())
 
 ## Statement
 statement_ignored = Suppress(White(2*tab) + Literal("statement:") + White(newline))
-statement_lines = Group(OneOrMore(Regex(ur'\s\s\s\s\s\s\s\s\s\s\s\s(.+)').leaveWhitespace() + Suppress(White(newline))))
+statement_lines = Group(OneOrMore(Regex(ur'(            .+)').leaveWhitespace() + Suppress(White(newline))))
 statement_expr = statement_ignored + statement_lines
 statement = statement_expr.setResultsName("statement")
 
 ## Solution
 solution_ignored = Suppress(White(2*tab) + Literal("solution:") + White(newline))
-solution_lines = Group(OneOrMore(Regex(ur'\s\s\s\s\s\s\s\s\s\s\s\s(.+)').leaveWhitespace() + Suppress(White(newline))))
+solution_lines = Group(OneOrMore(Regex(ur'(            .+)').leaveWhitespace() + Suppress(White(newline))))
 solution_expr = solution_ignored + solution_lines
 solution = solution_expr.setResultsName("solution")
 
@@ -112,7 +108,7 @@ problems = problems_expr.setResultsName("problems")
 
 ## Content
 content_ignored = Suppress(White(2*tab) + Literal("content:") + White(newline))
-content_lines = Group(OneOrMore(Regex(ur'\s\s\s\s\s\s\s\s\s\s\s\s(.+)').leaveWhitespace() + Suppress(White(newline))))
+content_lines = Group(OneOrMore(Regex(ur'(            .+)').leaveWhitespace() + Suppress(White(newline))))
 content_expr = content_ignored + content_lines
 content = content_expr.setResultsName("content")
 
@@ -152,111 +148,129 @@ class EasyTeXParser(object):
             raise ParseTextError("Error parsing text: '{}'".format(input_string))
 
     @staticmethod
-    def parse_problem_set(parsed_block):
-        # Check for author
-        author = Author(parsed_block["author"][0])
+    def parse_author(parsed_block):
+        return Author(parsed_block["author"][0])
 
-        # Check for collaborators
+    @staticmethod
+    def parse_collaborators(parsed_block):
         if parsed_block["collaborators"]:
-            collaborators = [Collaborator(collab) for collab in parsed_block["collaborators"][0]]
+            # Split on commas
+            collaborators_split = parsed_block["collaborators"][0].split(", ")
+            return [Collaborator(collab) for collab in collaborators_split]
         else:
-            collaborators = None
+            return None
 
-        # Check for packages
+    @staticmethod
+    def parse_packages(parsed_block):
         if parsed_block["packages"]:
-            packages = [Package(package) for package in parsed_block["packages"][0]]
+            # Split on commas
+            packages_split = parsed_block["packages"][0].split(", ")
+            return [Package(package) for package in packages_split]
         else:
-            packages = None
+            return None
 
-        # Check for due date
+    @staticmethod
+    def parse_due_date(parsed_block):
         if parsed_block["due_date"]:
-            due_date = DueDate(parsed_block["due_date"][0])
+            return DueDate(parsed_block["due_date"][0])
         else:
-            due_date = None
+            return None
 
-        # Check for title
+    @staticmethod
+    def parse_date(parsed_block):
+        if parsed_block["date"]:
+            return Date(parsed_block["date"][0])
+        else:
+            return None
+
+    @staticmethod
+    def parse_title(parsed_block):
         if parsed_block["title"]:
-            title = Title(parsed_block["title"][0])
+            return Title(parsed_block["title"][0])
         else:
-            title = None
+            return None
 
-        # Check for course
+    @staticmethod
+    def parse_subtitle(parsed_block):
+        if parsed_block["subtitle"]:
+            return Subtitle(parsed_block["subtitle"][0])
+        else:
+            return None
+
+    @staticmethod
+    def parse_course(parsed_block):
         if parsed_block["course"]:
-            course = Course(parsed_block["course"][0])
+            return Course(parsed_block["course"][0])
         else:
-            course = None
+            return None
 
-        # Check for school
+    @staticmethod
+    def parse_school(parsed_block):
         if parsed_block["school"]:
-            school = School(parsed_block["school"][0])
+            return School(parsed_block["school"][0])
         else:
-            school = None
+            return None
+
+    @staticmethod
+    def parse_problem(problem):
+        # Check for label
+        if problem["label"]:
+            label = Label(problem["label"][0])
+        else:
+            label = None
+
+        # Strip leftmost whitespace from every line of statement and solution
+        statement_stripped = [line.lstrip() for line in problem["statement"][0]]
+        statement_txt = newline.join(statement_stripped)
+        statement = Statement(statement_txt)
+
+        solution_stripped = [line.lstrip() for line in problem["solution"][0]]
+        solution_txt = newline.join(solution_stripped) + "\n"
+        solution = Solution(solution_txt)
+
+        return Problem(label, statement, solution)
+
+    @staticmethod
+    def parse_section(section):
+        title = Title(section["title"][0])
+
+        # Strip leftmost whitespace from every line of content
+        content_stripped = [line.lstrip() for line in section["content"][0]]
+        content_txt = newline.join(content_stripped)
+        content = Content(content_txt)
+
+        return Section(title, content)
+
+    def parse_problem_set(self, parsed_block):
+        author = self.parse_author(parsed_block)
+        collaborators = self.parse_collaborators(parsed_block)
+        packages = self.parse_packages(parsed_block)
+        due_date = self.parse_due_date(parsed_block)
+        title = self.parse_title(parsed_block)
+        course = self.parse_course(parsed_block)
+        school = self.parse_school(parsed_block)
 
         # Accumulate problems
         problems = list()
         for problem in parsed_block["problems"]:
-            # Check for label
-            if problem["label"]:
-                label = Label(problem["label"][0])
-            else:
-                label = None
-
-            # Strip leftmost whitespace from every line of statement and solution
-            statement_stripped = [line.lstrip() for line in problem["statement"][0]]
-            statement_txt = newline.join(statement_stripped)
-            statement = Statement(statement_txt)
-
-            solution_stripped = [line.lstrip() for line in problem["solution"][0]]
-            solution_txt = newline.join(solution_stripped) + "\n"
-            solution = Solution(solution_txt)
-
-            problems.append(Problem(label, statement, solution))
+            problems.append(self.parse_problem(problem))
 
         # Create and return problem set
         problem_set = ProblemSet(author, collaborators, due_date, title, course, school, packages, problems)
         return problem_set
 
-    @staticmethod
-    def parse_memorandum(parsed_block):
-        author = Author(parsed_block["author"][0])
-
-        # Check for collaborators
-        if parsed_block["collaborators"]:
-            collaborators = [Collaborator(collab) for collab in parsed_block["collaborators"][0]]
-        else:
-            collaborators = None
-
-       # Check for packages
-        if parsed_block["packages"]:
-            packages = [Package(package) for package in parsed_block["packages"][0]]
-        else:
-            packages = None
-
-        # Check for date
-        if parsed_block["date"]:
-            date = Date(parsed_block["date"][0])
-        else:
-            date = None
-
-        title = Title(parsed_block["title"][0])
-
-        # Check for subtitle
-        if parsed_block["subtitle"]:
-            subtitle = Subtitle(parsed_block["subtitle"][0])
-        else:
-            subtitle = None
+    def parse_memorandum(self, parsed_block):
+        author = self.parse_author(parsed_block)
+        collaborators = self.parse_collaborators(parsed_block)
+        packages = self.parse_packages(parsed_block)
+        date = self.parse_date(parsed_block)
+        title = self.parse_title(parsed_block)
+        subtitle = self.parse_subtitle(parsed_block)
 
         # Accumulate sections
         sections = list()
         for section in parsed_block["sections"]:
-            section_title = Title(section["title"][0])
-
-            # Strip leftmost whitespace from every line of content
-            content_stripped = [line.lstrip() for line in section["content"][0]]
-            content_txt = newline.join(content_stripped)
-            content = Content(content_txt)
-
-            sections.append(Section(section_title, content))
+            sections.append(self.parse_section(section))
 
         # Create and return memorandum
         memorandum = Memorandum(author, collaborators, date, title, subtitle, packages, sections)

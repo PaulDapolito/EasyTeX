@@ -31,6 +31,10 @@
     <td class="tg-031e">school</td>
     <td class="tg-031e">Optional</td>
   </tr>
+  <tr>
+    <td class="tg-031e">packages</td>
+    <td class="tg-031e">Optional</td>
+  </tr>
 </table>
 
 ### Problems
@@ -63,6 +67,7 @@ Note: all fields are left empty to illuminate EasyTeX's tabbed-delineation!
 		title:
 		course:
 		school:
+		packages:
 		
 		problem:
 			label:
@@ -88,6 +93,7 @@ Note: all fields are left empty to illuminate EasyTeX's tabbed-delineation!
 	    title: Basic Problem Set
 	    course: Programming Languages
 	    school: Harvey Mudd College
+	    packages: enumerate, graphicx
 
 	    problem:
 	        label: 1

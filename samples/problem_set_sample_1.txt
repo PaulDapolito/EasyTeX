@@ -5,6 +5,7 @@ problem_set:
     title: Basic Problem Set
     course: Programming Languages
     school: Harvey Mudd College
+    packages: enumerate, graphicx
 
     problem:
         label: 1
