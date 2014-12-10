@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fileTypes</key>
+	<array>
+		<string>etex</string>
+		<string>txt</string>
+	</array>
+	<key>name</key>
+	<string>EasyTeX Grammar</string>
+	<key>patterns</key>
+	<array>
+		<dict>
+			<key>match</key>
+			<string>(problem_set\:|memorandum\:)</string>
+			<key>name</key>
+			<string>keyword.control.preamble.etex</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(    author\:)</string>
+			<key>name</key>
+			<string>support.class.etex</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(    collaborators\:)</string>
+			<key>name</key>
+			<string>support.class.etex</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(    date\:|    due_date\:)</string>
+			<key>name</key>
+			<string>support.class.etex</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(    title\:|    subtitle\:)</string>
+			<key>name</key>
+			<string>support.class.etex</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(    course\:|    school\:)</string>
+			<key>name</key>
+			<string>support.class.etex</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(    packages\:)</string>
+			<key>name</key>
+			<string>support.class.etex</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(    section\:|    problem\:)</string>
+			<key>name</key>
+			<string>variable.parameter.function.etex</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(        label\:)</string>
+			<key>name</key>
+			<string>constant.character.newline.etex</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(        title\:)</string>
+			<key>name</key>
+			<string>constant.character.newline.etex</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(        content\:)</string>
+			<key>name</key>
+			<string>constant.character.newline.etex</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(        statement\:|        solution\:)</string>
+			<key>name</key>
+			<string>constant.character.newline.etex</string>
+		</dict>
+	</array>
+	<key>scopeName</key>
+	<string>source.etex</string>
+	<key>uuid</key>
+	<string>9AB4D095-039D-4CD0-81BC-AC8EA6DC2FAA</string>
+</dict>
+</plist>
