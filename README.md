@@ -17,7 +17,7 @@ EasyTeX relies on the `pdflatex` command-line tool in order to create PDF docume
 
 Use of EasyTeX relies on [Python](https://www.python.org/) 2.7.x. If your machine does not already have Python installed, you can [download it](https://www.python.org/downloads/) from the web.
 
-Note: Your Python v2.7.x interpreter must be accessible via `/usr/bin/python2.7` in order to assure that other version of the Python interpreter are not invoked. This path is the default installation location for most operating system configurations.
+Note: Your Python v2.7.x interpreter must be accessible via `/usr/bin/python` in order to assure that other version of the Python interpreter are not invoked. This path is the default installation location for most operating system configurations.
 
 ### pip
 
