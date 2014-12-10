@@ -11,7 +11,7 @@ echo "Installing virtualenv"
 pip install virtualenv
 
 echo "Creating venv"
-virtualenv /usr/local/EasyTeX/venv
+virtualenv --python=/usr/bin/python2.7 /usr/local/EasyTeX/venv
 
 # Activate virtual environment and install necessary packages
 source /usr/local/EasyTeX/venv/bin/activate
