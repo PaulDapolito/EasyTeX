@@ -17,6 +17,8 @@ When a user creates a text document that meets EasyTeX's specification, they can
     <img src="./images/computational_model.png"/> <br />
     EasyTeX Computational Model
 </div>
+&nbsp;
+&nbsp;
 
 From EasyTeX's computational model above, we can see that EasyTeX's parser takes a user's input file and creates and internal representation of Python objects. This internal representation takes the form of a hierarchy of objects. At the highest level is an EasyTeX [Document](https://github.com/PaulDapolito/EasyTeX/blob/master/source/ir/document.py), which has data fields `problem_set` and `memorandum`. These data members are meant to be populated with objects from EasyTeX's [ProblemSet](https://github.com/PaulDapolito/EasyTeX/blob/master/source/ir/problem_sets/problem_set.py) and [Memorandum](https://github.com/PaulDapolito/EasyTeX/blob/master/source/ir/memorandums/memorandum.py) classes, respectively. As one can see in the source code for an EasyTeX Document, a user may specify a document that is either a problem set or a memorandum, but not both. 
 
@@ -26,6 +28,8 @@ An EasyTeX ProblemSet consists of an [Author](https://github.com/PaulDapolito/Ea
     <img src="./images/problem_set.png"/> <br />
     EasyTeX ProblemSet (* denotes optional field)
 </div>
+&nbsp;
+&nbsp;
 
 From this schema, an EasyTeX ProblemSet takes on the following textual form (with all fields left empty and all optional fields included):
 
@@ -56,6 +60,8 @@ An EasyTeX [Memorandum](https://github.com/PaulDapolito/EasyTeX/blob/master/sour
     <img src="./images/memorandum.png"/> <br />
     EasyTeX Memorandum (* denotes optional field)
 </div>
+&nbsp;
+&nbsp;
 
 From this schema, an EasyTeX Memorandum takes on the following textual form (with all fields left empty and all optional fields included):
 
@@ -81,6 +87,8 @@ EasyTeX users can create a `ProblemSet` or `Memorandum` by creating a text file 
 	<img src="./images/control_flow.png"/> <br />
     EasyTeX Control Flow
 </div>
+&nbsp;
+&nbsp;
 
 This control flow, from start to finish, is invoked by the user on the command line with an input file:
 	
@@ -92,6 +100,8 @@ In order to use EasyTeX, a user must provide an input text file. This file does 
     <img src="./images/input_and_output.png"/> <br />
     EasyTeX Input and Output
 </div>
+&nbsp;
+&nbsp;
 
 There are several cases in which an EasyTeX program could go wrong. Problems with the EasyTeX tool would be encountered when a user inputs a text file that does not meet EasyTeX's specification for valid documents. This might mean that the user omitted a required field or left a field blank, or that the user did not incorporate proper tabbed-delineation as specified by EasyTeX's grammar. Fortunately for the user, however, is that EasyTeX has robust error-checking and outputting functionality. Each class of EasyTeX's internal representation has its own associated error class, meaning that invalid input which is parsed and represented internally produces an error message that tells the user what part of their input was invalid and why it brought about the failure to instantiate EasyTeX's internal representation. EasyTeX's parser also helps users identify and rectify errors in an efficient manner. If, at any point, the EasyTeX parser encounters text that it does not expect and cannot parse, the parser outputs the exact line and column number of the invalid input and what it expected to encounter at that position in the user's document. These error-checking methods provide a standard of exactness when users provide invalid input to EasyTeX. 
 
