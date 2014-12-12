@@ -233,7 +233,7 @@ Suppose we wish to create a more lengthy and advanced problem set excluding most
 &nbsp;
 &nbsp;
 
-Invoking EasyTeX using the [easytex.sh](https://github.com/PaulDapolito/EasyTeX/blob/master/easytex.sh) script yields the following LaTeX and PDF files, respectively:
+Invoking EasyTeX using the [easytex.sh](https://github.com/PaulDapolito/EasyTeX/blob/master/easytex.sh) (executing `./easytex.sh ~/Desktop/problem_set_2.txt` from the project's root directory) script yields the following LaTeX and PDF files, respectively:
 
 <div style="width: 700px" align="center">
     <img src="./images/tutorial_5.png"/> <br />
