@@ -216,7 +216,7 @@ Two of these files are of much significance. First is the generated LaTeX file, 
 Second is the generated PDF, `problem_set_1.pdf` representing the typeset version of our EasyTeX problem set:
 
 <div style="width: 700px" align="center">
-    <img src="./images/tutorial_3.png" style="border:1px solid black"/> <br />
+    <img src="./images/tutorial_3.png" border="1"/> <br />
     <code>problem_set_1.pdf</code>, EasyTeX-generated PDF
 </div>
 &nbsp;
@@ -243,14 +243,14 @@ Invoking EasyTeX using the [easytex.sh](https://github.com/PaulDapolito/EasyTeX/
 &nbsp;
 
 <div style="width: 700px" align="center">
-    <img src="./images/tutorial_6.png" style="border:1px solid black"/> <br />
+    <img src="./images/tutorial_6.png" border="1"/> <br />
     <code>problem_set_2.pdf</code>, EasyTeX-generated PDF Page 1
 </div>
 &nbsp;
 &nbsp;
 
 <div style="width: 700px" align="center">
-    <img src="./images/tutorial_7.png" style="border:1px solid black"/> <br />
+    <img src="./images/tutorial_7.png" border="1"/> <br />
     <code>problem_set_2.pdf</code>, EasyTeX-generated PDF Page 2
 </div>
 &nbsp;
@@ -346,7 +346,7 @@ Two of these files are of much significance. First is the generated LaTeX file, 
 Second is the generated PDF, `memorandum_1.pdf` representing the typeset version of our EasyTeX memorandum:
 
 <div style="width: 700px" align="center">
-    <img src="./images/tutorial_10.png" style="border:1px solid black"/> <br />
+    <img src="./images/tutorial_10.png" border="1"/> <br />
     <code>memorandum_1.pdf</code>, EasyTeX-generated PDF
 </div>
 &nbsp;
@@ -373,7 +373,7 @@ Invoking EasyTeX using the [easytex.sh](https://github.com/PaulDapolito/EasyTeX/
 &nbsp;
 
 <div style="width: 700px" align="center">
-    <img src="./images/tutorial_13.png" style="border:1px solid black"/> <br />
+    <img src="./images/tutorial_13.png" border="1"/> <br />
     <code>memorandum_2.pdf</code>, EasyTeX-generated PDF
 </div>
 &nbsp;
