@@ -58,12 +58,7 @@ I have already chosen a host language (Python) and target language (LaTeX) for m
   </tr>
   <tr>
     <td class="tg-031e">12/7 - 12/12</td>
-    <td class="tg-031e">1) Complete Final Write-up<br>2) Add package specification to language<br>3) Look into implementing syntax highlighting<br>3) Look into implementing a web interface using Ace and Tornado</td>
-    <td class="tg-031e">- Final Write-up<br>- Ability to specify LaTeX packages in documents</td>
+    <td class="tg-031e">1) Complete Final Write-up<br>2) Add package specification to language<br>3) Look into implementing syntax highlighting<br>4) Look into implementing a web interface using Ace and Tornado<br>5) Investigate parser bug regarding comma-separated lists</td>
+    <td class="tg-031e">- Final Write-up<br>- Ability to specify LaTeX packages in documents<br>- Syntax highlighting for Sublime Text<br>- Bugfixes in parser for comma-separated lists (like <code>collaborators</code> and <code>packages</code>)</td>
   </tr>
 </table>
-
-
-## Teamwork plan 
-
-I will be working alone, so this section of the document is not applicable.
