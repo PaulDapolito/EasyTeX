@@ -7,7 +7,9 @@ EasyTeX serves as a domain-specific language to allow for the creation of techni
 
 ## Language Design
 
-EasyTeX is designed to allow users to express their technical work using their favorite text editor. In developing EasyTeX, I have created sample programs in my favorite text editor, [Sublime Text 2](http://www.sublimetext.com/2). This is simply my own preferred environment for typesetting documents, and EasyTeX users are not restricted to any one editor or environment, as the language's transcompiler will handle any file from any editor, so long as the file consists of text content which matches EasyTeX's [grammar](https://github.com/PaulDapolito/EasyTeX/blob/master/documents/grammar.md) and specifications. If a user creates an EasyTeX document and saves it with a `.txt` extension (although no particular file extension is required to use EasyTeX), they can invoke the EasyTeX build process by passing their file to EasyTeX's command-line interface. 
+EasyTeX is designed to allow users to express their technical work using their favorite text editor. In developing EasyTeX, I have created sample programs in my favorite text editor, [Sublime Text 2](http://www.sublimetext.com/2). This is simply my own preferred environment for typesetting documents, and EasyTeX users are not restricted to any one editor or environment, as the language's transcompiler will handle any file from any editor, so long as the file consists of text content which matches EasyTeX's [grammar](https://github.com/PaulDapolito/EasyTeX/blob/master/documents/grammar.md) and specifications:
+
+If a user creates an EasyTeX document that meets these criteria and saves it with a `.txt` extension (although no particular file extension is required to use EasyTeX), they can invoke the EasyTeX build process by passing their file to EasyTeX's command-line interface. 
 
 EasyTeX's syntax is designed to be concise and intuitive. The language does not incorporate the notion of opening and closing tags, and instead relies on tabbed-delineation to differentiate between different components of EasyTeX documents. This feature grants EasyTeX users a less verbose syntax than a more general purpose typesetting language, like LaTeX, and encourages readability in users' documents by way of requiring whitespace separation between components. The language's syntax is also meant align closely with a user's expectation as to what should be written. For example, if a user wishes to add certain LaTeX packages to their EasyTeX document in the interest of incorporating more advanced formatting or styling, they can do so by adding some number of comma-separated package names after a `packages:` specifier. This syntax design adheres closely to the English language and will allow users to add and modify components of their documents without having to repeatedly refer to the language's documentation.
 
@@ -109,4 +111,153 @@ While there are not many domain-specific languages on the Internet that target L
 
 Eventually, I would like to emulate the environment support that surrounds LaTeX. EasyTeX, however, will differ from LaTeX in its formatting standards of cleanliness and simplicity. LaTeX documents often contain a plethora of boilerplate code to specify different facets of a document's format and spacing. I would like to eventually expand EasyTeX to allow users to choose the specific font, margin size, line spacing, and other associated formatting specifications for the documents in a syntactically charming way. However, in the interest of reducing EasyTeX's clunkiness and allowing users, like students at Harvey Mudd, to typeset their work without paying much attention to the tedious setup needed to typeset with LaTeX, EasyTeX currently supports only the explicit specification of LaTeX packages to be included in a user's document with other formatting options, like font style and margin spacing, built-in to the language. 
 
-As was previously mentioned, EasyTeX enforces a whitespace standard of tabbed-delineation to specify the start and end of various components of a user's document. Because LaTeX does not enforce any whitespace standards, the language requires the use of verbose opening and closing tags for all elements of a document. I feel that EasyTeX's enforcement of tabbed-delineation makes EasyTeX documents both more readable and more shareable than LaTeX documents, as EasyTEX users can traverse and identify components of EasyTeX documents more efficiently than they could do so with LaTeX documents. EasyTeX is also very different from LaTeX in terms of the DSL's range of expression. A user can typeset almost any type of document using LaTeX, whether it be a problem set, memorandum, novel, essay, textbook, newspaper, or journal entry. EasyTeX, however, is specific to the domain of typesetting technical problem sets and memorandums. I would certainly like to expand EasyTeX later-on to encompass a wider range of expression, but I feel that focusing on problem sets and memorandums at first has allowed me to produce a high-quality product that is very useful for typesetting these two types of documents. 
+As was previously mentioned, EasyTeX enforces a whitespace standard of tabbed-delineation to specify the start and end of various components of a user's document. Because LaTeX does not enforce any whitespace standards, the language requires the use of verbose opening and closing tags for all elements of a document. I feel that EasyTeX's enforcement of tabbed-delineation makes EasyTeX documents both more readable and more shareable than LaTeX documents, as EasyTeX users can traverse and identify components of EasyTeX documents more efficiently than they could do so with LaTeX documents. EasyTeX is also very different from LaTeX in terms of the DSL's range of expression. A user can typeset almost any type of document using LaTeX, whether it be a problem set, memorandum, novel, essay, textbook, newspaper, or journal entry. EasyTeX, however, is specific to the domain of typesetting technical problem sets and memorandums. I would certainly like to expand EasyTeX later-on to encompass a wider range of expression, but I feel that focusing on problem sets and memorandums at first has allowed me to produce a high-quality product that is very useful for typesetting these two types of documents. 
+
+## Tutorials by Example
+
+### Problem Sets
+Suppose we wanted to typeset a problem set using EasyTeX (assuming all installation and setup for the language as per the project's [README](https://github.com/PaulDapolito/EasyTeX/blob/master/README.md) has been completed). We know, from the specification of a [problem set](https://github.com/PaulDapolito/EasyTeX/blob/master/documents/problem_set.md), the following structure must be maintained to typeset our work:
+
+####Headers
+<table class="tg">
+  <tr>
+    <th class="tg-e3zv">Field Name</th>
+    <th class="tg-e3zv">Required/Optional</th>
+  </tr>
+  <tr>
+    <td class="tg-031e">author</td>
+    <td class="tg-031e">Required</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">collaborators</td>
+    <td class="tg-031e">Optional</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">due_date</td>
+    <td class="tg-031e">Optional</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">title</td>
+    <td class="tg-031e">Optional</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">course</td>
+    <td class="tg-031e">Optional</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">school</td>
+    <td class="tg-031e">Optional</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">packages</td>
+    <td class="tg-031e">Optional</td>
+  </tr>
+</table>
+
+#### Problems
+
+<table class="tg">
+  <tr>
+    <th class="tg-e3zv">Field Name</th>
+    <th class="tg-e3zv">Required/Optional</th>
+  </tr>
+  <tr>
+    <td class="tg-031e">label</td>
+    <td class="tg-031e">Optional</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">statement</td>
+    <td class="tg-031e">Required</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">solution</td>
+    <td class="tg-031e">Required</td>
+  </tr>
+</table>
+&nbsp;
+&nbsp;
+
+#### Example 1
+
+From these specifications, let's create a problem set with one problem and all optional fields filled using our favorite text editor, Sublime Text 2 (this file is identical to [samples/problem\_set\_sample\_1.txt](https://github.com/PaulDapolito/EasyTeX/blob/master/samples/problem_set_sample_1.txt)):
+
+<div style="width: 700px" align="center">
+    <img src="./images/tutorial_1.png"/> <br />
+    <code>problem_set_1.txt</code>
+</div>
+&nbsp;
+&nbsp;
+
+Now, if we save this file on our Desktop as `problem_set_1.txt`, we can invoke EasyTeX's parser and interpreter on the file by entering EasyTeX's root directory and executing the following command on the command line:
+
+	./easytex.sh ~/Desktop/problem_set_1.txt
+	
+The command-line interface will print the following two lines to indicate that EasyTeX's computation has completed without errors:
+
+	Running EasyTeX!
+	EasyTeX completed computation!
+
+Now, if we look in our Desktop folder, we will see the following four new files:
+
+   * `problem_set_1.pdf`: PDF file corresponding to the inputted EasyTeX file
+   * `problem_set_1.tex`: LaTeX file corresponding to the inputted EasyTeX file. This is the `.tex` file that is used to produce the `.pdf` file.
+   * `problem_set_1.log`: Log file from the creation of the `.pdf` file.
+   * `problem_set_1.aux`: Auxiliary file from the creation of the `.pdf` file.
+
+Two of these files are of much significance. First is the generated LaTeX file, `problem_set_1.tex`. This is the underlying file for the PDF that was produced, and the corresponding LaTeX is outputted as human-readable and nicely formatted code:
+
+<div style="width: 700px" align="center">
+    <img src="./images/tutorial_2.png"/> <br />
+    <code>problem_set_1.tex</code>
+</div>
+&nbsp;
+&nbsp;
+
+Second is the generated PDF, `problem_set_1.pdf` representing the typeset version of our EasyTeX problem set:
+
+<div style="width: 700px" align="center">
+    <img src="./images/tutorial_3.png" style="border:1px solid black"/> <br />
+    <code>problem_set_1.pdf</code>
+</div>
+&nbsp;
+&nbsp;
+
+#### Example 2
+
+Suppose we wish to create a more lengthy and advanced problem set excluding most of the optional fields. Let's create a problem set with two problems and all optional fields excluded besides the `collaborators` field (this file is identical to [samples/problem\_set\_sample\_2.txt](https://github.com/PaulDapolito/EasyTeX/blob/master/samples/problem_set_sample_2.txt)):
+
+<div style="width: 700px" align="center">
+    <img src="./images/tutorial_4.png"/> <br />
+    <code>problem_set_2.txt</code>
+</div>
+&nbsp;
+&nbsp;
+
+Invoking EasyTeX using the [easytex.sh](https://github.com/PaulDapolito/EasyTeX/blob/master/easytex.sh) script yields the following LaTeX and PDF files, respectively:
+
+<div style="width: 700px" align="center">
+    <img src="./images/tutorial_5.png"/> <br />
+    <code>problem_set_2.tex</code>
+</div>
+&nbsp;
+&nbsp;
+
+<div style="width: 700px" align="center">
+    <img src="./images/tutorial_6.png" style="border:1px solid black"/> <br />
+    <code>problem_set_2.pdf</code>, Page 1
+</div>
+&nbsp;
+&nbsp;
+
+<div style="width: 700px" align="center">
+    <img src="./images/tutorial_7.png" style="border:1px solid black"/> <br />
+    <code>problem_set_2.pdf</code>, Page 2
+</div>
+&nbsp;
+&nbsp;
+
+
+
+
+
+

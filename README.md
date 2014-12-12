@@ -88,10 +88,10 @@ Now, to create `.pdf` and `.tex` files corresponding to the sample EasyTeX file 
 
 When this process completes, we will see 4 new files in the `samples` directory:
 	
-1. `memorandum_sample_1.pdf`: `.pdf` file corresponding to the inputted EasyTeX file.
-2. `memorandum_sample_1.tex`: `.tex` file corresponding to the inputted EasyTeX file. This is the `.tex` file that is used to produce the `.pdf` file.
-3. `memorandum_sample_1.log`: `.log` file from the creation of the `.pdf` file.
-4. `memorandum_sample_1.aux`: `.aux` file from the creation of the `.pdf` file.
+1. `memorandum_sample_1.pdf`: PDF file corresponding to the inputted EasyTeX file.
+2. `memorandum_sample_1.tex`: LaTeX file corresponding to the inputted EasyTeX file. This is the `.tex` file that is used to produce the `.pdf` file.
+3. `memorandum_sample_1.log`: Log file from the creation of the `.pdf` file.
+4. `memorandum_sample_1.aux`: Auxiliary file from the creation of the `.pdf` file.
 
 For more information on the two particular types of EasyTeX documents, please refer to the pages specific to [problem sets](https://github.com/PaulDapolito/EasyTeX/blob/master/documents/problem_set.md) and [memorandums](https://github.com/PaulDapolito/EasyTeX/blob/master/documents/problem_set.md)!
 
