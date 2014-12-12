@@ -66,7 +66,7 @@ The above command runs EasyTeX's testing suite and creates a web interface revea
 
 EasyTeX includes a shell script to allow you to use the tool for end-to-end PDF generation. EasyTeX currently supports two types of documents: [problem sets](https://github.com/PaulDapolito/EasyTeX/blob/master/documents/problem_set.md) and [memorandums](https://github.com/PaulDapolito/EasyTeX/blob/master/documents/problem_set.md). Some samples of these different EasyTeX documents are included in the project's [samples](https://github.com/PaulDapolito/EasyTeX/tree/master/samples) directory.
 
-If you have a file that meets EasyTeX's specifications (as per the language's [grammar](https://github.com/PaulDapolito/EasyTeX/blob/master/documents/grammar.md)), you can generate a PDF for your file by executing: 
+If you have a file that meets EasyTeX's specifications (as per the language's [grammar](https://github.com/PaulDapolito/EasyTeX/blob/master/documents/grammar.md)), you can generate a PDF for your file by executing the following command from the project's root directory: 
 
 	./easytex.sh file_name 
 	
@@ -82,7 +82,7 @@ Be sure that your system satisfies the dependencies described above, and enter t
 	
 	./bootstrap.sh
 
-Now, to create `.pdf` and `.tex` files corresponding to the sample EasyTeX file [`samples/memorandum_sample_1.txt`](https://github.com/PaulDapolito/EasyTeX/blob/master/samples/memorandum_sample_1.txt), execute the following command:
+Now, to create `.pdf` and `.tex` files corresponding to the sample EasyTeX file [`samples/memorandum_sample_1.txt`](https://github.com/PaulDapolito/EasyTeX/blob/master/samples/memorandum_sample_1.txt), execute the following command in the project's root directory:
 	
 	./easytex.sh samples/memorandum_sample_1.txt
 
@@ -95,5 +95,14 @@ When this process completes, we will see 5 new files in the `samples` directory:
 5. `hmcpset.cls`: LaTeX class file used to format the `.pdf` file.
 
 For more information on the two particular types of EasyTeX documents, please refer to the pages specific to [problem sets](https://github.com/PaulDapolito/EasyTeX/blob/master/documents/problem_set.md) and [memorandums](https://github.com/PaulDapolito/EasyTeX/blob/master/documents/problem_set.md)!
+
+## Syntax Highlighting on Mac OS X
+EasyTeX includes a [grammar file for syntax highlighting](https://github.com/PaulDapolito/EasyTeX/blob/master/source/EasyTeX%20Grammar.tmLanguage). To incorporate this syntax highlighting environment into your [Sublime Text 2](http://www.sublimetext.com/2) editor, create an `EasyTeX` folder in the `~/Library/Application Support/Sublime Text 2/Packages` directory and copy the copy the `EasyTeX Grammar.tmLanguage` file into the created folder. Then, relaunch Sublime and open your EasyTeX files to experience lovely syntax highlighting (may require selecting EasyTeX's syntax highlighting grammar via `View > Syntax > EasyTeX Grammar`):
+
+<div style="width: 700px" align="center">
+    <img src="http://i.imgur.com/sAMy3Jk.png"/> <br />
+</div>
+
+These instructions for enabling EasyTeX syntax highlighting only apply to users running Macintosh OS X. An online editor for EasyTeX is coming soon!
 
 
