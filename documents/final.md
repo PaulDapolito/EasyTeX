@@ -118,7 +118,7 @@ As was previously mentioned, EasyTeX enforces a whitespace standard of tabbed-de
 ### Problem Sets
 Suppose we wanted to typeset a problem set using EasyTeX (assuming all installation and setup for the language as per the project's [README](https://github.com/PaulDapolito/EasyTeX/blob/master/README.md) has been completed). We know, from the specification of a [problem set](https://github.com/PaulDapolito/EasyTeX/blob/master/documents/problem_set.md), the following structure must be maintained to typeset our work:
 
-####Headers
+#### Headers
 <table class="tg">
   <tr>
     <th class="tg-e3zv">Field Name</th>
@@ -177,13 +177,13 @@ Suppose we wanted to typeset a problem set using EasyTeX (assuming all installat
 &nbsp;
 &nbsp;
 
-#### Example 1
+#### Problem Set Example 1
 
-From these specifications, let's create a problem set with one problem and all optional fields filled using our favorite text editor, Sublime Text 2 (this file is identical to [samples/problem\_set\_sample\_1.txt](https://github.com/PaulDapolito/EasyTeX/blob/master/samples/problem_set_sample_1.txt)):
+From these specifications, let's create a problem set with one problem and all optional fields filled using our favorite text editor, Sublime Text 2 (the following EasyTeX file is identical to [samples/problem\_set\_sample\_1.txt](https://github.com/PaulDapolito/EasyTeX/blob/master/samples/problem_set_sample_1.txt)):
 
 <div style="width: 700px" align="center">
     <img src="./images/tutorial_1.png"/> <br />
-    <code>problem_set_1.txt</code>
+    <code>problem_set_1.txt</code>, EasyTeX File
 </div>
 &nbsp;
 &nbsp;
@@ -208,7 +208,7 @@ Two of these files are of much significance. First is the generated LaTeX file, 
 
 <div style="width: 700px" align="center">
     <img src="./images/tutorial_2.png"/> <br />
-    <code>problem_set_1.tex</code>
+    <code>problem_set_1.tex</code>, EasyTeX-generated LaTeX File
 </div>
 &nbsp;
 &nbsp;
@@ -217,18 +217,18 @@ Second is the generated PDF, `problem_set_1.pdf` representing the typeset versio
 
 <div style="width: 700px" align="center">
     <img src="./images/tutorial_3.png" style="border:1px solid black"/> <br />
-    <code>problem_set_1.pdf</code>
+    <code>problem_set_1.pdf</code>, EasyTeX-generated PDF
 </div>
 &nbsp;
 &nbsp;
 
-#### Example 2
+#### Problem Set Example 2
 
-Suppose we wish to create a more lengthy and advanced problem set excluding most of the optional fields. Let's create a problem set with two problems and all optional fields excluded besides the `collaborators` field (this file is identical to [samples/problem\_set\_sample\_2.txt](https://github.com/PaulDapolito/EasyTeX/blob/master/samples/problem_set_sample_2.txt)):
+Suppose we wish to create a more lengthy and advanced problem set excluding most of the optional fields. Let's create a problem set with two problems and all optional fields excluded besides the `collaborators` field (the following EasyTeX file is identical to [samples/problem\_set\_sample\_2.txt](https://github.com/PaulDapolito/EasyTeX/blob/master/samples/problem_set_sample_2.txt)):
 
 <div style="width: 700px" align="center">
     <img src="./images/tutorial_4.png"/> <br />
-    <code>problem_set_2.txt</code>
+    <code>problem_set_2.txt</code>, EasyTeX File
 </div>
 &nbsp;
 &nbsp;
@@ -237,27 +237,144 @@ Invoking EasyTeX using the [easytex.sh](https://github.com/PaulDapolito/EasyTeX/
 
 <div style="width: 700px" align="center">
     <img src="./images/tutorial_5.png"/> <br />
-    <code>problem_set_2.tex</code>
+    <code>problem_set_2.tex</code>, EasyTeX-generated LaTeX File
 </div>
 &nbsp;
 &nbsp;
 
 <div style="width: 700px" align="center">
     <img src="./images/tutorial_6.png" style="border:1px solid black"/> <br />
-    <code>problem_set_2.pdf</code>, Page 1
+    <code>problem_set_2.pdf</code>, EasyTeX-generated PDF Page 1
 </div>
 &nbsp;
 &nbsp;
 
 <div style="width: 700px" align="center">
     <img src="./images/tutorial_7.png" style="border:1px solid black"/> <br />
-    <code>problem_set_2.pdf</code>, Page 2
+    <code>problem_set_2.pdf</code>, EasyTeX-generated PDF Page 2
 </div>
 &nbsp;
 &nbsp;
 
+### Memorandums
+Suppose we wanted to typeset a memorandum using EasyTeX (assuming all installation and setup for the language as per the project's [README](https://github.com/PaulDapolito/EasyTeX/blob/master/README.md) has been completed). We know, from the specification of a [memorandum](https://github.com/PaulDapolito/EasyTeX/blob/master/documents/memorandum.md), the following structure must be maintained to typeset our work:
 
+#### Headers
+<table class="tg">
+  <tr>
+    <th class="tg-e3zv">Field Name</th>
+    <th class="tg-e3zv">Required/Optional</th>
+  </tr>
+  <tr>
+    <td class="tg-031e">author</td>
+    <td class="tg-031e">Required</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">collaborators</td>
+    <td class="tg-031e">Optional</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">date</td>
+    <td class="tg-031e">Optional</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">title</td>
+    <td class="tg-031e">Required</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">subtitle</td>
+    <td class="tg-031e">Optional</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">packages</td>
+    <td class="tg-031e">Optional</td>
+  </tr>
+</table>
 
+#### Sections
+<table class="tg">
+  <tr>
+    <th class="tg-e3zv">Field Name</th>
+    <th class="tg-e3zv">Required/Optional</th>
+  </tr>
+  <tr>
+    <td class="tg-031e">title</td>
+    <td class="tg-031e">Required</td>
+  </tr>
+  <tr>
+    <td class="tg-031e">content</td>
+    <td class="tg-031e">Required</td>
+  </tr>
+</table>
 
+#### Memorandum Example 1
 
+From these specifications, let's create a memorandum with one section and all optional fields filled using our favorite text editor, Sublime Text 2 (the following EasyTeX file is identical to [samples/memorandum\_sample\_1.txt](https://github.com/PaulDapolito/EasyTeX/blob/master/samples/memorandum_sample_1.txt)):
 
+<div style="width: 700px" align="center">
+    <img src="./images/tutorial_8.png"/> <br />
+    <code>memorandum_1.txt</code>, EasyTeX File
+</div>
+&nbsp;
+&nbsp;
+
+Now, if we save this file on our Desktop as `memorandum_1.txt`, we can invoke EasyTeX's parser and interpreter on the file by entering EasyTeX's root directory and executing the following command on the command line:
+
+	./easytex.sh ~/Desktop/memorandum_1.txt
+	
+The command-line interface will print the following two lines to indicate that EasyTeX's computation has completed without errors:
+
+	Running EasyTeX!
+	EasyTeX completed computation!
+
+Now, if we look in our Desktop folder, we will see the following four new files:
+
+   * `memorandum_1.pdf`: PDF file corresponding to the inputted EasyTeX file
+   * `memorandum_1.tex`: LaTeX file corresponding to the inputted EasyTeX file. This is the `.tex` file that is used to produce the `.pdf` file.
+   * `memorandum_1.log`: Log file from the creation of the `.pdf` file.
+   * `memorandum_1.aux`: Auxiliary file from the creation of the `.pdf` file.
+
+Two of these files are of much significance. First is the generated LaTeX file, `memorandum_1.tex`. This is the underlying file for the PDF that was produced, and the corresponding LaTeX is outputted as human-readable and nicely formatted code:
+
+<div style="width: 700px" align="center">
+    <img src="./images/tutorial_9.png"/> <br />
+    <code>memorandum_1.tex</code>, EasyTeX-generated LaTeX File
+</div>
+&nbsp;
+&nbsp;
+
+Second is the generated PDF, `memorandum_1.pdf` representing the typeset version of our EasyTeX memorandum:
+
+<div style="width: 700px" align="center">
+    <img src="./images/tutorial_10.png" style="border:1px solid black"/> <br />
+    <code>memorandum_1.pdf</code>, EasyTeX-generated PDF
+</div>
+&nbsp;
+&nbsp;
+
+#### Memorandum Example 2
+
+Suppose we wish to create a more lengthy and advanced memorandum excluding most of the optional fields. Let's create a memorandum with two sections and all optional fields excluded (the following EasyTeX file is identical to [samples/memorandum\_sample\_2.txt](https://github.com/PaulDapolito/EasyTeX/blob/master/samples/memorandum_sample_2.txt) with some content removed for brevity):
+
+<div style="width: 700px" align="center">
+    <img src="./images/tutorial_11.png"/> <br />
+    <code>memorandum_2.txt</code>, EasyTeX File
+</div>
+&nbsp;
+&nbsp;
+
+Invoking EasyTeX using the [easytex.sh](https://github.com/PaulDapolito/EasyTeX/blob/master/easytex.sh) (executing `./easytex.sh ~/Desktop/memorandum_2.txt` from the project's root directory) script yields the following LaTeX and PDF files, respectively:
+
+<div style="width: 700px" align="center">
+    <img src="./images/tutorial_12.png"/> <br />
+    <code>memorandum_2.tex</code>, EasyTeX-generated LaTeX File
+</div>
+&nbsp;
+&nbsp;
+
+<div style="width: 700px" align="center">
+    <img src="./images/tutorial_13.png" style="border:1px solid black"/> <br />
+    <code>memorandum_2.pdf</code>, EasyTeX-generated PDF
+</div>
+&nbsp;
+&nbsp;
