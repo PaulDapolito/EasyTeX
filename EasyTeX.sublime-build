@@ -1,2 +1,5 @@
-{"path": "/usr/texbin:/usr/bin", "working_dir": "/Users/Paul Dapolito/Dropbox/Coding/EasyTeX", "cmd": ["./easytex.sh", "$file"]}h", "$file"]
+{
+	"cmd": ["./easytex.sh", "$file"],
+	"path": "/usr/texbin:/usr/bin",
+	"working_dir": "EASYTEX_DIRECTORY"
 }
