@@ -11,7 +11,9 @@ EasyTeX is a domain-specific language for quickly creating clean, shareable, and
 
 ### pdflatex
 
-EasyTeX relies on the `pdflatex` command-line tool in order to create PDF documents from LaTeX files. This command-line tool is included in several [LaTeX packages](http://latex-project.org/ftp.html), such as [MiKTeX](http://miktex.org/download), [MacTeX](http://www.tug.org/mactex/), [TeX Live](http://www.tug.org/texlive/), and [proTeXt](http://www.tug.org/protext/). Please ensure that the `pdflatex` command-line tool is available before attempting to use EasyTeX. If you choose to forgo the installation of a LaTeX package that includes `pdflatex`, EasyTeX will simply output a `.tex` file for properly formatted input.
+EasyTeX relies on the `pdflatex` command-line tool in order to create PDF documents from LaTeX files. This command-line tool is included in several [LaTeX packages](http://latex-project.org/ftp.html), such as [MiKTeX](http://miktex.org/download), [MacTeX](http://www.tug.org/mactex/), [TeX Live](http://www.tug.org/texlive/), and [proTeXt](http://www.tug.org/protext/). Please ensure that the `pdflatex` command-line tool is available before attempting to use EasyTeX. EasyTeX will temporarily add `/usr/texbin` to your system's `$PATH` variable upon execution, so please be sure that `pdflatex` can be invoked from this path or some other path included in your system's `$PATH` variable.
+
+Note: If you choose to forgo the installation of a LaTeX package that includes `pdflatex`, EasyTeX will simply output a `.tex` file for properly formatted input.
 
 ### Python
 
@@ -39,29 +41,6 @@ EasyTeX makes use of a wide variety of Python modules. In order to use these mod
 
 	`./bootstrap.sh`
 	
-## Running Tests
-
-In the case that you want to alter EasyTeX to fit your needs more specifically, contribute to the project, or otherwise verify that the language's parser and interpreter are functioning correctly, EasyTeX includes an automated testing suite. This suite leverages Python's robust testing modules which are installed to the project's virtual environment when the [`bootstrap.sh`](https://github.com/PaulDapolito/EasyTeX/blob/master/bootstrap.sh) script is executed. 
-
-To run the automated tests within the project's virtual environment, first activate the virtual environment (the [`virtualenv`](http://virtualenv.readthedocs.org/en/latest/) is installed to `/usr/local/EasyTeX/venv` by default) from the project's root dirctory:
-
-	source /usr/local/EasyTeX/venv/bin/activate
-	
-With the virtual environment activated, EasyTeX's tests can be run using [`nosetests`](https://nose.readthedocs.org/en/latest/):
-
-	nosetests source/tests
-	
-To see more verbose output from the execution of the project's tests:
-
-	nosetests -s -v source/tests
-	
-To run EasyTeX's testing framework with a code coverage analysis:
-
-	nosetests --with-coverage --cover-html source/tests
-	
-The above command runs EasyTeX's testing suite and creates a web interface revealing the code coverage of EasyTex's automated tests in the `cover` directory. This interface can be explored by opening `cover/index.html` in a web browser.
-
-
 ## Usage Instructions
 
 EasyTeX includes a shell script to allow you to use the tool for end-to-end PDF generation. EasyTeX currently supports two types of documents: [problem sets](https://github.com/PaulDapolito/EasyTeX/blob/master/documents/problem_set.md) and [memorandums](https://github.com/PaulDapolito/EasyTeX/blob/master/documents/problem_set.md). Some samples of these different EasyTeX documents are included in the project's [samples](https://github.com/PaulDapolito/EasyTeX/tree/master/samples) directory.
@@ -96,13 +75,67 @@ When this process completes, we will see 5 new files in the `samples` directory:
 
 For more information on the two particular types of EasyTeX documents, please refer to the pages specific to [problem sets](https://github.com/PaulDapolito/EasyTeX/blob/master/documents/problem_set.md) and [memorandums](https://github.com/PaulDapolito/EasyTeX/blob/master/documents/problem_set.md)!
 
-## Syntax Highlighting on Mac OS X
-EasyTeX includes a [grammar file for syntax highlighting](https://github.com/PaulDapolito/EasyTeX/blob/master/source/EasyTeX%20Grammar.tmLanguage). To incorporate this syntax highlighting environment into your [Sublime Text 2](http://www.sublimetext.com/2) editor, create an `EasyTeX` folder in the `~/Library/Application Support/Sublime Text 2/Packages` directory and copy the copy the `EasyTeX Grammar.tmLanguage` file into the created folder. Then, relaunch Sublime and open your EasyTeX files to experience lovely syntax highlighting (may require selecting EasyTeX's syntax highlighting grammar via `View > Syntax > EasyTeX Grammar`):
+## Sublime Text 2 Setup on Mac OS X
+### Quick Setup
+The process of setting up EasyTeX's syntax highlighting and build tool for use with [Sublime Text 2](http://www.sublimetext.com/2) is performed automatically by the [`setup_sublime.py`](https://github.com/PaulDapolito/EasyTeX/blob/master/setup_sublime.py) Python script. This script completes the following tasks:
+   
+   * Creates `EasyTeX` directory in `~/Library/Application Support/Sublime Text 2/Packages`.
+   * Copies `EasyTeX Grammar.tmLanguage` syntax highlighting file to `~/Library/Application Support/Sublime Text 2/Packages/EasyTeX`.
+   * Completes the configuration of a Sublime build tool using the `EasyTeX.sublime-build` file by setting the `working_dir` key.
+   * Copies `EasyTeX.sublime-build` to `~/Library/Application Support/Sublime Text 2/Packages/User`.
+
+The `setup_sublime.py` script can be run by executing `python setup_sublime.py` on the command line, or by executing `./setup_sublime.sh` which simply executes the former command. 
+
+These instructions for enabling EasyTeX's syntax highlighting and Sublime build tool only apply to users running Macintosh OS X. An online editor for EasyTeX is coming soon!
+
+### Syntax Highlighting
+EasyTeX includes a [grammar file for syntax highlighting](https://github.com/PaulDapolito/EasyTeX/blob/master/EasyTeX%20Grammar.tmLanguage). To incorporate this syntax highlighting environment into your Sublime Text 2 editor, create an `EasyTeX` folder in the `~/Library/Application Support/Sublime Text 2/Packages` directory and copy the `EasyTeX Grammar.tmLanguage` file into the created folder. Then, relaunch Sublime and open your EasyTeX files to experience lovely syntax highlighting (may require selecting EasyTeX's syntax highlighting grammar via `View > Syntax > EasyTeX Grammar`):
 
 <div style="width: 700px" align="center">
     <img src="http://i.imgur.com/sAMy3Jk.png"/> <br />
 </div>
 
-These instructions for enabling EasyTeX syntax highlighting only apply to users running Macintosh OS X. An online editor for EasyTeX is coming soon!
+### Build and View Tool
+To compile and view EasyTeX documents directly from Sublime, EasyTeX includes a [skeleton sublime-build file](https://github.com/PaulDapolito/EasyTeX/blob/master/EasyTeX.sublime-build):
+	
+	{
+		"cmd": ["./easytex.sh", "$file"],
+		"path": "/usr/texbin:/usr/bin",
+		"working_dir": "EASYTEX_DIRECTORY"
+	}
+	
+The `working_dir` key in this configuration dictionary must be set to the absolute path to your EasyTeX project folder. For example:
+
+	{
+	    "cmd": ["./easytex.sh", "$file"]
+	    "path": "/usr/texbin:/usr/bin", 
+	    "working_dir": "/Users/Paul Dapolito/EasyTeX", 
+	}
+	
+This build configuration file must be copied to `~/Library/Application Support/Sublime Text 2/Packages/User`. After restarting Sublime, the build tool can be set by selecting the `EasyTeX` build system via `Tools > Build System > EasyTeX` and executed by pressing `Cmd+B` or `Tools > Build` from within Sublime Text 2.
+
+## Running Tests
+
+In the case that you want to alter EasyTeX to fit your needs more specifically, contribute to the project, or otherwise verify that the language's parser and interpreter are functioning correctly, EasyTeX includes an automated testing suite. This suite leverages Python's robust testing modules which are installed to the project's virtual environment when the [`bootstrap.sh`](https://github.com/PaulDapolito/EasyTeX/blob/master/bootstrap.sh) script is executed. 
+
+To run the automated tests within the project's virtual environment, first activate the virtual environment (the [`virtualenv`](http://virtualenv.readthedocs.org/en/latest/) is installed to `/usr/local/EasyTeX/venv` by default) from the project's root directory:
+
+	source /usr/local/EasyTeX/venv/bin/activate
+	
+With the virtual environment activated, EasyTeX's tests can be run using [`nosetests`](https://nose.readthedocs.org/en/latest/):
+
+	nosetests source/tests
+	
+To see more verbose output from the execution of the project's tests:
+
+	nosetests -s -v source/tests
+	
+To run EasyTeX's testing framework with a code coverage analysis:
+
+	nosetests --with-coverage --cover-html source/tests
+	
+The above command runs EasyTeX's testing suite and creates a web interface revealing the code coverage of EasyTex's automated tests in the `cover` directory. This interface can be explored by opening `cover/index.html` in a web browser.
+
+
 
 
